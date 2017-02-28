@@ -12367,7 +12367,7 @@ var Home = function Home() {
     _react2.default.createElement(
       'h1',
       { className: 'title' },
-      'Childline HOME'
+      'CHILDLINE HOME'
     ),
     _react2.default.createElement('img', { src: 'imgs/childline-logo.jpg', alt: 'alternative' }),
     _react2.default.createElement(
@@ -27348,7 +27348,7 @@ exports = module.exports = __webpack_require__(115)();
 
 
 // module
-exports.push([module.i, ".home h1 {\n  color: blue;\n  font-family: 'Rosie'; }\n\n@font-face {\n  font-family: Rosie;\n  src: url(" + __webpack_require__(238) + "); }\n\nbody {\n  font-family: 'childline'; }\n\n.background-blue {\n  background-color: #CCECF5; }\n\n/*Age check page */\n.age {\n  height: 100vh; }\n\n.age-title {\n  margin: 0;\n  background-color: #00a1d0;\n  padding: 2.5rem 1rem 2.5rem 1rem;\n  text-align: center;\n  height: 28vh; }\n\n.yoti-intro {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between; }\n\n.yoti-intro h3 {\n  height: 10rem;\n  width: 80%;\n  margin: 0;\n  height: 4rem; }\n\n.yoti-intro img {\n  width: 15%;\n  height: 2rem; }\n\n.yoti-btn {\n  display: block;\n  margin: 0 auto;\n  width: 100%;\n  text-align: center;\n  z-index: -1;\n  margin-bottom: 1rem; }\n\n.yoti-btn a {\n  display: block;\n  background-color: #632c7a;\n  width: 20rem;\n  margin: 0 auto;\n  padding-left: 2rem;\n  padding-right: 2rem;\n  text-transform: none; }\n\n.yoti-btn a:hover {\n  background-color: #2F153A; }\n\n.age-info {\n  background-color: #F28C00;\n  display: flex;\n  flex-direction: row;\n  color: white;\n  margin: 1rem; }\n\n.age-info a {\n  font-size: 1.2rem;\n  padding: 1rem;\n  padding-left: 0;\n  color: #234f62; }\n\n.why-eighteen {\n  margin: 0;\n  font-size: 1.2rem;\n  color: #0c3d52;\n  padding: 1rem; }\n\n.why-eighteen a {\n  padding: 0; }\n\ni.age-page {\n  margin: 0.6rem; }\n\n.yoti-info {\n  margin: 1rem;\n  background-color: #234f62;\n  box-sizing: border-box;\n  padding: 1rem;\n  color: #fff; }\n\n.yoti-info h3 {\n  font-family: 'Rosie', 'childline-bold';\n  font-size: 1.6rem;\n  margin: 0;\n  width: 90%;\n  float: left; }\n\n.yoti-description {\n  padding-top: 1.2rem;\n  margin: 0;\n  margin-bottom: 1rem;\n  font-size: 1.2rem; }\n\n.scan-me {\n  font-size: 1.5rem;\n  text-align: center;\n  display: none;\n  margin: 0;\n  padding: 0;\n  font-family: 'Rosie'; }\n\n.popup-yoti {\n  width: 4rem;\n  margin-left: 1rem; }\n\n.identity-1 {\n  width: 10%;\n  text-align: right;\n  color: white; }\n\n.link:hover {\n  text-decoration: underline; }\n", ""]);
+exports.push([module.i, ".home h1 {\n  color: blue;\n  font-family: 'Rosie'; }\n\n@font-face {\n  font-family: childline;\n  src: url(" + __webpack_require__(242) + "); }\n\n@font-face {\n  font-family: childline-bold;\n  src: url(" + __webpack_require__(241) + "); }\n\n@font-face {\n  font-family: Rosie;\n  src: url(" + __webpack_require__(238) + "); }\n\nbody {\n  font-family: 'childline'; }\n\n.background-blue {\n  background-color: #CCECF5; }\n\n/*Age check page */\n.age {\n  height: 100vh; }\n\n.age-title {\n  margin: 0;\n  background-color: #00a1d0;\n  padding: 2.5rem 1rem 2.5rem 1rem;\n  text-align: center;\n  height: 28vh; }\n\n.yoti-intro {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between; }\n\n.yoti-intro h3 {\n  height: 10rem;\n  width: 80%;\n  margin: 0;\n  height: 4rem; }\n\n.yoti-intro img {\n  width: 15%;\n  height: 2rem; }\n\n.yoti-btn {\n  display: block;\n  margin: 0 auto;\n  width: 100%;\n  text-align: center;\n  z-index: -1;\n  margin-bottom: 1rem; }\n\n.yoti-btn a {\n  display: block;\n  background-color: #632c7a;\n  width: 20rem;\n  margin: 0 auto;\n  padding-left: 2rem;\n  padding-right: 2rem;\n  text-transform: none; }\n\n.yoti-btn a:hover {\n  background-color: #2F153A; }\n\n.age-info {\n  background-color: #F28C00;\n  display: flex;\n  flex-direction: row;\n  color: white;\n  margin: 1rem; }\n\n.age-info a {\n  font-size: 1.2rem;\n  padding: 1rem;\n  padding-left: 0;\n  color: #234f62; }\n\n.why-eighteen {\n  margin: 0;\n  font-size: 1.2rem;\n  color: #0c3d52;\n  padding: 1rem; }\n\n.why-eighteen a {\n  padding: 0; }\n\ni.age-page {\n  margin: 0.6rem; }\n\n.yoti-info {\n  margin: 1rem;\n  background-color: #234f62;\n  box-sizing: border-box;\n  padding: 1rem;\n  color: #fff; }\n\n.yoti-info h3 {\n  font-family: 'Rosie', 'childline-bold';\n  font-size: 1.6rem;\n  margin: 0;\n  width: 90%;\n  float: left; }\n\n.yoti-description {\n  padding-top: 1.2rem;\n  margin: 0;\n  margin-bottom: 1rem;\n  font-size: 1.2rem; }\n\n.scan-me {\n  font-size: 1.5rem;\n  text-align: center;\n  display: none;\n  margin: 0;\n  padding: 0;\n  font-family: 'Rosie'; }\n\n.popup-yoti {\n  width: 4rem;\n  margin-left: 1rem; }\n\n.identity-1 {\n  width: 10%;\n  text-align: right;\n  color: white; }\n\n.link:hover {\n  text-decoration: underline; }\n", ""]);
 
 // exports
 
@@ -27649,6 +27649,18 @@ _reactDom2.default.render(_react2.default.createElement(
   _react2.default.createElement(_reactRouter.Route, { path: '/age-check', component: _AgeCheck2.default }),
   _react2.default.createElement(_reactRouter.Route, { path: '/form', component: _ContentForm2.default })
 ), document.getElementById('root'));
+
+/***/ }),
+/* 241 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "/fonts/ChildlineWeb-Bold.otf";
+
+/***/ }),
+/* 242 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "/fonts/ChildlineWeb-Regular.otf";
 
 /***/ })
 /******/ ]);
