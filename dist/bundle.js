@@ -12429,9 +12429,100 @@ var AgeCheck = function (_React$Component) {
         'div',
         null,
         _react2.default.createElement(
-          'h1',
-          null,
-          'Age check Me'
+          'div',
+          { className: 'age-title' },
+          _react2.default.createElement(
+            'h1',
+            { className: 'title' },
+            'ARE YOU UNDER 18?'
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'age-responsive' },
+          _react2.default.createElement(
+            'div',
+            { className: 'age-info background-blue' },
+            _react2.default.createElement(
+              'p',
+              { className: 'why-eighteen' },
+              'To remove explicit online content we will only ask for your age. Not even your name! You must be under 18 years old.',
+              _react2.default.createElement(
+                'a',
+                { className: 'link text-blue', href: 'https://www.iwf.org.uk/what-we-do', target: '_blank' },
+                'Find out why here',
+                _react2.default.createElement(
+                  'i',
+                  { className: 'tiny material-icons' },
+                  'info_outline'
+                )
+              )
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'age-info' },
+            _react2.default.createElement(
+              'i',
+              { className: 'age-page small material-icons' },
+              'info_outline'
+            ),
+            _react2.default.createElement(
+              'a',
+              { className: 'link text-white', href: 'https://www.childline.org.uk/info-advice/bullying-abuse-safety/online-mobile-safety/sexting/', target: '_blank' },
+              'What can I do if I am over 17?'
+            )
+          )
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'yoti-info ' },
+          _react2.default.createElement(
+            'div',
+            { className: 'qr-code-output', id: 'yoti-info__content' },
+            _react2.default.createElement(
+              'div',
+              { className: 'yoti-intro' },
+              _react2.default.createElement(
+                'h3',
+                null,
+                'YOTI - CONFIDENTIALLY VERIFY YOUR AGE'
+              ),
+              _react2.default.createElement('img', { src: 'imgs/yoti-logo.svg', alt: 'yoti logo' })
+            ),
+            _react2.default.createElement(
+              'p',
+              { className: 'yoti-description' },
+              'Yoti empowers you to take back control over your identity. If you don\'t have a Yoti digital identity, please create one ',
+              _react2.default.createElement(
+                'a',
+                { className: 'link', href: 'yoti' },
+                'here'
+              ),
+              ' and use it to verify you are under 17.'
+            )
+          ),
+          _react2.default.createElement(
+            'p',
+            { className: 'scan-me' },
+            'SCAN ME WITH YOTI',
+            _react2.default.createElement('img', { src: 'imgs/yoti-logo.svg', className: 'popup-yoti', alt: 'yoti logo' })
+          )
+        ),
+        _react2.default.createElement(
+          'span',
+          { className: 'yoti-btn', id: 'yotiBtn' },
+          _react2.default.createElement(
+            'a',
+            {
+              className: 'btn yoti-connect learn-more btn-primary',
+              'data-target': 'embed',
+              'data-yoti-scenario-id': true,
+              'data-yoti-application-id': true,
+              'data-yoti-type': 'inline',
+              'data-size': 'medium' },
+            'Share your age using Yoti'
+          )
         ),
         _react2.default.createElement(
           _reactRouter.Link,
@@ -27254,10 +27345,10 @@ module.exports = function (str) {
 
 exports = module.exports = __webpack_require__(115)();
 // imports
-
+exports.i(__webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"-!../../node_modules/css-loader/index.js!font-Rosie\""); e.code = 'MODULE_NOT_FOUND';; throw e; }())), "");
 
 // module
-exports.push([module.i, "/*@import 'home';*/\n", ""]);
+exports.push([module.i, ".home h1 {\n  color: blue;\n  font-family: 'Rosie'; }\n\n@font-face {\n  font-family: Rosie;\n  src: url(" + __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../public/fonts/childline/Rosie/rosie-regular-webfont.woff2\""); e.code = 'MODULE_NOT_FOUND';; throw e; }())) + "); }\n\nbody {\n  font-family: 'childline'; }\n\n.background-blue {\n  background-color: #CCECF5; }\n\n/*Age check page */\n.age {\n  height: 100vh; }\n\n.age-title {\n  margin: 0;\n  background-color: #00a1d0;\n  padding: 2.5rem 1rem 2.5rem 1rem;\n  text-align: center;\n  height: 28vh; }\n\n.yoti-intro {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between; }\n\n.yoti-intro h3 {\n  height: 10rem;\n  width: 80%;\n  margin: 0;\n  height: 4rem; }\n\n.yoti-intro img {\n  width: 15%;\n  height: 2rem; }\n\n.yoti-btn {\n  display: block;\n  margin: 0 auto;\n  width: 100%;\n  text-align: center;\n  z-index: -1;\n  margin-bottom: 1rem; }\n\n.yoti-btn a {\n  display: block;\n  background-color: #632c7a;\n  width: 20rem;\n  margin: 0 auto;\n  padding-left: 2rem;\n  padding-right: 2rem;\n  text-transform: none; }\n\n.yoti-btn a:hover {\n  background-color: #2F153A; }\n\n.age-info {\n  background-color: #F28C00;\n  display: flex;\n  flex-direction: row;\n  color: white;\n  margin: 1rem; }\n\n.age-info a {\n  font-size: 1.2rem;\n  padding: 1rem;\n  padding-left: 0;\n  color: #234f62; }\n\n.why-eighteen {\n  margin: 0;\n  font-size: 1.2rem;\n  color: #0c3d52;\n  padding: 1rem; }\n\n.why-eighteen a {\n  padding: 0; }\n\ni.age-page {\n  margin: 0.6rem; }\n\n.yoti-info {\n  margin: 1rem;\n  background-color: #234f62;\n  box-sizing: border-box;\n  padding: 1rem;\n  color: #fff; }\n\n.yoti-info h3 {\n  font-family: 'Rosie', 'childline-bold';\n  font-size: 1.6rem;\n  margin: 0;\n  width: 90%;\n  float: left; }\n\n.yoti-description {\n  padding-top: 1.2rem;\n  margin: 0;\n  margin-bottom: 1rem;\n  font-size: 1.2rem; }\n\n.scan-me {\n  font-size: 1.5rem;\n  text-align: center;\n  display: none;\n  margin: 0;\n  padding: 0;\n  font-family: 'Rosie'; }\n\n.popup-yoti {\n  width: 4rem;\n  margin-left: 1rem; }\n\n.identity-1 {\n  width: 10%;\n  text-align: right;\n  color: white; }\n\n.link:hover {\n  text-decoration: underline; }\n", ""]);
 
 // exports
 
