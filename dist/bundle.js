@@ -12360,10 +12360,16 @@ var Home = function Home() {
     'div',
     { className: 'home' },
     _react2.default.createElement(
-      'h1',
+      'p',
       null,
+      'HAHO'
+    ),
+    _react2.default.createElement(
+      'h1',
+      { className: 'title' },
       'Childline HOME'
     ),
+    _react2.default.createElement('img', { src: 'hmm', alt: 'alternative' }),
     _react2.default.createElement(
       _reactRouter.Link,
       { to: '/age-check' },
@@ -27251,7 +27257,7 @@ exports = module.exports = __webpack_require__(115)();
 
 
 // module
-exports.push([module.i, ".home h1 {\n  color: blue; }\n", ""]);
+exports.push([module.i, "/*@import 'home';*/\n", ""]);
 
 // exports
 
