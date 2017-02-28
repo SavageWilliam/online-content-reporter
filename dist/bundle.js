@@ -12369,7 +12369,7 @@ var Home = function Home() {
       { className: 'title' },
       'Childline HOME'
     ),
-    _react2.default.createElement('img', { src: 'hmm', alt: 'alternative' }),
+    _react2.default.createElement('img', { src: 'imgs/childline-logo.jpg', alt: 'alternative' }),
     _react2.default.createElement(
       _reactRouter.Link,
       { to: '/age-check' },
