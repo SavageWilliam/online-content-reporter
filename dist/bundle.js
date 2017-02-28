@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 240);
+/******/ 	return __webpack_require__(__webpack_require__.s = 242);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -8490,7 +8490,7 @@ module.exports = getIteratorFn;
 var content = __webpack_require__(237);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(239)(content, {});
+var update = __webpack_require__(241)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -12325,9 +12325,114 @@ var ContentForm = function ContentForm() {
     'div',
     null,
     _react2.default.createElement(
-      'h1',
-      null,
-      'FORM'
+      'div',
+      { className: 'content' },
+      _react2.default.createElement(
+        'div',
+        { className: 'title-div background-dark-blue' },
+        _react2.default.createElement(
+          'h1',
+          { className: 'title' },
+          'REPORT CONTENT WEB ADDRESS'
+        )
+      ),
+      _react2.default.createElement(
+        'div',
+        { className: 'progress' },
+        _react2.default.createElement('div', { className: 'determinate', style: 'width: 66%' })
+      ),
+      _react2.default.createElement(
+        'div',
+        { className: 'message' },
+        _react2.default.createElement(
+          'h4',
+          { className: 'rosie' },
+          'WEBSITE DETAILS'
+        ),
+        _react2.default.createElement(
+          'p',
+          null,
+          'If you have any information you think may help us such as a description of where the content you are reporting is located on a large website or username and password needed to gain access, please include it in the description box. If you have multiple webpages (URLs) to report, please include these in the description box.'
+        )
+      ),
+      _react2.default.createElement(
+        'div',
+        { className: 'form-container' },
+        _react2.default.createElement(
+          'h4',
+          { className: 'rosie' },
+          'WEB ADDRESS'
+        ),
+        _react2.default.createElement(
+          'form',
+          { action: '#' },
+          _react2.default.createElement(
+            'div',
+            { className: 'input-field col s6' },
+            _react2.default.createElement(
+              'i',
+              { className: 'material-icons prefix' },
+              'mode_edit'
+            ),
+            _react2.default.createElement('textarea', { id: 'url', className: 'materialize-textarea' }),
+            _react2.default.createElement(
+              'label',
+              { 'for': 'url' },
+              'URL'
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'input-field-2 input-field col s6 ' },
+            _react2.default.createElement(
+              'i',
+              { className: 'material-icons prefix' },
+              'mode_edit'
+            ),
+            _react2.default.createElement('textarea', { id: 'description', className: 'materialize-textarea' }),
+            _react2.default.createElement(
+              'label',
+              { 'for': 'description' },
+              'Description'
+            )
+          ),
+          _react2.default.createElement(
+            'a',
+            { className: 'waves-effect waves-light btn report-submit', id: 'submit-url' },
+            'Submit Report'
+          )
+        )
+      ),
+      _react2.default.createElement('div', { className: 'mod-overlay closed', id: 'mod-overlay' }),
+      _react2.default.createElement(
+        'div',
+        { className: 'mod closed', id: 'mod' },
+        _react2.default.createElement(
+          'button',
+          { className: 'mod__close-button', id: 'close-button' },
+          'X'
+        ),
+        _react2.default.createElement(
+          'div',
+          { className: 'mod__content' },
+          _react2.default.createElement(
+            'h1',
+            null,
+            'Thank you. The online content has been reported for removal'
+          ),
+          _react2.default.createElement(
+            'p',
+            null,
+            'If you would like IWF to update you by email, please enter your email address below.'
+          ),
+          _react2.default.createElement('input', { placeholder: 'email address' }),
+          _react2.default.createElement(
+            'a',
+            { className: 'waves-effect waves-light btn', href: '/index.html' },
+            'Submit'
+          )
+        )
+      )
     )
   );
 };
@@ -12360,16 +12465,86 @@ var Home = function Home() {
     'div',
     { className: 'home' },
     _react2.default.createElement(
-      'p',
-      null,
-      'HAHO'
+      'div',
+      { className: 'landing-title' },
+      _react2.default.createElement(
+        'div',
+        null,
+        _react2.default.createElement(
+          'p',
+          null,
+          'chidline'
+        ),
+        _react2.default.createElement(
+          'span',
+          { className: 'landing-title__phone' },
+          _react2.default.createElement(
+            'a',
+            { className: 'link', href: 'tel:+448001111' },
+            'Call 0800 1111'
+          ),
+          _react2.default.createElement(
+            'i',
+            { className: 'tiny material-icons whi' },
+            'phonelink_ring'
+          )
+        ),
+        _react2.default.createElement(
+          'h1',
+          { className: 'title' },
+          'REPORT ONLINE CONTENT'
+        )
+      ),
+      _react2.default.createElement(
+        'h3',
+        null,
+        'Anonymously and confidentially'
+      )
     ),
     _react2.default.createElement(
-      'h1',
-      { className: 'title' },
-      'CHILDLINE HOME'
+      'div',
+      { className: 'landing-info' },
+      _react2.default.createElement(
+        'h4',
+        null,
+        'YOU HAVE ALREADY SHARED PHOTOS \u2013 WHAT NOW?'
+      ),
+      _react2.default.createElement(
+        'p',
+        null,
+        'If you\u2019re under 18 and an indecent or nude pic of you is posted online, that is illegal. But we can ',
+        _react2.default.createElement(
+          'a',
+          { href: 'https://www.childline.org.uk/info-advice/bullying-abuse-safety/online-mobile-safety/sexting/' },
+          'help'
+        ),
+        '. Reporting is quick, easy and completely anonymous.'
+      )
     ),
-    _react2.default.createElement('img', { src: 'imgs/childline-logo.jpg', alt: 'alternative' }),
+    _react2.default.createElement(
+      'div',
+      { className: 'landing-logo' },
+      _react2.default.createElement('img', { className: 'landing-logo__img', src: 'images/iwf-logo.png', alt: 'IWF logo' })
+    ),
+    _react2.default.createElement(
+      'div',
+      { className: 'landing-logo' },
+      _react2.default.createElement('img', { className: 'landing-logo__img', src: 'images/childline-logo.jpg', alt: 'childline logo' })
+    ),
+    _react2.default.createElement(
+      'div',
+      { className: 'landing-btn' },
+      _react2.default.createElement(
+        'a',
+        { className: 'waves-effect waves-light btn', href: '/age-check.html' },
+        'Report Content',
+        _react2.default.createElement(
+          'i',
+          { className: 'small material-icons whi' },
+          'launch'
+        )
+      )
+    ),
     _react2.default.createElement(
       _reactRouter.Link,
       { to: '/age-check' },
@@ -27348,7 +27523,7 @@ exports = module.exports = __webpack_require__(115)();
 
 
 // module
-exports.push([module.i, ".home h1 {\n  color: blue;\n  font-family: 'Rosie'; }\n\n@font-face {\n  font-family: childline;\n  src: url(" + __webpack_require__(242) + "); }\n\n@font-face {\n  font-family: childline-bold;\n  src: url(" + __webpack_require__(241) + "); }\n\n@font-face {\n  font-family: Rosie;\n  src: url(" + __webpack_require__(238) + "); }\n\nbody {\n  font-family: 'childline'; }\n\n.background-blue {\n  background-color: #CCECF5; }\n\n/*Age check page */\n.age {\n  height: 100vh; }\n\n.age-title {\n  margin: 0;\n  background-color: #00a1d0;\n  padding: 2.5rem 1rem 2.5rem 1rem;\n  text-align: center;\n  height: 28vh; }\n\n.yoti-intro {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between; }\n\n.yoti-intro h3 {\n  height: 10rem;\n  width: 80%;\n  margin: 0;\n  height: 4rem; }\n\n.yoti-intro img {\n  width: 15%;\n  height: 2rem; }\n\n.yoti-btn {\n  display: block;\n  margin: 0 auto;\n  width: 100%;\n  text-align: center;\n  z-index: -1;\n  margin-bottom: 1rem; }\n\n.yoti-btn a {\n  display: block;\n  background-color: #632c7a;\n  width: 20rem;\n  margin: 0 auto;\n  padding-left: 2rem;\n  padding-right: 2rem;\n  text-transform: none; }\n\n.yoti-btn a:hover {\n  background-color: #2F153A; }\n\n.age-info {\n  background-color: #F28C00;\n  display: flex;\n  flex-direction: row;\n  color: white;\n  margin: 1rem; }\n\n.age-info a {\n  font-size: 1.2rem;\n  padding: 1rem;\n  padding-left: 0;\n  color: #234f62; }\n\n.why-eighteen {\n  margin: 0;\n  font-size: 1.2rem;\n  color: #0c3d52;\n  padding: 1rem; }\n\n.why-eighteen a {\n  padding: 0; }\n\ni.age-page {\n  margin: 0.6rem; }\n\n.yoti-info {\n  margin: 1rem;\n  background-color: #234f62;\n  box-sizing: border-box;\n  padding: 1rem;\n  color: #fff; }\n\n.yoti-info h3 {\n  font-family: 'Rosie', 'childline-bold';\n  font-size: 1.6rem;\n  margin: 0;\n  width: 90%;\n  float: left; }\n\n.yoti-description {\n  padding-top: 1.2rem;\n  margin: 0;\n  margin-bottom: 1rem;\n  font-size: 1.2rem; }\n\n.scan-me {\n  font-size: 1.5rem;\n  text-align: center;\n  display: none;\n  margin: 0;\n  padding: 0;\n  font-family: 'Rosie'; }\n\n.popup-yoti {\n  width: 4rem;\n  margin-left: 1rem; }\n\n.identity-1 {\n  width: 10%;\n  text-align: right;\n  color: white; }\n\n.link:hover {\n  text-decoration: underline; }\n", ""]);
+exports.push([module.i, ".home h1 {\n  color: blue;\n  font-family: 'Rosie'; }\n\n@font-face {\n  font-family: childline;\n  src: url(" + __webpack_require__(239) + "); }\n\n@font-face {\n  font-family: childline-bold;\n  src: url(" + __webpack_require__(238) + "); }\n\n@font-face {\n  font-family: Rosie;\n  src: url(" + __webpack_require__(240) + "); }\n\nbody {\n  font-family: 'childline'; }\n\n.background-blue {\n  background-color: #CCECF5; }\n\n/*Age check page */\n.age {\n  height: 100vh; }\n\n.age-title {\n  margin: 0;\n  background-color: #00a1d0;\n  padding: 2.5rem 1rem 2.5rem 1rem;\n  text-align: center;\n  height: 28vh; }\n\n.yoti-intro {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between; }\n\n.yoti-intro h3 {\n  height: 10rem;\n  width: 80%;\n  margin: 0;\n  height: 4rem; }\n\n.yoti-intro img {\n  width: 15%;\n  height: 2rem; }\n\n.yoti-btn {\n  display: block;\n  margin: 0 auto;\n  width: 100%;\n  text-align: center;\n  z-index: -1;\n  margin-bottom: 1rem; }\n\n.yoti-btn a {\n  display: block;\n  background-color: #632c7a;\n  width: 20rem;\n  margin: 0 auto;\n  padding-left: 2rem;\n  padding-right: 2rem;\n  text-transform: none; }\n\n.yoti-btn a:hover {\n  background-color: #2F153A; }\n\n.age-info {\n  background-color: #F28C00;\n  display: flex;\n  flex-direction: row;\n  color: white;\n  margin: 1rem; }\n\n.age-info a {\n  font-size: 1.2rem;\n  padding: 1rem;\n  padding-left: 0;\n  color: #234f62; }\n\n.why-eighteen {\n  margin: 0;\n  font-size: 1.2rem;\n  color: #0c3d52;\n  padding: 1rem; }\n\n.why-eighteen a {\n  padding: 0; }\n\ni.age-page {\n  margin: 0.6rem; }\n\n.yoti-info {\n  margin: 1rem;\n  background-color: #234f62;\n  box-sizing: border-box;\n  padding: 1rem;\n  color: #fff; }\n\n.yoti-info h3 {\n  font-family: 'Rosie', 'childline-bold';\n  font-size: 1.6rem;\n  margin: 0;\n  width: 90%;\n  float: left; }\n\n.yoti-description {\n  padding-top: 1.2rem;\n  margin: 0;\n  margin-bottom: 1rem;\n  font-size: 1.2rem; }\n\n.scan-me {\n  font-size: 1.5rem;\n  text-align: center;\n  display: none;\n  margin: 0;\n  padding: 0;\n  font-family: 'Rosie'; }\n\n.popup-yoti {\n  width: 4rem;\n  margin-left: 1rem; }\n\n.identity-1 {\n  width: 10%;\n  text-align: right;\n  color: white; }\n\n.link:hover {\n  text-decoration: underline; }\n", ""]);
 
 // exports
 
@@ -27357,10 +27532,22 @@ exports.push([module.i, ".home h1 {\n  color: blue;\n  font-family: 'Rosie'; }\n
 /* 238 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "/fonts/rosie-regular-webfont.woff2";
+module.exports = __webpack_require__.p + "/fonts/ChildlineWeb-Bold.otf";
 
 /***/ }),
 /* 239 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "/fonts/ChildlineWeb-Regular.otf";
+
+/***/ }),
+/* 240 */
+/***/ (function(module, exports, __webpack_require__) {
+
+module.exports = __webpack_require__.p + "/fonts/rosie-regular-webfont.woff2";
+
+/***/ }),
+/* 241 */
 /***/ (function(module, exports) {
 
 /*
@@ -27612,7 +27799,7 @@ function updateLink(linkElement, obj) {
 
 
 /***/ }),
-/* 240 */
+/* 242 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -27649,18 +27836,6 @@ _reactDom2.default.render(_react2.default.createElement(
   _react2.default.createElement(_reactRouter.Route, { path: '/age-check', component: _AgeCheck2.default }),
   _react2.default.createElement(_reactRouter.Route, { path: '/form', component: _ContentForm2.default })
 ), document.getElementById('root'));
-
-/***/ }),
-/* 241 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "/fonts/ChildlineWeb-Bold.otf";
-
-/***/ }),
-/* 242 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "/fonts/ChildlineWeb-Regular.otf";
 
 /***/ })
 /******/ ]);
