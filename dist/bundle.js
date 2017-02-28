@@ -12338,7 +12338,7 @@ var ContentForm = function ContentForm() {
     _react2.default.createElement(
       'div',
       { className: 'progress' },
-      _react2.default.createElement('div', { className: 'determinate', style: 'width: 66%' })
+      _react2.default.createElement('div', { className: 'determinate' })
     ),
     _react2.default.createElement(
       'div',
@@ -12442,8 +12442,7 @@ var ContentForm = function ContentForm() {
           ),
           'for more advice.'
         )
-      ),
-      _react2.default.createElement('div', { className: 'spacer', style: 'clear: both;' })
+      )
     ),
     _react2.default.createElement(
       _reactRouter.Link,
@@ -12580,7 +12579,7 @@ var Home = function Home() {
       _react2.default.createElement(
         'p',
         null,
-        'Prove Age Here'
+        'be overAge'
       )
     )
   );
@@ -12612,7 +12611,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var OverAge = function OverAge() {
   return _react2.default.createElement(
     'div',
-    null,
+    { className: 'overage' },
     _react2.default.createElement(
       'div',
       { className: 'title title-old-main' },
@@ -12664,8 +12663,7 @@ var OverAge = function OverAge() {
             'a',
             { className: 'contact', href: 'https://www.ceop.police.uk/CEOP-Reporting/' },
             'Contact CEOP'
-          ),
-          _react2.default.createElement('div', { className: 'spacer', style: 'clear: both;' })
+          )
         ),
         _react2.default.createElement(
           'div',
@@ -12679,8 +12677,7 @@ var OverAge = function OverAge() {
             'a',
             { className: 'contact', href: 'http://www.themix.org.uk/' },
             'Contact The Mix'
-          ),
-          _react2.default.createElement('div', { className: 'spacer', style: 'clear: both;' })
+          )
         ),
         _react2.default.createElement(
           'div',
@@ -12694,8 +12691,7 @@ var OverAge = function OverAge() {
             'a',
             { className: 'contact', href: 'http://www.samaritans.org/' },
             'Contact Samaritans'
-          ),
-          _react2.default.createElement('div', { className: 'spacer', style: 'clear: both;' })
+          )
         )
       ),
       _react2.default.createElement(
@@ -12753,7 +12749,7 @@ var UrlForm = function UrlForm() {
       _react2.default.createElement(
         'div',
         { className: 'progress' },
-        _react2.default.createElement('div', { className: 'determinate', style: 'width: 66%' })
+        _react2.default.createElement('div', { className: 'determinate' })
       ),
       _react2.default.createElement(
         'div',
