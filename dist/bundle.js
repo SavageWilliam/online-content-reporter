@@ -12543,12 +12543,20 @@ var Home = function Home() {
     _react2.default.createElement(
       'div',
       { className: 'landing-logo' },
-      _react2.default.createElement('img', { className: 'landing-logo__img', src: './imgs/iwf-logo.png', alt: 'IWF logo' })
+      _react2.default.createElement(
+        'a',
+        { href: 'https://www.iwf.org.uk/' },
+        _react2.default.createElement('img', { className: 'landing-logo__img', src: './imgs/iwf-logo.png', alt: 'IWF logo' })
+      )
     ),
     _react2.default.createElement(
       'div',
       { className: 'landing-logo' },
-      _react2.default.createElement('img', { className: 'landing-logo__img', src: './imgs/childline-logo.jpg', alt: 'childline logo' })
+      _react2.default.createElement(
+        'a',
+        { href: 'https://www.childline.org.uk/' },
+        _react2.default.createElement('img', { className: 'landing-logo__img', src: './imgs/childline-logo.jpg', alt: 'childline logo' })
+      )
     ),
     _react2.default.createElement(
       'div',
