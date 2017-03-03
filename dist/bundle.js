@@ -12543,12 +12543,12 @@ var Home = function Home() {
     _react2.default.createElement(
       'div',
       { className: 'landing-logo' },
-      _react2.default.createElement('img', { className: 'landing-logo__img', src: 'images/iwf-logo.png', alt: 'IWF logo' })
+      _react2.default.createElement('img', { className: 'landing-logo__img', src: './imgs/iwf-logo.png', alt: 'IWF logo' })
     ),
     _react2.default.createElement(
       'div',
       { className: 'landing-logo' },
-      _react2.default.createElement('img', { className: 'landing-logo__img', src: 'images/childline-logo.jpg', alt: 'childline logo' })
+      _react2.default.createElement('img', { className: 'landing-logo__img', src: './imgs/childline-logo.jpg', alt: 'childline logo' })
     ),
     _react2.default.createElement(
       'div',
@@ -12954,7 +12954,7 @@ var AgeCheck = function (_React$Component) {
                 null,
                 'YOTI - CONFIDENTIALLY VERIFY YOUR AGE'
               ),
-              _react2.default.createElement('img', { src: 'imgs/yoti-logo.svg', alt: 'yoti logo' })
+              _react2.default.createElement('img', { src: './imgs/yoti-logo.svg', alt: 'yoti logo' })
             ),
             _react2.default.createElement(
               'p',
@@ -12972,7 +12972,7 @@ var AgeCheck = function (_React$Component) {
             'p',
             { className: 'scan-me' },
             'SCAN ME WITH YOTI',
-            _react2.default.createElement('img', { src: 'imgs/yoti-logo.svg', className: 'popup-yoti', alt: 'yoti logo' })
+            _react2.default.createElement('img', { src: './imgs/yoti-logo.svg', className: 'popup-yoti', alt: 'yoti logo' })
           )
         ),
         _react2.default.createElement(
