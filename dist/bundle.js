@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 245);
+/******/ 	return __webpack_require__(__webpack_require__.s = 242);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -3758,6 +3758,32 @@ module.exports = React;
 /* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(240);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// add the styles to the DOM
+var update = __webpack_require__(241)(content, {});
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/index.js!./style.scss", function() {
+			var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/index.js!./style.scss");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
  * Copyright (c) 2013-present, Facebook, Inc.
@@ -3781,7 +3807,7 @@ module.exports = emptyObject;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4067,7 +4093,7 @@ module.exports = EventPluginHub;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4083,7 +4109,7 @@ module.exports = EventPluginHub;
 
 
 
-var EventPluginHub = __webpack_require__(30);
+var EventPluginHub = __webpack_require__(31);
 var EventPluginUtils = __webpack_require__(51);
 
 var accumulateInto = __webpack_require__(92);
@@ -4207,7 +4233,7 @@ module.exports = EventPropagators;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4260,7 +4286,7 @@ var ReactInstanceMap = {
 module.exports = ReactInstanceMap;
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4324,7 +4350,7 @@ SyntheticEvent.augmentClass(SyntheticUIEvent, UIEventInterface);
 module.exports = SyntheticUIEvent;
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4363,32 +4389,6 @@ var component = exports.component = oneOfType([func, string]);
 var components = exports.components = oneOfType([component, object]);
 var route = exports.route = oneOfType([object, element]);
 var routes = exports.routes = oneOfType([route, arrayOf(route)]);
-
-/***/ }),
-/* 35 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(240);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// add the styles to the DOM
-var update = __webpack_require__(244)(content, {});
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/index.js!./style.scss", function() {
-			var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/index.js!./style.scss");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
 
 /***/ }),
 /* 36 */
@@ -5084,7 +5084,7 @@ module.exports = ReactBrowserEventEmitter;
 
 
 
-var SyntheticUIEvent = __webpack_require__(33);
+var SyntheticUIEvent = __webpack_require__(34);
 var ViewportMetrics = __webpack_require__(91);
 
 var getEventModifierState = __webpack_require__(59);
@@ -6860,7 +6860,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 var _prodInvariant = __webpack_require__(3);
 
 var ReactCurrentOwner = __webpack_require__(13);
-var ReactInstanceMap = __webpack_require__(32);
+var ReactInstanceMap = __webpack_require__(33);
 var ReactInstrumentation = __webpack_require__(10);
 var ReactUpdates = __webpack_require__(12);
 
@@ -8193,7 +8193,7 @@ var _prodInvariant = __webpack_require__(21);
 var ReactNoopUpdateQueue = __webpack_require__(69);
 
 var canDefineProperty = __webpack_require__(71);
-var emptyObject = __webpack_require__(29);
+var emptyObject = __webpack_require__(30);
 var invariant = __webpack_require__(1);
 var warning = __webpack_require__(2);
 
@@ -10066,14 +10066,14 @@ var ReactDOMComponentTree = __webpack_require__(6);
 var ReactDOMContainerInfo = __webpack_require__(156);
 var ReactDOMFeatureFlags = __webpack_require__(158);
 var ReactFeatureFlags = __webpack_require__(85);
-var ReactInstanceMap = __webpack_require__(32);
+var ReactInstanceMap = __webpack_require__(33);
 var ReactInstrumentation = __webpack_require__(10);
 var ReactMarkupChecksum = __webpack_require__(178);
 var ReactReconciler = __webpack_require__(25);
 var ReactUpdateQueue = __webpack_require__(56);
 var ReactUpdates = __webpack_require__(12);
 
-var emptyObject = __webpack_require__(29);
+var emptyObject = __webpack_require__(30);
 var instantiateReactComponent = __webpack_require__(96);
 var invariant = __webpack_require__(1);
 var setInnerHTML = __webpack_require__(43);
@@ -11501,7 +11501,7 @@ var _RouteUtils = __webpack_require__(17);
 
 var _PatternUtils = __webpack_require__(26);
 
-var _InternalPropTypes = __webpack_require__(34);
+var _InternalPropTypes = __webpack_require__(35);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -12318,7 +12318,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouter = __webpack_require__(22);
 
-__webpack_require__(35);
+__webpack_require__(29);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -12331,7 +12331,7 @@ var ContentForm = function ContentForm() {
       { className: 'content-title' },
       _react2.default.createElement(
         'h1',
-        { className: 'title' },
+        { className: 'page-title' },
         'DESCRIBE THE ONLINE CONTENT'
       )
     ),
@@ -12475,7 +12475,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouter = __webpack_require__(22);
 
-__webpack_require__(35);
+__webpack_require__(29);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -12485,7 +12485,7 @@ var Home = function Home() {
     { className: 'home' },
     _react2.default.createElement(
       'div',
-      { className: 'landing-title' },
+      { className: 'landing-header' },
       _react2.default.createElement(
         'div',
         null,
@@ -12510,7 +12510,7 @@ var Home = function Home() {
         ),
         _react2.default.createElement(
           'h1',
-          { className: 'title' },
+          { className: 'page-title' },
           'REPORT ONLINE CONTENT'
         )
       ),
@@ -12525,7 +12525,7 @@ var Home = function Home() {
       { className: 'landing-info' },
       _react2.default.createElement(
         'h4',
-        null,
+        { className: 'section-title' },
         'YOU HAVE ALREADY SHARED PHOTOS \u2013 WHAT NOW?'
       ),
       _react2.default.createElement(
@@ -12590,7 +12590,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouter = __webpack_require__(22);
 
-__webpack_require__(35);
+__webpack_require__(29);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -12600,10 +12600,10 @@ var OverAge = function OverAge() {
     { className: 'overage' },
     _react2.default.createElement(
       'div',
-      { className: 'title title-old-main' },
+      { className: 'content-title-overage' },
       _react2.default.createElement(
         'h2',
-        { className: 'old-title' },
+        { className: 'page-title' },
         'SORRY, YOU ARE TOO OLD FOR THIS SERVICE'
       ),
       _react2.default.createElement(
@@ -12639,7 +12639,7 @@ var OverAge = function OverAge() {
         { className: 'other-ops' },
         _react2.default.createElement(
           'div',
-          { className: 'option1' },
+          { className: 'option' },
           _react2.default.createElement(
             'i',
             { className: 'identity small material-icons' },
@@ -12653,7 +12653,7 @@ var OverAge = function OverAge() {
         ),
         _react2.default.createElement(
           'div',
-          { className: 'option2' },
+          { className: 'option' },
           _react2.default.createElement(
             'i',
             { className: 'identity small material-icons' },
@@ -12667,7 +12667,7 @@ var OverAge = function OverAge() {
         ),
         _react2.default.createElement(
           'div',
-          { className: 'option3' },
+          { className: 'option' },
           _react2.default.createElement(
             'i',
             { className: 'identity small material-icons' },
@@ -12712,7 +12712,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouter = __webpack_require__(22);
 
-__webpack_require__(35);
+__webpack_require__(29);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -12725,10 +12725,10 @@ var UrlForm = function UrlForm() {
       { className: 'content' },
       _react2.default.createElement(
         'div',
-        { className: 'title-div background-dark-blue' },
+        { className: 'title-div' },
         _react2.default.createElement(
           'h1',
-          { className: 'title' },
+          { className: 'page-title' },
           'REPORT CONTENT WEB ADDRESS'
         )
       ),
@@ -12742,7 +12742,7 @@ var UrlForm = function UrlForm() {
         { className: 'message' },
         _react2.default.createElement(
           'h4',
-          { className: 'rosie' },
+          { className: 'section-title' },
           'WEBSITE DETAILS'
         ),
         _react2.default.createElement(
@@ -12756,7 +12756,7 @@ var UrlForm = function UrlForm() {
         { className: 'form-container' },
         _react2.default.createElement(
           'h4',
-          { className: 'rosie' },
+          { className: 'section-title' },
           'WEB ADDRESS'
         ),
         _react2.default.createElement(
@@ -12794,7 +12794,7 @@ var UrlForm = function UrlForm() {
           ),
           _react2.default.createElement(
             'a',
-            { className: 'waves-effect waves-light btn report-submit', id: 'submit-url' },
+            { className: 'btn', id: 'submit-url' },
             'Submit Report'
           )
         )
@@ -12855,7 +12855,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouter = __webpack_require__(22);
 
-__webpack_require__(35);
+__webpack_require__(29);
 
 var _ShareYoti = __webpack_require__(117);
 
@@ -12898,10 +12898,15 @@ var AgeCheck = function (_React$Component) {
         ),
         _react2.default.createElement(
           'div',
+          { className: 'progress' },
+          _react2.default.createElement('div', { className: 'determinate' })
+        ),
+        _react2.default.createElement(
+          'div',
           { className: 'age-responsive' },
           _react2.default.createElement(
             'div',
-            { className: 'age-info background-blue' },
+            { className: 'age-info-blue' },
             _react2.default.createElement(
               'p',
               { className: 'why-eighteen' },
@@ -12920,7 +12925,7 @@ var AgeCheck = function (_React$Component) {
           ),
           _react2.default.createElement(
             'div',
-            { className: 'age-info' },
+            { className: 'age-info-orange' },
             _react2.default.createElement(
               'i',
               { className: 'age-page small material-icons' },
@@ -12947,7 +12952,7 @@ var AgeCheck = function (_React$Component) {
                 null,
                 'YOTI - CONFIDENTIALLY VERIFY YOUR AGE'
               ),
-              _react2.default.createElement('img', { src: 'imgs/yoti-logo.svg', alt: 'yoti logo' })
+              _react2.default.createElement('img', { src: './imgs/yoti-logo.svg', alt: 'yoti logo' })
             ),
             _react2.default.createElement(
               'p',
@@ -12955,7 +12960,7 @@ var AgeCheck = function (_React$Component) {
               'Yoti empowers you to take back control over your identity. If you don\'t have a Yoti digital identity, please create one ',
               _react2.default.createElement(
                 'a',
-                { className: 'link', href: 'yoti' },
+                { className: 'link', href: 'www.yoti.com/' },
                 'here'
               ),
               ' and use it to verify you are under 17.'
@@ -12965,7 +12970,7 @@ var AgeCheck = function (_React$Component) {
             'p',
             { className: 'scan-me' },
             'SCAN ME WITH YOTI',
-            _react2.default.createElement('img', { src: 'imgs/yoti-logo.svg', className: 'popup-yoti', alt: 'yoti logo' })
+            _react2.default.createElement('img', { src: './imgs/yoti-logo.svg', className: 'popup-yoti', alt: 'yoti logo' })
           )
         ),
         _react2.default.createElement(_ShareYoti2.default, null),
@@ -13013,7 +13018,7 @@ var _react = __webpack_require__(5);
 
 var _react2 = _interopRequireDefault(_react);
 
-__webpack_require__(35);
+__webpack_require__(29);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -15039,7 +15044,7 @@ module.exports = AutoFocusUtils;
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var EventPropagators = __webpack_require__(31);
+var EventPropagators = __webpack_require__(32);
 var ExecutionEnvironment = __webpack_require__(7);
 var FallbackCompositionState = __webpack_require__(149);
 var SyntheticCompositionEvent = __webpack_require__(192);
@@ -15644,8 +15649,8 @@ module.exports = CSSPropertyOperations;
 
 
 
-var EventPluginHub = __webpack_require__(30);
-var EventPropagators = __webpack_require__(31);
+var EventPluginHub = __webpack_require__(31);
+var EventPropagators = __webpack_require__(32);
 var ExecutionEnvironment = __webpack_require__(7);
 var ReactDOMComponentTree = __webpack_require__(6);
 var ReactUpdates = __webpack_require__(12);
@@ -16055,7 +16060,7 @@ module.exports = DefaultEventPluginOrder;
 
 
 
-var EventPropagators = __webpack_require__(31);
+var EventPropagators = __webpack_require__(32);
 var ReactDOMComponentTree = __webpack_require__(6);
 var SyntheticMouseEvent = __webpack_require__(40);
 
@@ -16681,7 +16686,7 @@ var React = __webpack_require__(28);
 var ReactComponentEnvironment = __webpack_require__(54);
 var ReactCurrentOwner = __webpack_require__(13);
 var ReactErrorUtils = __webpack_require__(55);
-var ReactInstanceMap = __webpack_require__(32);
+var ReactInstanceMap = __webpack_require__(33);
 var ReactInstrumentation = __webpack_require__(10);
 var ReactNodeTypes = __webpack_require__(89);
 var ReactReconciler = __webpack_require__(25);
@@ -16690,7 +16695,7 @@ if (process.env.NODE_ENV !== 'production') {
   var checkReactTypeSpec = __webpack_require__(201);
 }
 
-var emptyObject = __webpack_require__(29);
+var emptyObject = __webpack_require__(30);
 var invariant = __webpack_require__(1);
 var shallowEqual = __webpack_require__(44);
 var shouldUpdateReactComponent = __webpack_require__(62);
@@ -17712,7 +17717,7 @@ var DOMLazyTree = __webpack_require__(24);
 var DOMNamespaces = __webpack_require__(50);
 var DOMProperty = __webpack_require__(16);
 var DOMPropertyOperations = __webpack_require__(81);
-var EventPluginHub = __webpack_require__(30);
+var EventPluginHub = __webpack_require__(31);
 var EventPluginRegistry = __webpack_require__(38);
 var ReactBrowserEventEmitter = __webpack_require__(39);
 var ReactDOMComponentFlags = __webpack_require__(82);
@@ -20807,7 +20812,7 @@ module.exports = REACT_ELEMENT_TYPE;
 
 
 
-var EventPluginHub = __webpack_require__(30);
+var EventPluginHub = __webpack_require__(31);
 
 function runEventQueueInBatch(events) {
   EventPluginHub.enqueueEvents(events);
@@ -21045,7 +21050,7 @@ module.exports = ReactHostOperationHistoryHook;
 
 
 var DOMProperty = __webpack_require__(16);
-var EventPluginHub = __webpack_require__(30);
+var EventPluginHub = __webpack_require__(31);
 var EventPluginUtils = __webpack_require__(51);
 var ReactComponentEnvironment = __webpack_require__(54);
 var ReactEmptyComponent = __webpack_require__(84);
@@ -21184,7 +21189,7 @@ module.exports = ReactMarkupChecksum;
 var _prodInvariant = __webpack_require__(3);
 
 var ReactComponentEnvironment = __webpack_require__(54);
-var ReactInstanceMap = __webpack_require__(32);
+var ReactInstanceMap = __webpack_require__(33);
 var ReactInstrumentation = __webpack_require__(10);
 
 var ReactCurrentOwner = __webpack_require__(13);
@@ -22614,7 +22619,7 @@ module.exports = SVGDOMPropertyConfig;
 
 
 
-var EventPropagators = __webpack_require__(31);
+var EventPropagators = __webpack_require__(32);
 var ExecutionEnvironment = __webpack_require__(7);
 var ReactDOMComponentTree = __webpack_require__(6);
 var ReactInputSelection = __webpack_require__(87);
@@ -22814,7 +22819,7 @@ module.exports = SelectEventPlugin;
 var _prodInvariant = __webpack_require__(3);
 
 var EventListener = __webpack_require__(73);
-var EventPropagators = __webpack_require__(31);
+var EventPropagators = __webpack_require__(32);
 var ReactDOMComponentTree = __webpack_require__(6);
 var SyntheticAnimationEvent = __webpack_require__(190);
 var SyntheticClipboardEvent = __webpack_require__(191);
@@ -22825,7 +22830,7 @@ var SyntheticMouseEvent = __webpack_require__(40);
 var SyntheticDragEvent = __webpack_require__(193);
 var SyntheticTouchEvent = __webpack_require__(197);
 var SyntheticTransitionEvent = __webpack_require__(198);
-var SyntheticUIEvent = __webpack_require__(33);
+var SyntheticUIEvent = __webpack_require__(34);
 var SyntheticWheelEvent = __webpack_require__(199);
 
 var emptyFunction = __webpack_require__(11);
@@ -23213,7 +23218,7 @@ module.exports = SyntheticDragEvent;
 
 
 
-var SyntheticUIEvent = __webpack_require__(33);
+var SyntheticUIEvent = __webpack_require__(34);
 
 /**
  * @interface FocusEvent
@@ -23296,7 +23301,7 @@ module.exports = SyntheticInputEvent;
 
 
 
-var SyntheticUIEvent = __webpack_require__(33);
+var SyntheticUIEvent = __webpack_require__(34);
 
 var getEventCharCode = __webpack_require__(58);
 var getEventKey = __webpack_require__(205);
@@ -23385,7 +23390,7 @@ module.exports = SyntheticKeyboardEvent;
 
 
 
-var SyntheticUIEvent = __webpack_require__(33);
+var SyntheticUIEvent = __webpack_require__(34);
 
 var getEventModifierState = __webpack_require__(59);
 
@@ -23771,7 +23776,7 @@ var _prodInvariant = __webpack_require__(3);
 
 var ReactCurrentOwner = __webpack_require__(13);
 var ReactDOMComponentTree = __webpack_require__(6);
-var ReactInstanceMap = __webpack_require__(32);
+var ReactInstanceMap = __webpack_require__(33);
 
 var getHostComponentFromComposite = __webpack_require__(94);
 var invariant = __webpack_require__(1);
@@ -24386,7 +24391,7 @@ var _Redirect = __webpack_require__(102);
 
 var _Redirect2 = _interopRequireDefault(_Redirect);
 
-var _InternalPropTypes = __webpack_require__(34);
+var _InternalPropTypes = __webpack_require__(35);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -24455,7 +24460,7 @@ var _invariant2 = _interopRequireDefault(_invariant);
 
 var _RouteUtils = __webpack_require__(17);
 
-var _InternalPropTypes = __webpack_require__(34);
+var _InternalPropTypes = __webpack_require__(35);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -24519,7 +24524,7 @@ var _invariant2 = _interopRequireDefault(_invariant);
 
 var _RouteUtils = __webpack_require__(17);
 
-var _InternalPropTypes = __webpack_require__(34);
+var _InternalPropTypes = __webpack_require__(35);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -24586,7 +24591,7 @@ var _createTransitionManager2 = __webpack_require__(106);
 
 var _createTransitionManager3 = _interopRequireDefault(_createTransitionManager2);
 
-var _InternalPropTypes = __webpack_require__(34);
+var _InternalPropTypes = __webpack_require__(35);
 
 var _RouterContext = __webpack_require__(67);
 
@@ -26241,7 +26246,7 @@ var ReactElement = __webpack_require__(20);
 var ReactPropTypeLocationNames = __webpack_require__(70);
 var ReactNoopUpdateQueue = __webpack_require__(69);
 
-var emptyObject = __webpack_require__(29);
+var emptyObject = __webpack_require__(30);
 var invariant = __webpack_require__(1);
 var warning = __webpack_require__(2);
 
@@ -27578,7 +27583,7 @@ var _assign = __webpack_require__(4);
 var ReactComponent = __webpack_require__(68);
 var ReactNoopUpdateQueue = __webpack_require__(69);
 
-var emptyObject = __webpack_require__(29);
+var emptyObject = __webpack_require__(30);
 
 /**
  * Base class helpers for the updating state of a component.
@@ -27967,31 +27972,13 @@ exports = module.exports = __webpack_require__(118)();
 
 
 // module
-exports.push([module.i, ".home h1 {\n  color: blue;\n  font-family: 'Rosie'; }\n\n@font-face {\n  font-family: childline;\n  src: url(" + __webpack_require__(242) + "); }\n\n@font-face {\n  font-family: childline-bold;\n  src: url(" + __webpack_require__(241) + "); }\n\n@font-face {\n  font-family: Rosie;\n  src: url(" + __webpack_require__(243) + "); }\n\nbody {\n  font-family: 'childline'; }\n\n.background-blue {\n  background-color: #CCECF5; }\n\n/*Age check page */\n.age {\n  height: 100vh; }\n\n.age-title {\n  margin: 0;\n  background-color: #00a1d0;\n  padding: 2.5rem 1rem 2.5rem 1rem;\n  text-align: center;\n  height: 28vh; }\n\n.yoti-intro {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between; }\n\n.yoti-intro h3 {\n  height: 10rem;\n  width: 80%;\n  margin: 0;\n  height: 4rem; }\n\n.yoti-intro img {\n  width: 15%;\n  height: 2rem; }\n\n.yoti-btn {\n  display: block;\n  margin: 0 auto;\n  width: 100%;\n  text-align: center;\n  z-index: -1;\n  margin-bottom: 1rem; }\n\n.yoti-btn a {\n  display: block;\n  background-color: #632c7a;\n  width: 20rem;\n  margin: 0 auto;\n  padding-left: 2rem;\n  padding-right: 2rem;\n  text-transform: none; }\n\n.yoti-btn a:hover {\n  background-color: #2F153A; }\n\n.age-info {\n  background-color: #F28C00;\n  display: flex;\n  flex-direction: row;\n  color: white;\n  margin: 1rem; }\n\n.age-info a {\n  font-size: 1.2rem;\n  padding: 1rem;\n  padding-left: 0;\n  color: #234f62; }\n\n.why-eighteen {\n  margin: 0;\n  font-size: 1.2rem;\n  color: #0c3d52;\n  padding: 1rem; }\n\n.why-eighteen a {\n  padding: 0; }\n\ni.age-page {\n  margin: 0.6rem; }\n\n.yoti-info {\n  margin: 1rem;\n  background-color: #234f62;\n  box-sizing: border-box;\n  padding: 1rem;\n  color: #fff; }\n\n.yoti-info h3 {\n  font-family: 'Rosie', 'childline-bold';\n  font-size: 1.6rem;\n  margin: 0;\n  width: 90%;\n  float: left; }\n\n.yoti-description {\n  padding-top: 1.2rem;\n  margin: 0;\n  margin-bottom: 1rem;\n  font-size: 1.2rem; }\n\n.scan-me {\n  font-size: 1.5rem;\n  text-align: center;\n  display: none;\n  margin: 0;\n  padding: 0;\n  font-family: 'Rosie'; }\n\n.popup-yoti {\n  width: 4rem;\n  margin-left: 1rem; }\n\n.identity-1 {\n  width: 10%;\n  text-align: right;\n  color: white; }\n\n.link:hover {\n  text-decoration: underline; }\n", ""]);
+exports.push([module.i, "@font-face {\n  font-family: childline;\n  src: url(" + __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../../fonts/ChildlineWeb/ChildlineWeb-Regular.otf\""); e.code = 'MODULE_NOT_FOUND';; throw e; }())) + "); }\n\n@font-face {\n  font-family: childline-bold;\n  src: url(" + __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../../fonts/ChildlineWeb/ChildlineWeb-Bold.otf\""); e.code = 'MODULE_NOT_FOUND';; throw e; }())) + "); }\n\n@font-face {\n  font-family: Rosie;\n  src: url(" + __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../../fonts/Rosie/rosie-regular-webfont.woff2\""); e.code = 'MODULE_NOT_FOUND';; throw e; }())) + "); }\n\n.landing-header {\n  background-color: #00a1d0;\n  padding: 4rem 1rem 1rem 1rem; }\n\n.landing-info {\n  margin: 1rem;\n  background-color: #234f62;\n  color: white; }\n\n.landing-logo {\n  float: left;\n  min-width: 50%;\n  box-sizing: border-box;\n  text-align: center;\n  margin-bottom: 1rem; }\n  .landing-logo img {\n    height: 6rem;\n    width: auto;\n    margin-bottom: 1rem; }\n\n@font-face {\n  font-family: childline;\n  src: url(" + __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../../fonts/ChildlineWeb/ChildlineWeb-Regular.otf\""); e.code = 'MODULE_NOT_FOUND';; throw e; }())) + "); }\n\n@font-face {\n  font-family: childline-bold;\n  src: url(" + __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../../fonts/ChildlineWeb/ChildlineWeb-Bold.otf\""); e.code = 'MODULE_NOT_FOUND';; throw e; }())) + "); }\n\n@font-face {\n  font-family: Rosie;\n  src: url(" + __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../../fonts/Rosie/rosie-regular-webfont.woff2\""); e.code = 'MODULE_NOT_FOUND';; throw e; }())) + "); }\n\n.page-title {\n  font-family: 'Rosie', 'childline-bold';\n  font-size: 3rem;\n  margin: 0;\n  color: #fff;\n  text-align: center;\n  padding-bottom: 1rem; }\n\n.section-title, .scan-me {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 1.5rem; }\n\n.text {\n  font-size: 1.2rem;\n  margin: 0; }\n\n.progress {\n  position: relative;\n  height: 4px;\n  display: block;\n  width: 100%;\n  background-color: #acece6;\n  border-radius: 2px;\n  margin: .5rem 0 1rem 0;\n  overflow: hidden; }\n\na {\n  text-decoration: none; }\n\n.age-info-text, .age-info-blue p, .age-info-orange a {\n  margin: 0;\n  font-size: 1.2rem;\n  padding: 1rem; }\n\n.btn {\n  width: 20rem;\n  margin: 0 auto;\n  background-color: #632c7a;\n  text-transform: none;\n  margin-bottom: 2rem; }\n\nbody {\n  font-size: 1.2rem;\n  max-width: 440px;\n  margin: 0 auto;\n  font-family: 'childline'; }\n\ndiv {\n  display: block; }\n\n.age-title {\n  margin: 0;\n  background-color: #00a1d0;\n  padding: 2.5rem 1rem 2.5rem 1rem;\n  text-align: center;\n  height: 28vh; }\n\n.determinate {\n  width: 33%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  background-color: #26a69a;\n  transition: width .3s linear; }\n\n.age-info-blue {\n  background-color: #73cfe8;\n  display: flex;\n  flex-direction: row;\n  color: white;\n  margin: 1rem; }\n  .age-info-blue p {\n    color: #0c3d52; }\n\n.age-info-orange {\n  background-color: #F28C00;\n  display: flex;\n  flex-direction: row;\n  color: white;\n  margin: 1rem; }\n  .age-info-orange i {\n    padding: 0.6rem; }\n  .age-info-orange a {\n    color: #234f62; }\n\n.scan-me {\n  text-align: center;\n  display: none;\n  padding: 0; }\n  .scan-me img {\n    width: 4rem;\n    margin-left: 1rem; }\n\n.yoti-info {\n  margin: 1rem;\n  background-color: #234f62;\n  box-sizing: border-box;\n  padding: 1rem;\n  color: white; }\n  .yoti-info h3 {\n    margin: 0;\n    width: 90%;\n    float: left; }\n\n.yoti-intro img {\n  width: 15%;\n  height: 2rem; }\n\n@font-face {\n  font-family: childline;\n  src: url(" + __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../../fonts/ChildlineWeb/ChildlineWeb-Regular.otf\""); e.code = 'MODULE_NOT_FOUND';; throw e; }())) + "); }\n\n@font-face {\n  font-family: childline-bold;\n  src: url(" + __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../../fonts/ChildlineWeb/ChildlineWeb-Bold.otf\""); e.code = 'MODULE_NOT_FOUND';; throw e; }())) + "); }\n\n@font-face {\n  font-family: Rosie;\n  src: url(" + __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../../fonts/Rosie/rosie-regular-webfont.woff2\""); e.code = 'MODULE_NOT_FOUND';; throw e; }())) + "); }\n\n.page-title {\n  font-family: 'Rosie', 'childline-bold';\n  font-size: 3rem;\n  margin: 0;\n  color: #fff;\n  text-align: center;\n  padding-bottom: 1rem; }\n\n.section-title, .scan-me {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 1.5rem; }\n\n.text {\n  font-size: 1.2rem;\n  margin: 0; }\n\n.progress {\n  position: relative;\n  height: 4px;\n  display: block;\n  width: 100%;\n  background-color: #acece6;\n  border-radius: 2px;\n  margin: .5rem 0 1rem 0;\n  overflow: hidden; }\n\na {\n  text-decoration: none; }\n\n.age-info-text, .age-info-blue p, .age-info-orange a {\n  margin: 0;\n  font-size: 1.2rem;\n  padding: 1rem; }\n\n.btn {\n  width: 20rem;\n  margin: 0 auto;\n  background-color: #632c7a;\n  text-transform: none;\n  margin-bottom: 2rem; }\n\nbody {\n  font-size: 1.2rem;\n  max-width: 440px;\n  margin: 0 auto;\n  font-family: 'childline'; }\n\ndiv {\n  display: block; }\n\n/*.message {\n    margin: 1rem;\n    padding: 0.75rem;\n    color: $cobalt;\n    background-color: $orange;\n}\n\n.title-div {\n    padding: 2.5rem 1rem 2.5rem 1rem;\n    margin-bottom: 1rem;\n    height: 35vh;\n    background-color: $cobalt;\n}*/\n.content-title {\n  background-color: #632c7a;\n  padding: 4rem 1rem 2.5rem 1rem;\n  padding: 4rem 1rem 2.5rem 1rem; }\n\n.determinate {\n  width: 66%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  background-color: #26a69a;\n  transition: width .3s linear; }\n\n.form-container {\n  max-width: 94%;\n  margin: 1rem auto;\n  padding: 1rem;\n  background-color: #3EBB98; }\n\n@font-face {\n  font-family: childline;\n  src: url(" + __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../../fonts/ChildlineWeb/ChildlineWeb-Regular.otf\""); e.code = 'MODULE_NOT_FOUND';; throw e; }())) + "); }\n\n@font-face {\n  font-family: childline-bold;\n  src: url(" + __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../../fonts/ChildlineWeb/ChildlineWeb-Bold.otf\""); e.code = 'MODULE_NOT_FOUND';; throw e; }())) + "); }\n\n@font-face {\n  font-family: Rosie;\n  src: url(" + __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../../fonts/Rosie/rosie-regular-webfont.woff2\""); e.code = 'MODULE_NOT_FOUND';; throw e; }())) + "); }\n\n.page-title {\n  font-family: 'Rosie', 'childline-bold';\n  font-size: 3rem;\n  margin: 0;\n  color: #fff;\n  text-align: center;\n  padding-bottom: 1rem; }\n\n.section-title, .scan-me {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 1.5rem; }\n\n.text {\n  font-size: 1.2rem;\n  margin: 0; }\n\n.progress {\n  position: relative;\n  height: 4px;\n  display: block;\n  width: 100%;\n  background-color: #acece6;\n  border-radius: 2px;\n  margin: .5rem 0 1rem 0;\n  overflow: hidden; }\n\na {\n  text-decoration: none; }\n\n.age-info-text, .age-info-blue p, .age-info-orange a {\n  margin: 0;\n  font-size: 1.2rem;\n  padding: 1rem; }\n\n.btn {\n  width: 20rem;\n  margin: 0 auto;\n  background-color: #632c7a;\n  text-transform: none;\n  margin-bottom: 2rem; }\n\nbody {\n  font-size: 1.2rem;\n  max-width: 440px;\n  margin: 0 auto;\n  font-family: 'childline'; }\n\ndiv {\n  display: block; }\n\n.message {\n  margin: 1rem;\n  padding: 0.75rem;\n  color: #234f62;\n  background-color: #F28C00; }\n\n.title-div {\n  padding: 2.5rem 1rem 2.5rem 1rem;\n  margin-bottom: 1rem;\n  height: 35vh;\n  background-color: #234f62; }\n\n.determinate {\n  width: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  background-color: #26a69a;\n  transition: width .3s linear; }\n\n.form-container {\n  max-width: 94%;\n  margin: 1rem auto;\n  padding: 1rem;\n  background-color: #CCECF5; }\n\n@font-face {\n  font-family: childline;\n  src: url(" + __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../../fonts/ChildlineWeb/ChildlineWeb-Regular.otf\""); e.code = 'MODULE_NOT_FOUND';; throw e; }())) + "); }\n\n@font-face {\n  font-family: childline-bold;\n  src: url(" + __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../../fonts/ChildlineWeb/ChildlineWeb-Bold.otf\""); e.code = 'MODULE_NOT_FOUND';; throw e; }())) + "); }\n\n@font-face {\n  font-family: Rosie;\n  src: url(" + __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../../fonts/Rosie/rosie-regular-webfont.woff2\""); e.code = 'MODULE_NOT_FOUND';; throw e; }())) + "); }\n\n.page-title {\n  font-family: 'Rosie', 'childline-bold';\n  font-size: 3rem;\n  margin: 0;\n  color: #fff;\n  text-align: center;\n  padding-bottom: 1rem; }\n\n.section-title, .scan-me {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 1.5rem; }\n\n.text {\n  font-size: 1.2rem;\n  margin: 0; }\n\n.progress {\n  position: relative;\n  height: 4px;\n  display: block;\n  width: 100%;\n  background-color: #acece6;\n  border-radius: 2px;\n  margin: .5rem 0 1rem 0;\n  overflow: hidden; }\n\na {\n  text-decoration: none; }\n\n.age-info-text, .age-info-blue p, .age-info-orange a {\n  margin: 0;\n  font-size: 1.2rem;\n  padding: 1rem; }\n\n.btn {\n  width: 20rem;\n  margin: 0 auto;\n  background-color: #632c7a;\n  text-transform: none;\n  margin-bottom: 2rem; }\n\nbody {\n  font-size: 1.2rem;\n  max-width: 440px;\n  margin: 0 auto;\n  font-family: 'childline'; }\n\ndiv {\n  display: block; }\n\n.content-title-overage {\n  background-color: #3EBB98;\n  padding: 4rem 1rem 2.5rem 1rem; }\n\n.what-now {\n  background-color: #D8F1EA;\n  margin: 1rem;\n  padding: 1rem; }\n  .what-now h3 {\n    font-family: 'childline-bold';\n    font-size: 1.6rem;\n    margin: 0;\n    width: 90%;\n    float: left;\n    color: #632c7a; }\n  .what-now .identity {\n    width: 10%;\n    text-align: right;\n    color: #632c7a;\n    padding-left: 0.2rem;\n    padding-top: 0.2rem; }\n  .what-now p {\n    padding-top: 0.5rem;\n    margin: 0;\n    margin-bottom: 1rem;\n    font-size: 1.2rem;\n    color: #632c7a; }\n\n.other-ops {\n  position: relative;\n  margin: 0 auto;\n  background-color: white;\n  padding: 0;\n  display: flex;\n  justify-content: center;\n  flex-direction: column; }\n\n.contact {\n  float: left;\n  text-align: left !important;\n  display: block;\n  color: #632c7a;\n  padding: 0.5rem;\n  margin-left: 1rem;\n  transition: all 0.5s ease;\n  font-family: 'childline-bold'; }\n\n.option {\n  border: 0.2rem solid #3EBB98;\n  width: 94%;\n  padding: 0.45rem;\n  margin: 0.5rem auto;\n  display: flex;\n  flex-direction: row; }\n  .option i {\n    width: 10%;\n    text-align: right;\n    color: #632c7a;\n    padding-left: 0.2rem;\n    padding-top: 0.2rem; }\n  .option a {\n    float: left;\n    text-align: left !important;\n    display: block;\n    color: #632c7a;\n    padding: 0.5rem;\n    margin-left: 1rem;\n    transition: all 0.5s ease;\n    font-family: 'childline-bold'; }\n\n@font-face {\n  font-family: childline;\n  src: url(" + __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../../fonts/ChildlineWeb/ChildlineWeb-Regular.otf\""); e.code = 'MODULE_NOT_FOUND';; throw e; }())) + "); }\n\n@font-face {\n  font-family: childline-bold;\n  src: url(" + __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../../fonts/ChildlineWeb/ChildlineWeb-Bold.otf\""); e.code = 'MODULE_NOT_FOUND';; throw e; }())) + "); }\n\n@font-face {\n  font-family: Rosie;\n  src: url(" + __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../../fonts/Rosie/rosie-regular-webfont.woff2\""); e.code = 'MODULE_NOT_FOUND';; throw e; }())) + "); }\n\n.page-title {\n  font-family: 'Rosie', 'childline-bold';\n  font-size: 3rem;\n  margin: 0;\n  color: #fff;\n  text-align: center;\n  padding-bottom: 1rem; }\n\n.section-title, .scan-me {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 1.5rem; }\n\n.text {\n  font-size: 1.2rem;\n  margin: 0; }\n\n.progress {\n  position: relative;\n  height: 4px;\n  display: block;\n  width: 100%;\n  background-color: #acece6;\n  border-radius: 2px;\n  margin: .5rem 0 1rem 0;\n  overflow: hidden; }\n\na {\n  text-decoration: none; }\n\n.age-info-text, .age-info-blue p, .age-info-orange a {\n  margin: 0;\n  font-size: 1.2rem;\n  padding: 1rem; }\n\n.btn {\n  width: 20rem;\n  margin: 0 auto;\n  background-color: #632c7a;\n  text-transform: none;\n  margin-bottom: 2rem; }\n\nbody {\n  font-size: 1.2rem;\n  max-width: 440px;\n  margin: 0 auto;\n  font-family: 'childline'; }\n\ndiv {\n  display: block; }\n\n@font-face {\n  font-family: childline;\n  src: url(" + __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../../fonts/ChildlineWeb/ChildlineWeb-Regular.otf\""); e.code = 'MODULE_NOT_FOUND';; throw e; }())) + "); }\n\n@font-face {\n  font-family: childline-bold;\n  src: url(" + __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../../fonts/ChildlineWeb/ChildlineWeb-Bold.otf\""); e.code = 'MODULE_NOT_FOUND';; throw e; }())) + "); }\n\n@font-face {\n  font-family: Rosie;\n  src: url(" + __webpack_require__(!(function webpackMissingModule() { var e = new Error("Cannot find module \"../../../fonts/Rosie/rosie-regular-webfont.woff2\""); e.code = 'MODULE_NOT_FOUND';; throw e; }())) + "); }\n\n.mod {\n  display: block;\n  max-width: 380px;\n  width: 80%;\n  height: 80%;\n  position: fixed;\n  z-index: 100;\n  left: 50%;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  background-color: #CCECF5;\n  color: #0C3D52;\n  font-family: 'childline-regular';\n  box-shadow: 0 0 60px 10px rgba(0, 0, 0, 0.9); }\n\n.closed {\n  display: none; }\n\n.mod-overlay {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  z-index: 50;\n  background: rgba(0, 0, 0, 0.6); }\n\n.mod__content {\n  text-align: left;\n  position: absolute;\n  box-sizing: border-box;\n  display: flex;\n  flex-direction: row;\n  flex-wrap: wrap;\n  justify-content: center;\n  width: 100%;\n  height: 100%;\n  overflow: auto;\n  padding: 1rem; }\n\n.mod__content h1 {\n  font-size: 2rem;\n  font-family: 'childline-bold'; }\n\n.mod__content input {\n  color: #0C3D52;\n  border: 0.2rem solid #ccc;\n  border-radius: 0.5rem;\n  transition: .2s background ease;\n  font-size: 1.2rem;\n  margin: 0.5rem auto;\n  width: 70%;\n  padding: 1rem;\n  transition: all 0.2s ease;\n  -moz-transition: all 0.2s ease;\n  -webkit-transition: all 0.2s ease;\n  -o-transition: all 0.2s ease;\n  height: 4rem;\n  vertical-align: top;\n  margin-top: 1rem; }\n\n.mod__content a {\n  color: #fff;\n  width: 10rem;\n  background: #632c7a;\n  border: none; }\n\n.mod__content a:hover {\n  background-color: #2F153A; }\n\n.mod__content__image {\n  margin: 0 auto;\n  width: 85%; }\n\n.mod .mod__close-button {\n  position: absolute;\n  z-index: 1;\n  top: 0;\n  right: 0;\n  border: 0;\n  background: #234f62;\n  color: white;\n  padding: 0.5rem 1rem;\n  font-size: 1.2rem; }\n", ""]);
 
 // exports
 
 
 /***/ }),
 /* 241 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "/fonts/ChildlineWeb-Bold.otf";
-
-/***/ }),
-/* 242 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "/fonts/ChildlineWeb-Regular.otf";
-
-/***/ }),
-/* 243 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "/fonts/rosie-regular-webfont.woff2";
-
-/***/ }),
-/* 244 */
 /***/ (function(module, exports) {
 
 /*
@@ -28243,7 +28230,7 @@ function updateLink(linkElement, obj) {
 
 
 /***/ }),
-/* 245 */
+/* 242 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
