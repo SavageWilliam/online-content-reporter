@@ -63,7 +63,7 @@
 /******/ 	__webpack_require__.p = "";
 
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 244);
+/******/ 	return __webpack_require__(__webpack_require__.s = 241);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -4374,7 +4374,7 @@ var routes = exports.routes = oneOfType([route, arrayOf(route)]);
 var content = __webpack_require__(239);
 if(typeof content === 'string') content = [[module.i, content, '']];
 // add the styles to the DOM
-var update = __webpack_require__(243)(content, {});
+var update = __webpack_require__(240)(content, {});
 if(content.locals) module.exports = content.locals;
 // Hot Module Replacement
 if(false) {
@@ -12331,7 +12331,7 @@ var ContentForm = function ContentForm() {
       { className: 'content-title' },
       _react2.default.createElement(
         'h1',
-        { className: 'title' },
+        { className: 'page-title' },
         'DESCRIBE THE ONLINE CONTENT'
       )
     ),
@@ -12485,7 +12485,7 @@ var Home = function Home() {
     { className: 'home' },
     _react2.default.createElement(
       'div',
-      { className: 'landing-title' },
+      { className: 'landing-header' },
       _react2.default.createElement(
         'div',
         null,
@@ -12510,7 +12510,7 @@ var Home = function Home() {
         ),
         _react2.default.createElement(
           'h1',
-          { className: 'title' },
+          { className: 'page-title' },
           'REPORT ONLINE CONTENT'
         )
       ),
@@ -12525,7 +12525,7 @@ var Home = function Home() {
       { className: 'landing-info' },
       _react2.default.createElement(
         'h4',
-        null,
+        { className: 'section-title' },
         'YOU HAVE ALREADY SHARED PHOTOS \u2013 WHAT NOW?'
       ),
       _react2.default.createElement(
@@ -12543,19 +12543,27 @@ var Home = function Home() {
     _react2.default.createElement(
       'div',
       { className: 'landing-logo' },
-      _react2.default.createElement('img', { className: 'landing-logo__img', src: 'images/iwf-logo.png', alt: 'IWF logo' })
+      _react2.default.createElement(
+        'a',
+        { href: 'https://www.iwf.org.uk/' },
+        _react2.default.createElement('img', { className: 'landing-logo__img', src: './imgs/iwf-logo.png', alt: 'IWF logo' })
+      )
     ),
     _react2.default.createElement(
       'div',
       { className: 'landing-logo' },
-      _react2.default.createElement('img', { className: 'landing-logo__img', src: 'images/childline-logo.jpg', alt: 'childline logo' })
+      _react2.default.createElement(
+        'a',
+        { href: 'https://www.childline.org.uk/' },
+        _react2.default.createElement('img', { className: 'landing-logo__img', src: './imgs/childline-logo.jpg', alt: 'childline logo' })
+      )
     ),
     _react2.default.createElement(
       'div',
       { className: 'landing-btn' },
       _react2.default.createElement(
         'a',
-        { className: 'waves-effect waves-light btn', href: '/age-check.html' },
+        { className: 'btn', href: '/age-check.html' },
         'Report Content',
         _react2.default.createElement(
           'i',
@@ -12614,10 +12622,10 @@ var OverAge = function OverAge() {
     { className: 'overage' },
     _react2.default.createElement(
       'div',
-      { className: 'title title-old-main' },
+      { className: 'content-title-overage' },
       _react2.default.createElement(
         'h2',
-        { className: 'old-title' },
+        { className: 'page-title' },
         'SORRY, YOU ARE TOO OLD FOR THIS SERVICE'
       ),
       _react2.default.createElement(
@@ -12653,7 +12661,7 @@ var OverAge = function OverAge() {
         { className: 'other-ops' },
         _react2.default.createElement(
           'div',
-          { className: 'option1' },
+          { className: 'option' },
           _react2.default.createElement(
             'i',
             { className: 'identity small material-icons' },
@@ -12667,7 +12675,7 @@ var OverAge = function OverAge() {
         ),
         _react2.default.createElement(
           'div',
-          { className: 'option2' },
+          { className: 'option' },
           _react2.default.createElement(
             'i',
             { className: 'identity small material-icons' },
@@ -12681,7 +12689,7 @@ var OverAge = function OverAge() {
         ),
         _react2.default.createElement(
           'div',
-          { className: 'option3' },
+          { className: 'option' },
           _react2.default.createElement(
             'i',
             { className: 'identity small material-icons' },
@@ -12739,10 +12747,10 @@ var UrlForm = function UrlForm() {
       { className: 'content' },
       _react2.default.createElement(
         'div',
-        { className: 'title-div background-dark-blue' },
+        { className: 'title-div' },
         _react2.default.createElement(
           'h1',
-          { className: 'title' },
+          { className: 'page-title' },
           'REPORT CONTENT WEB ADDRESS'
         )
       ),
@@ -12756,7 +12764,7 @@ var UrlForm = function UrlForm() {
         { className: 'message' },
         _react2.default.createElement(
           'h4',
-          { className: 'rosie' },
+          { className: 'section-title' },
           'WEBSITE DETAILS'
         ),
         _react2.default.createElement(
@@ -12770,7 +12778,7 @@ var UrlForm = function UrlForm() {
         { className: 'form-container' },
         _react2.default.createElement(
           'h4',
-          { className: 'rosie' },
+          { className: 'section-title' },
           'WEB ADDRESS'
         ),
         _react2.default.createElement(
@@ -12808,7 +12816,7 @@ var UrlForm = function UrlForm() {
           ),
           _react2.default.createElement(
             'a',
-            { className: 'waves-effect waves-light btn report-submit', id: 'submit-url' },
+            { className: 'btn', id: 'submit-url' },
             'Submit Report'
           )
         )
@@ -12905,10 +12913,15 @@ var AgeCheck = function (_React$Component) {
         ),
         _react2.default.createElement(
           'div',
+          { className: 'progress' },
+          _react2.default.createElement('div', { className: 'determinate' })
+        ),
+        _react2.default.createElement(
+          'div',
           { className: 'age-responsive' },
           _react2.default.createElement(
             'div',
-            { className: 'age-info background-blue' },
+            { className: 'age-info-blue' },
             _react2.default.createElement(
               'p',
               { className: 'why-eighteen' },
@@ -12927,7 +12940,7 @@ var AgeCheck = function (_React$Component) {
           ),
           _react2.default.createElement(
             'div',
-            { className: 'age-info' },
+            { className: 'age-info-orange' },
             _react2.default.createElement(
               'i',
               { className: 'age-page small material-icons' },
@@ -12954,7 +12967,7 @@ var AgeCheck = function (_React$Component) {
                 null,
                 'YOTI - CONFIDENTIALLY VERIFY YOUR AGE'
               ),
-              _react2.default.createElement('img', { src: 'imgs/yoti-logo.svg', alt: 'yoti logo' })
+              _react2.default.createElement('img', { src: './imgs/yoti-logo.svg', alt: 'yoti logo' })
             ),
             _react2.default.createElement(
               'p',
@@ -12962,7 +12975,7 @@ var AgeCheck = function (_React$Component) {
               'Yoti empowers you to take back control over your identity. If you don\'t have a Yoti digital identity, please create one ',
               _react2.default.createElement(
                 'a',
-                { className: 'link', href: 'yoti' },
+                { className: 'link', href: 'www.yoti.com/' },
                 'here'
               ),
               ' and use it to verify you are under 17.'
@@ -12972,7 +12985,7 @@ var AgeCheck = function (_React$Component) {
             'p',
             { className: 'scan-me' },
             'SCAN ME WITH YOTI',
-            _react2.default.createElement('img', { src: 'imgs/yoti-logo.svg', className: 'popup-yoti', alt: 'yoti logo' })
+            _react2.default.createElement('img', { src: './imgs/yoti-logo.svg', className: 'popup-yoti', alt: 'yoti logo' })
           )
         ),
         _react2.default.createElement(
@@ -27814,31 +27827,13 @@ exports = module.exports = __webpack_require__(117)();
 
 
 // module
-exports.push([module.i, ".home h1 {\n  color: blue;\n  font-family: 'Rosie'; }\n\n@font-face {\n  font-family: childline;\n  src: url(" + __webpack_require__(241) + "); }\n\n@font-face {\n  font-family: childline-bold;\n  src: url(" + __webpack_require__(240) + "); }\n\n@font-face {\n  font-family: Rosie;\n  src: url(" + __webpack_require__(242) + "); }\n\nbody {\n  font-family: 'childline'; }\n\n.background-blue {\n  background-color: #CCECF5; }\n\n/*Age check page */\n.age {\n  height: 100vh; }\n\n.age-title {\n  margin: 0;\n  background-color: #00a1d0;\n  padding: 2.5rem 1rem 2.5rem 1rem;\n  text-align: center;\n  height: 28vh; }\n\n.yoti-intro {\n  display: flex;\n  flex-direction: row;\n  justify-content: space-between; }\n\n.yoti-intro h3 {\n  height: 10rem;\n  width: 80%;\n  margin: 0;\n  height: 4rem; }\n\n.yoti-intro img {\n  width: 15%;\n  height: 2rem; }\n\n.yoti-btn {\n  display: block;\n  margin: 0 auto;\n  width: 100%;\n  text-align: center;\n  z-index: -1;\n  margin-bottom: 1rem; }\n\n.yoti-btn a {\n  display: block;\n  background-color: #632c7a;\n  width: 20rem;\n  margin: 0 auto;\n  padding-left: 2rem;\n  padding-right: 2rem;\n  text-transform: none; }\n\n.yoti-btn a:hover {\n  background-color: #2F153A; }\n\n.age-info {\n  background-color: #F28C00;\n  display: flex;\n  flex-direction: row;\n  color: white;\n  margin: 1rem; }\n\n.age-info a {\n  font-size: 1.2rem;\n  padding: 1rem;\n  padding-left: 0;\n  color: #234f62; }\n\n.why-eighteen {\n  margin: 0;\n  font-size: 1.2rem;\n  color: #0c3d52;\n  padding: 1rem; }\n\n.why-eighteen a {\n  padding: 0; }\n\ni.age-page {\n  margin: 0.6rem; }\n\n.yoti-info {\n  margin: 1rem;\n  background-color: #234f62;\n  box-sizing: border-box;\n  padding: 1rem;\n  color: #fff; }\n\n.yoti-info h3 {\n  font-family: 'Rosie', 'childline-bold';\n  font-size: 1.6rem;\n  margin: 0;\n  width: 90%;\n  float: left; }\n\n.yoti-description {\n  padding-top: 1.2rem;\n  margin: 0;\n  margin-bottom: 1rem;\n  font-size: 1.2rem; }\n\n.scan-me {\n  font-size: 1.5rem;\n  text-align: center;\n  display: none;\n  margin: 0;\n  padding: 0;\n  font-family: 'Rosie'; }\n\n.popup-yoti {\n  width: 4rem;\n  margin-left: 1rem; }\n\n.identity-1 {\n  width: 10%;\n  text-align: right;\n  color: white; }\n\n.link:hover {\n  text-decoration: underline; }\n", ""]);
+exports.push([module.i, ".landing-header {\n  background-color: #00a1d0;\n  padding: 4rem 1rem 1rem 1rem; }\n\n.landing-info {\n  margin: 1rem;\n  background-color: #234f62;\n  color: white; }\n\n.landing-logo {\n  float: left;\n  min-width: 50%;\n  box-sizing: border-box;\n  text-align: center;\n  margin-bottom: 1rem; }\n  .landing-logo img {\n    height: 6rem;\n    width: auto;\n    margin-bottom: 1rem; }\n\n.page-title {\n  font-family: 'Rosie', 'childline-bold';\n  font-size: 3rem;\n  margin: 0;\n  color: #fff;\n  text-align: center;\n  padding-bottom: 1rem; }\n\n.section-title, .scan-me {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 1.5rem; }\n\n.text {\n  font-size: 1.2rem;\n  margin: 0; }\n\n.progress {\n  position: relative;\n  height: 4px;\n  display: block;\n  width: 100%;\n  background-color: #acece6;\n  border-radius: 2px;\n  margin: .5rem 0 1rem 0;\n  overflow: hidden; }\n\na {\n  text-decoration: none; }\n\n.age-info-text, .age-info-blue p, .age-info-orange a {\n  margin: 0;\n  font-size: 1.2rem;\n  padding: 1rem; }\n\n.btn {\n  width: 20rem;\n  margin: 0 auto;\n  background-color: #632c7a;\n  text-transform: none;\n  margin-bottom: 2rem; }\n\nbody {\n  font-size: 1.2rem;\n  max-width: 440px;\n  margin: 0 auto;\n  font-family: 'childline'; }\n\ndiv {\n  display: block; }\n\n.age-title {\n  margin: 0;\n  background-color: #00a1d0;\n  padding: 2.5rem 1rem 2.5rem 1rem;\n  text-align: center;\n  height: 28vh; }\n\n.determinate {\n  width: 33%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  background-color: #26a69a;\n  transition: width .3s linear; }\n\n.age-info-blue {\n  background-color: #73cfe8;\n  display: flex;\n  flex-direction: row;\n  color: white;\n  margin: 1rem; }\n  .age-info-blue p {\n    color: #0c3d52; }\n\n.age-info-orange {\n  background-color: #F28C00;\n  display: flex;\n  flex-direction: row;\n  color: white;\n  margin: 1rem; }\n  .age-info-orange i {\n    padding: 0.6rem; }\n  .age-info-orange a {\n    color: #234f62; }\n\n.scan-me {\n  text-align: center;\n  display: none;\n  padding: 0; }\n  .scan-me img {\n    width: 4rem;\n    margin-left: 1rem; }\n\n.yoti-info {\n  margin: 1rem;\n  background-color: #234f62;\n  box-sizing: border-box;\n  padding: 1rem;\n  color: white; }\n  .yoti-info h3 {\n    margin: 0;\n    width: 90%;\n    float: left; }\n\n.yoti-intro img {\n  width: 15%;\n  height: 2rem; }\n\n.page-title {\n  font-family: 'Rosie', 'childline-bold';\n  font-size: 3rem;\n  margin: 0;\n  color: #fff;\n  text-align: center;\n  padding-bottom: 1rem; }\n\n.section-title, .scan-me {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 1.5rem; }\n\n.text {\n  font-size: 1.2rem;\n  margin: 0; }\n\n.progress {\n  position: relative;\n  height: 4px;\n  display: block;\n  width: 100%;\n  background-color: #acece6;\n  border-radius: 2px;\n  margin: .5rem 0 1rem 0;\n  overflow: hidden; }\n\na {\n  text-decoration: none; }\n\n.age-info-text, .age-info-blue p, .age-info-orange a {\n  margin: 0;\n  font-size: 1.2rem;\n  padding: 1rem; }\n\n.btn {\n  width: 20rem;\n  margin: 0 auto;\n  background-color: #632c7a;\n  text-transform: none;\n  margin-bottom: 2rem; }\n\nbody {\n  font-size: 1.2rem;\n  max-width: 440px;\n  margin: 0 auto;\n  font-family: 'childline'; }\n\ndiv {\n  display: block; }\n\n/*.message {\n    margin: 1rem;\n    padding: 0.75rem;\n    color: $cobalt;\n    background-color: $orange;\n}\n\n.title-div {\n    padding: 2.5rem 1rem 2.5rem 1rem;\n    margin-bottom: 1rem;\n    height: 35vh;\n    background-color: $cobalt;\n}*/\n.content-title {\n  background-color: #632c7a;\n  padding: 4rem 1rem 2.5rem 1rem;\n  padding: 4rem 1rem 2.5rem 1rem; }\n\n.determinate {\n  width: 66%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  background-color: #26a69a;\n  transition: width .3s linear; }\n\n.form-container {\n  max-width: 94%;\n  margin: 1rem auto;\n  padding: 1rem;\n  background-color: #3EBB98; }\n\n.page-title {\n  font-family: 'Rosie', 'childline-bold';\n  font-size: 3rem;\n  margin: 0;\n  color: #fff;\n  text-align: center;\n  padding-bottom: 1rem; }\n\n.section-title, .scan-me {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 1.5rem; }\n\n.text {\n  font-size: 1.2rem;\n  margin: 0; }\n\n.progress {\n  position: relative;\n  height: 4px;\n  display: block;\n  width: 100%;\n  background-color: #acece6;\n  border-radius: 2px;\n  margin: .5rem 0 1rem 0;\n  overflow: hidden; }\n\na {\n  text-decoration: none; }\n\n.age-info-text, .age-info-blue p, .age-info-orange a {\n  margin: 0;\n  font-size: 1.2rem;\n  padding: 1rem; }\n\n.btn {\n  width: 20rem;\n  margin: 0 auto;\n  background-color: #632c7a;\n  text-transform: none;\n  margin-bottom: 2rem; }\n\nbody {\n  font-size: 1.2rem;\n  max-width: 440px;\n  margin: 0 auto;\n  font-family: 'childline'; }\n\ndiv {\n  display: block; }\n\n.message {\n  margin: 1rem;\n  padding: 0.75rem;\n  color: #234f62;\n  background-color: #F28C00; }\n\n.title-div {\n  padding: 2.5rem 1rem 2.5rem 1rem;\n  margin-bottom: 1rem;\n  height: 35vh;\n  background-color: #234f62; }\n\n.determinate {\n  width: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  background-color: #26a69a;\n  transition: width .3s linear; }\n\n.form-container {\n  max-width: 94%;\n  margin: 1rem auto;\n  padding: 1rem;\n  background-color: #CCECF5; }\n\n.page-title {\n  font-family: 'Rosie', 'childline-bold';\n  font-size: 3rem;\n  margin: 0;\n  color: #fff;\n  text-align: center;\n  padding-bottom: 1rem; }\n\n.section-title, .scan-me {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 1.5rem; }\n\n.text {\n  font-size: 1.2rem;\n  margin: 0; }\n\n.progress {\n  position: relative;\n  height: 4px;\n  display: block;\n  width: 100%;\n  background-color: #acece6;\n  border-radius: 2px;\n  margin: .5rem 0 1rem 0;\n  overflow: hidden; }\n\na {\n  text-decoration: none; }\n\n.age-info-text, .age-info-blue p, .age-info-orange a {\n  margin: 0;\n  font-size: 1.2rem;\n  padding: 1rem; }\n\n.btn {\n  width: 20rem;\n  margin: 0 auto;\n  background-color: #632c7a;\n  text-transform: none;\n  margin-bottom: 2rem; }\n\nbody {\n  font-size: 1.2rem;\n  max-width: 440px;\n  margin: 0 auto;\n  font-family: 'childline'; }\n\ndiv {\n  display: block; }\n\n.content-title-overage {\n  background-color: #3EBB98;\n  padding: 4rem 1rem 2.5rem 1rem; }\n\n.what-now {\n  background-color: #D8F1EA;\n  margin: 1rem;\n  padding: 1rem; }\n  .what-now h3 {\n    font-family: 'childline-bold';\n    font-size: 1.6rem;\n    margin: 0;\n    width: 90%;\n    float: left;\n    color: #632c7a; }\n  .what-now .identity {\n    width: 10%;\n    text-align: right;\n    color: #632c7a;\n    padding-left: 0.2rem;\n    padding-top: 0.2rem; }\n  .what-now p {\n    padding-top: 0.5rem;\n    margin: 0;\n    margin-bottom: 1rem;\n    font-size: 1.2rem;\n    color: #632c7a; }\n\n.other-ops {\n  position: relative;\n  margin: 0 auto;\n  background-color: white;\n  padding: 0;\n  display: flex;\n  justify-content: center;\n  flex-direction: column; }\n\n.contact {\n  float: left;\n  text-align: left !important;\n  display: block;\n  color: #632c7a;\n  padding: 0.5rem;\n  margin-left: 1rem;\n  transition: all 0.5s ease;\n  font-family: 'childline-bold'; }\n\n.option {\n  border: 0.2rem solid #3EBB98;\n  width: 94%;\n  padding: 0.45rem;\n  margin: 0.5rem auto;\n  display: flex;\n  flex-direction: row; }\n  .option i {\n    width: 10%;\n    text-align: right;\n    color: #632c7a;\n    padding-left: 0.2rem;\n    padding-top: 0.2rem; }\n  .option a {\n    float: left;\n    text-align: left !important;\n    display: block;\n    color: #632c7a;\n    padding: 0.5rem;\n    margin-left: 1rem;\n    transition: all 0.5s ease;\n    font-family: 'childline-bold'; }\n\n.page-title {\n  font-family: 'Rosie', 'childline-bold';\n  font-size: 3rem;\n  margin: 0;\n  color: #fff;\n  text-align: center;\n  padding-bottom: 1rem; }\n\n.section-title, .scan-me {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 1.5rem; }\n\n.text {\n  font-size: 1.2rem;\n  margin: 0; }\n\n.progress {\n  position: relative;\n  height: 4px;\n  display: block;\n  width: 100%;\n  background-color: #acece6;\n  border-radius: 2px;\n  margin: .5rem 0 1rem 0;\n  overflow: hidden; }\n\na {\n  text-decoration: none; }\n\n.age-info-text, .age-info-blue p, .age-info-orange a {\n  margin: 0;\n  font-size: 1.2rem;\n  padding: 1rem; }\n\n.btn {\n  width: 20rem;\n  margin: 0 auto;\n  background-color: #632c7a;\n  text-transform: none;\n  margin-bottom: 2rem; }\n\nbody {\n  font-size: 1.2rem;\n  max-width: 440px;\n  margin: 0 auto;\n  font-family: 'childline'; }\n\ndiv {\n  display: block; }\n\n.mod {\n  display: block;\n  max-width: 380px;\n  width: 80%;\n  height: 80%;\n  position: fixed;\n  z-index: 100;\n  left: 50%;\n  top: 50%;\n  transform: translate(-50%, -50%);\n  background-color: #CCECF5;\n  color: #0C3D52;\n  font-family: 'childline-regular';\n  box-shadow: 0 0 60px 10px rgba(0, 0, 0, 0.9); }\n\n.closed {\n  display: none; }\n\n.mod-overlay {\n  position: fixed;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n  z-index: 50;\n  background: rgba(0, 0, 0, 0.6); }\n\n.mod__content {\n  text-align: left;\n  position: absolute;\n  box-sizing: border-box;\n  display: flex;\n  flex-direction: row;\n  flex-wrap: wrap;\n  justify-content: center;\n  width: 100%;\n  height: 100%;\n  overflow: auto;\n  padding: 1rem; }\n\n.mod__content h1 {\n  font-size: 2rem;\n  font-family: 'childline-bold'; }\n\n.mod__content input {\n  color: #0C3D52;\n  border: 0.2rem solid #ccc;\n  border-radius: 0.5rem;\n  transition: .2s background ease;\n  font-size: 1.2rem;\n  margin: 0.5rem auto;\n  width: 70%;\n  padding: 1rem;\n  transition: all 0.2s ease;\n  -moz-transition: all 0.2s ease;\n  -webkit-transition: all 0.2s ease;\n  -o-transition: all 0.2s ease;\n  height: 4rem;\n  vertical-align: top;\n  margin-top: 1rem; }\n\n.mod__content a {\n  color: #fff;\n  width: 10rem;\n  background: #632c7a;\n  border: none; }\n\n.mod__content a:hover {\n  background-color: #2F153A; }\n\n.mod__content__image {\n  margin: 0 auto;\n  width: 85%; }\n\n.mod .mod__close-button {\n  position: absolute;\n  z-index: 1;\n  top: 0;\n  right: 0;\n  border: 0;\n  background: #234f62;\n  color: white;\n  padding: 0.5rem 1rem;\n  font-size: 1.2rem; }\n", ""]);
 
 // exports
 
 
 /***/ }),
 /* 240 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "/fonts/ChildlineWeb-Bold.otf";
-
-/***/ }),
-/* 241 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "/fonts/ChildlineWeb-Regular.otf";
-
-/***/ }),
-/* 242 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__.p + "/fonts/rosie-regular-webfont.woff2";
-
-/***/ }),
-/* 243 */
 /***/ (function(module, exports) {
 
 /*
@@ -28090,7 +28085,7 @@ function updateLink(linkElement, obj) {
 
 
 /***/ }),
-/* 244 */
+/* 241 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
