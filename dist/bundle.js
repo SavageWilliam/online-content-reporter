@@ -12551,22 +12551,8 @@ var Home = function Home() {
       _react2.default.createElement('img', { className: 'landing-logo__img', src: 'imgs/childline-logo.jpg', alt: 'childline logo' })
     ),
     _react2.default.createElement(
-      'div',
-      { className: 'landing-btn' },
-      _react2.default.createElement(
-        'a',
-        { className: 'waves-effect waves-light btn', href: '/age-check.html' },
-        'Report Content',
-        _react2.default.createElement(
-          'i',
-          { className: 'small material-icons whi' },
-          'launch'
-        )
-      )
-    ),
-    _react2.default.createElement(
       _reactRouter.Link,
-      { to: '/age-check' },
+      { className: 'landing-btn', to: '/age-check' },
       _react2.default.createElement(
         'p',
         null,
@@ -12579,7 +12565,7 @@ var Home = function Home() {
       _react2.default.createElement(
         'p',
         null,
-        'be overAge'
+        'Go to over age here'
       )
     )
   );
@@ -13012,10 +12998,177 @@ module.exports = __webpack_require__(154);
 
 /***/ }),
 /* 117 */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-throw new Error("Module build failed: SyntaxError: Unexpected token, expected ; (42:9)\n\n\u001b[0m \u001b[90m 40 | \u001b[39m    \u001b[36mvar\u001b[39m qrCode \u001b[33m=\u001b[39m document\u001b[33m.\u001b[39mquerySelector(\u001b[32m'.qr-code-output'\u001b[39m)\n \u001b[90m 41 | \u001b[39m    \u001b[36mvar\u001b[39m scanMe \u001b[33m=\u001b[39m document\u001b[33m.\u001b[39mquerySelector(\u001b[32m'.scan-me'\u001b[39m)\n\u001b[31m\u001b[1m>\u001b[22m\u001b[39m\u001b[90m 42 | \u001b[39m    \u001b[36mvar\u001b[39m t\u001b[33m.\u001b[39mappId \u001b[33m=\u001b[39m \u001b[32m'3392788e-e529-4309-8ed7-54d7ac554055'\u001b[39m\n \u001b[90m    | \u001b[39m         \u001b[31m\u001b[1m^\u001b[22m\u001b[39m\n \u001b[90m 43 | \u001b[39m    \u001b[36mvar\u001b[39m t\u001b[33m.\u001b[39mscenId \u001b[33m=\u001b[39m \u001b[32m'5be10ae7-af29-40b0-8d33-a0fb90cb0e88'\u001b[39m\n \u001b[90m 44 | \u001b[39m  }\n \u001b[90m 45 | \u001b[39m\u001b[0m\n");
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(5);
+
+var _react2 = _interopRequireDefault(_react);
+
+__webpack_require__(35);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+// import axios from 'axios'
+
+var t = {
+  config: {
+    service: 'https://www.yoti.com/connect/',
+    qr: 'https://www.yoti.com/qr/'
+  },
+  appId: '3392788e-e529-4309-8ed7-54d7ac554055',
+  scenId: '5be10ae7-af29-40b0-8d33-a0fb90cb0e88'
+};
+
+var ShareYoti = function (_React$Component) {
+  _inherits(ShareYoti, _React$Component);
+
+  function ShareYoti(props) {
+    _classCallCheck(this, ShareYoti);
+
+    var _this = _possibleConstructorReturn(this, (ShareYoti.__proto__ || Object.getPrototypeOf(ShareYoti)).call(this, props));
+
+    _this.state = {
+      isMobile: false,
+      href: t.config.service + t.appId,
+      target: '_blank'
+    };
+    _this.handleClick = _this.startVerification.bind(_this);
+    // this.getQr = this.startVerification.bind(this)
+    return _this;
+  }
+
+  _createClass(ShareYoti, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      /webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini|Android/i.test(navigator.userAgent) && /Mobile/i.test(navigator.userAgent) ? (this.setState({ isMobile: true, target: '_self' }), mobileSetup()) : this.setState({ href: '#' });
+    }
+  }, {
+    key: 'shareYoti',
+    value: function shareYoti() {
+      'use strict';
+
+      var qrBtn = document.getElementById('yotiBtn');
+      var qrCode = document.querySelector('.qr-code-output');
+      var scanMe = document.querySelector('.scan-me');
+    }
+  }, {
+    key: 'getQr',
+    value: function getQr() {
+      var xhr = new XMLHttpRequest();
+      xhr.addEventListener('load', function (e) {
+        var responseObj = JSON.parse(e.target.responseText);
+        //HERE we want to dispatch an action
+        displayQr(responseObj);
+        listenForToken(responseObj.proto, responseObj.url);
+      });
+      xhr.open('GET', '/qr');
+      xhr.send();
+    }
+  }, {
+    key: 'displayQr',
+    value: function displayQr(responseObj) {
+      qrBtn.style.display = 'none';
+      scanMe.style.display = 'block';
+      qrCode.innerHTML = responseObj.svg;
+      qrCode.style.textAlign = 'center';
+    }
+  }, {
+    key: 'listenForToken',
+    value: function listenForToken(proto, url) {
+      var host = 'wss://api.yoti.com/api/v1/connect-sessions/' + proto;
+      var socket = new WebSocket(host);
+      socket.onopen = function () {
+        socket.send(JSON.stringify({ subscription: proto }));
+      };
+      socket.onmessage = function (msg) {
+        var data = JSON.parse(msg.data);
+        switch (data.status) {
+          case 'COMPLETED':
+            {
+              //Callback URL (with token)
+              window.location = 'thankyou?token=' + data.token;
+            }
+        }
+      };
+    }
+  }, {
+    key: 'navigateToYoti',
+    value: function navigateToYoti() {
+      // window.location = t.config.service + appI
+      t.serviceRedirectTimeout && clearTimeout(t.serviceRedirectTimeout);
+      var n = Date.now();
+      var r = 5e3;
+      t.serviceRedirectTimeout = setTimeout(function () {
+        var e = Date.now();
+        r + 1e3 > e - (n + r) && (window.location = t.config.service + t.appId);
+      }, r);
+    }
+  }, {
+    key: 'startVerification',
+    value: function startVerification() {
+      /webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini|Android/i.test(navigator.userAgent) && /Mobile/i.test(navigator.userAgent) && navigateToYoti();
+    }
+  }, {
+    key: 'mobileSetup',
+    value: function mobileSetup() {
+      var url = 'https://www.yoti.com/qr/' + t.scenId;
+      var xhr = new XMLHttpRequest();
+      xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+          var responseObj = JSON.parse(xhr.responseText);
+          // here we assign the url to the link!
+          this.setState({ href: responseObj.qrcodeUrl + '?callback=' + responseObj.callbackUrl + '&id=' + responseObj.application.id + '&mobile=' + true });
+        }
+      };
+      xhr.open('GET', url, true);
+      xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+      xhr.setRequestHeader('content-type', 'application/json');
+      xhr.send(null);
+    }
+
+    // t.config.service = 'https://code.yoti.com/app/'
+    // t.init()
+
+  }, {
+    key: 'render',
+    value: function render() {
+      var clickHandler = this.state.isMobile ? this.startVerification : this.getQr;
+      return _react2.default.createElement(
+        'span',
+        { href: this.state.href, className: 'yoti-btn', target: this.state.isMobile, id: 'yotiBtn' },
+        _react2.default.createElement(
+          'a',
+          {
+            onClick: clickHandler,
+            className: 'btn yoti-connect learn-more btn-primary',
+            'data-target': 'embed',
+            'data-yoti-type': 'inline',
+            'data-size': 'medium' },
+          'Share your age using Yoti'
+        )
+      );
+    }
+  }]);
+
+  return ShareYoti;
+}(_react2.default.Component);
+
+exports.default = ShareYoti;
 
 /***/ }),
 /* 118 */
