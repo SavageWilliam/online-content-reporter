@@ -19621,6 +19621,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 var _content;
@@ -19660,6 +19662,8 @@ var _Toggle = __webpack_require__(170);
 var _Toggle2 = _interopRequireDefault(_Toggle);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -19711,7 +19715,8 @@ var UrlForm = function (_React$Component) {
 
     _this.state = {
       modalIsOpen: false,
-      firstForm: true
+      firstForm: true,
+      imageCriteria: []
     };
     return _this;
   }
@@ -19736,7 +19741,7 @@ var UrlForm = function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      console.log(this.state);
+      console.log('i am here' + this.state.imageCriteria);
       return _react2.default.createElement(
         'div',
         null,
@@ -19780,11 +19785,21 @@ var UrlForm = function (_React$Component) {
                   null,
                   'Describe image content'
                 ),
-                _react2.default.createElement(_List.ListItem, { primaryText: 'Someone posing in a sexual way', leftCheckbox: _react2.default.createElement(_Checkbox2.default, null) }),
-                _react2.default.createElement(_List.ListItem, { primaryText: 'Someone touching themselves in a sexual way', leftCheckbox: _react2.default.createElement(_Checkbox2.default, null) }),
-                _react2.default.createElement(_List.ListItem, { primaryText: 'Any sexual activity involving a child, adult or both', leftCheckbox: _react2.default.createElement(_Checkbox2.default, null) }),
-                _react2.default.createElement(_List.ListItem, { primaryText: 'Someone hurting someone else', leftCheckbox: _react2.default.createElement(_Checkbox2.default, null) }),
-                _react2.default.createElement(_List.ListItem, { primaryText: 'Sexual activity that includes animals.', leftCheckbox: _react2.default.createElement(_Checkbox2.default, null) })
+                _react2.default.createElement(_List.ListItem, { primaryText: 'Someone posing in a sexual way', onChange: function onChange() {
+                    _this2.setState({ imageCriteria: [].concat(_toConsumableArray(_this2.state.imageCriteria), ["Someone posing in a sexual way"]) });
+                  }, leftCheckbox: _react2.default.createElement(_Checkbox2.default, null) }),
+                _react2.default.createElement(_List.ListItem, { primaryText: 'Someone touching themselves in a sexual way', onChange: function onChange() {
+                    console.log(_typeof(_this2.state.imageCriteria), _this2.state.imageCriteria);_this2.setState({ imageCriteria: [].concat(_toConsumableArray(_this2.state.imageCriteria), ["Someone touching themselves in a sexual way"]) });
+                  }, leftCheckbox: _react2.default.createElement(_Checkbox2.default, null) }),
+                _react2.default.createElement(_List.ListItem, { primaryText: 'Any sexual activity involving a child, adult or both', onChange: function onChange() {
+                    _this2.setState({ imageCriteria: [].concat(_toConsumableArray(_this2.state.imageCriteria), ["Any sexual activity involving a child, adult or both"]) });
+                  }, leftCheckbox: _react2.default.createElement(_Checkbox2.default, null) }),
+                _react2.default.createElement(_List.ListItem, { primaryText: 'Someone hurting someone else', onChange: function onChange() {
+                    _this2.setState({ imageCriteria: [].concat(_toConsumableArray(_this2.state.imageCriteria), ["Someone hurting someone else"]) });
+                  }, leftCheckbox: _react2.default.createElement(_Checkbox2.default, null) }),
+                _react2.default.createElement(_List.ListItem, { primaryText: 'Sexual activity that includes animals.', onChange: function onChange() {
+                    _this2.setState({ imageCriteria: [].concat(_toConsumableArray(_this2.state.imageCriteria), ["Sexual activity that includes animals."]) });;
+                  }, leftCheckbox: _react2.default.createElement(_Checkbox2.default, null) })
               ),
               _react2.default.createElement(
                 'a',
@@ -19953,6 +19968,9 @@ var UrlForm = function (_React$Component) {
   return UrlForm;
 }(_react2.default.Component);
 
+UrlForm.propTypes = {
+  imageCriteria: _react2.default.PropTypes.array
+};
 exports.default = UrlForm;
 
 /***/ }),
