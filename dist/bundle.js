@@ -19388,6 +19388,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
 var _content;
 
 var _react = __webpack_require__(1);
@@ -19411,6 +19413,12 @@ var _RaisedButton = __webpack_require__(103);
 var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
@@ -19446,141 +19454,168 @@ var customStyles = {
   }, _defineProperty(_content, 'width', '375px'), _defineProperty(_content, 'zIndex', '100'), _content)
 };
 
-var UrlForm = _react2.default.createClass({
-  displayName: 'UrlForm',
+var UrlForm = function (_React$Component) {
+  _inherits(UrlForm, _React$Component);
 
+  function UrlForm(props) {
+    _classCallCheck(this, UrlForm);
 
-  getInitialState: function getInitialState() {
-    return { modalIsOpen: false };
-  },
+    var _this = _possibleConstructorReturn(this, (UrlForm.__proto__ || Object.getPrototypeOf(UrlForm)).call(this, props));
 
-  openModal: function openModal() {
-    this.setState({ modalIsOpen: true });
-  },
+    _this.state = {
+      modalIsOpen: false
+    };
+    /*    this.openModal = this.openModal.bind(this);
+        this.afterOpenModal = this.afterOpenModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);*/
+    return _this;
+  }
 
-  afterOpenModal: function afterOpenModal() {
-    // references are now sync'd and can be accessed.
-    this.refs.subtitle.style.color = '#f00';
-  },
+  _createClass(UrlForm, [{
+    key: 'openModal',
+    value: function openModal() {
+      this.setState({ modalIsOpen: true });
+    }
+  }, {
+    key: 'afterOpenModal',
+    value: function afterOpenModal() {
+      // references are now sync'd and can be accessed.
+      this.refs.subtitle.style.color = '#f00';
+    }
+  }, {
+    key: 'closeModal',
+    value: function closeModal() {
+      this.setState({ modalIsOpen: false });
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
 
-  closeModal: function closeModal() {
-    this.setState({ modalIsOpen: false });
-  },
-
-  render: function render() {
-    return _react2.default.createElement(
-      'div',
-      null,
-      _react2.default.createElement(
+      console.log(this.state);
+      return _react2.default.createElement(
         'div',
-        { className: 'content' },
+        null,
         _react2.default.createElement(
           'div',
-          { className: 'title-div' },
+          { className: 'content' },
           _react2.default.createElement(
-            'h1',
-            { className: 'page-title' },
-            'REPORT CONTENT WEB ADDRESS'
-          )
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'progress' },
-          _react2.default.createElement('div', { className: 'determinate3' })
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'message' },
-          _react2.default.createElement(
-            'h4',
-            { className: 'section-title' },
-            'WEBSITE DETAILS'
-          ),
-          _react2.default.createElement(
-            'p',
-            null,
-            'If you have any information you think may help us such as a description of where the content you are reporting is located on a large website or username and password needed to gain access, please include it in the description box. If you have multiple webpages (URLs) to report, please include these in the description box.'
-          )
-        ),
-        _react2.default.createElement(
-          'div',
-          { className: 'form-container' },
-          _react2.default.createElement(
-            'h4',
-            { className: 'section-title' },
-            'WEB ADDRESS'
-          ),
-          _react2.default.createElement(
-            'form',
-            { action: '#' },
+            'div',
+            { className: 'title-div' },
             _react2.default.createElement(
-              'div',
-              { className: 'input-field col s6' },
-              _react2.default.createElement(_TextField2.default, {
-                hintText: 'http://',
-                floatingLabelText: 'url'
-              }),
-              _react2.default.createElement('br', null)
+              'h1',
+              { className: 'page-title' },
+              'REPORT CONTENT WEB ADDRESS'
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'progress' },
+            _react2.default.createElement('div', { className: 'determinate3' })
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'message' },
+            _react2.default.createElement(
+              'h4',
+              { className: 'section-title' },
+              'WEBSITE DETAILS'
             ),
             _react2.default.createElement(
-              'div',
-              { className: 'input-field-2 input-field col s6 ' },
-              _react2.default.createElement(_TextField2.default, {
-                hintText: 'Message Field',
-                floatingLabelText: 'Description',
-                multiLine: true,
-                rows: 10
-              }),
-              _react2.default.createElement('br', null)
+              'p',
+              null,
+              'If you have any information you think may help us such as a description of where the content you are reporting is located on a large website or username and password needed to gain access, please include it in the description box. If you have multiple webpages (URLs) to report, please include these in the description box.'
+            )
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'form-container' },
+            _react2.default.createElement(
+              'h4',
+              { className: 'section-title' },
+              'WEB ADDRESS'
             ),
-            _react2.default.createElement(_RaisedButton2.default, { label: 'Verify age', labelColor: "#632c7a", id: 'submit-url' })
-          )
-        )
-      ),
-      _react2.default.createElement(
-        'button',
-        { onClick: this.openModal },
-        'Open Modal'
-      ),
-      _react2.default.createElement(
-        Modal,
-        {
-          isOpen: this.state.modalIsOpen,
-          onAfterOpen: this.afterOpenModal,
-          onRequestClose: this.closeModal,
-          style: customStyles,
-          contentLabel: 'Example Modal'
-        },
-        _react2.default.createElement(
-          'div',
-          { className: '' },
-          _react2.default.createElement(
-            'h1',
-            null,
-            'Thank you. The online content has been reported for removal'
-          ),
-          _react2.default.createElement(
-            'p',
-            null,
-            'If you would like IWF to update you by email, please enter your email address below.'
-          ),
-          _react2.default.createElement('input', { placeholder: 'email address' }),
-          _react2.default.createElement(
-            'a',
-            { className: 'waves-effect waves-light btn', href: '/index.html' },
-            'Submit'
+            _react2.default.createElement(
+              'form',
+              { action: '#' },
+              _react2.default.createElement(
+                'div',
+                { className: 'input-field col s6' },
+                _react2.default.createElement(_TextField2.default, {
+                  hintText: 'http://',
+                  floatingLabelText: 'url'
+                }),
+                _react2.default.createElement('br', null)
+              ),
+              _react2.default.createElement(
+                'div',
+                { className: 'input-field-2 input-field col s6 ' },
+                _react2.default.createElement(_TextField2.default, {
+                  hintText: 'Message Field',
+                  floatingLabelText: 'Description',
+                  multiLine: true,
+                  rows: 10
+                }),
+                _react2.default.createElement('br', null)
+              ),
+              _react2.default.createElement(_RaisedButton2.default, { label: 'Verify age', labelColor: "#632c7a", id: 'submit-url' })
+            )
           )
         ),
         _react2.default.createElement(
           'button',
-          { onClick: this.closeModal },
-          'close'
+          { onClick: function onClick() {
+              return _this2.openModal();
+            } },
+          'Open Modal'
+        ),
+        _react2.default.createElement(
+          Modal,
+          {
+            isOpen: this.state.modalIsOpen,
+            onAfterOpen: function onAfterOpen() {
+              return _this2.afterOpenModal();
+            },
+            onRequestClose: function onRequestClose() {
+              return _this2.closeModal();
+            },
+            style: customStyles,
+            contentLabel: 'Example Modal'
+          },
+          _react2.default.createElement(
+            'div',
+            { className: '' },
+            _react2.default.createElement(
+              'h1',
+              null,
+              'Thank you. The online content has been reported for removal'
+            ),
+            _react2.default.createElement(
+              'p',
+              null,
+              'If you would like IWF to update you by email, please enter your email address below.'
+            ),
+            _react2.default.createElement('input', { placeholder: 'email address' }),
+            _react2.default.createElement(
+              'a',
+              { className: 'waves-effect waves-light btn', href: '/index.html' },
+              'Submit'
+            )
+          ),
+          _react2.default.createElement(
+            'button',
+            { onClick: function onClick() {
+                return _this2.closeModal();
+              } },
+            'close'
+          )
         )
-      )
-    );
-  }
+      );
+    }
+  }]);
 
-});
+  return UrlForm;
+}(_react2.default.Component);
 
 exports.default = UrlForm;
 
