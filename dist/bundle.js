@@ -19388,6 +19388,8 @@ Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
+var _content;
+
 var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
@@ -19410,6 +19412,8 @@ var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 var Modal = __webpack_require__(460);
 (0, _reactTapEventPlugin2.default)();
 
@@ -19423,21 +19427,23 @@ var customStyles = {
     bottom: 0,
     backgroundColor: 'rgba(255, 255, 255, 0.75)'
   },
-  content: {
+  content: (_content = {
     position: 'absolute',
-    top: '5rem',
-    left: '10rem',
-    right: '10rem',
-    bottom: '5rem',
+    top: '50%',
+    left: '50%',
+    bottom: '50%',
+    right: '50%',
+    transform: 'translate(-50%, -50%)',
     border: '1px solid #ccc',
     background: '#fff',
     overflow: 'hidden',
     WebkitOverflowScrolling: 'touch',
     borderRadius: '0.25rem',
     outline: 'none',
-    padding: '1rem'
-
-  }
+    padding: '1rem',
+    width: '420px',
+    height: '60%'
+  }, _defineProperty(_content, 'width', '375px'), _defineProperty(_content, 'zIndex', '100'), _content)
 };
 
 var UrlForm = _react2.default.createClass({
@@ -19547,7 +19553,7 @@ var UrlForm = _react2.default.createClass({
         },
         _react2.default.createElement(
           'div',
-          { className: 'mod__content' },
+          { className: '' },
           _react2.default.createElement(
             'h1',
             null,
