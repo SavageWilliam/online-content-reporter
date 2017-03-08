@@ -1864,6 +1864,32 @@ module.exports = ReactCurrentOwner;
 /* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(287);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// add the styles to the DOM
+var update = __webpack_require__(523)(content, {});
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/index.js!./style.scss", function() {
+			var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/index.js!./style.scss");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 27 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 
 
@@ -1871,7 +1897,7 @@ module.exports = __webpack_require__(403);
 
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1888,7 +1914,7 @@ exports.default = function (prefixedValue, value, keepUnprefixed) {
 module.exports = exports["default"];
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2160,32 +2186,6 @@ function getPooledWarningPropertyDefinition(propName, getVal) {
   }
 }
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 29 */
-/***/ (function(module, exports, __webpack_require__) {
-
-// style-loader: Adds some css to the DOM by adding a <style> tag
-
-// load the styles
-var content = __webpack_require__(287);
-if(typeof content === 'string') content = [[module.i, content, '']];
-// add the styles to the DOM
-var update = __webpack_require__(523)(content, {});
-if(content.locals) module.exports = content.locals;
-// Hot Module Replacement
-if(false) {
-	// When the styles change, update the <style> tags
-	if(!content.locals) {
-		module.hot.accept("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/index.js!./style.scss", function() {
-			var newContent = require("!!../../node_modules/css-loader/index.js!../../node_modules/sass-loader/index.js!./style.scss");
-			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-			update(newContent);
-		});
-	}
-	// When the module is disposed, remove the <style> tags
-	module.hot.dispose(function() { update(); });
-}
 
 /***/ }),
 /* 30 */
@@ -4300,7 +4300,7 @@ module.exports = ReactReconciler;
 
 
 
-var SyntheticEvent = __webpack_require__(28);
+var SyntheticEvent = __webpack_require__(29);
 
 var getEventTarget = __webpack_require__(121);
 
@@ -6742,7 +6742,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-__webpack_require__(29);
+__webpack_require__(26);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -10552,7 +10552,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-__webpack_require__(29);
+__webpack_require__(26);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -12472,7 +12472,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(26);
+var _reactDom = __webpack_require__(27);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -12682,7 +12682,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(26);
+var _reactDom = __webpack_require__(27);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -18165,7 +18165,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouter = __webpack_require__(43);
 
-__webpack_require__(29);
+__webpack_require__(26);
 
 var _PageTitle = __webpack_require__(83);
 
@@ -18252,7 +18252,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouter = __webpack_require__(43);
 
-__webpack_require__(29);
+__webpack_require__(26);
 
 var _RaisedButton = __webpack_require__(105);
 
@@ -18363,7 +18363,7 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactRouter = __webpack_require__(43);
 
-__webpack_require__(29);
+__webpack_require__(26);
 
 var _PageTitle = __webpack_require__(83);
 
@@ -18482,7 +18482,7 @@ var _TextField = __webpack_require__(369);
 
 var _TextField2 = _interopRequireDefault(_TextField);
 
-__webpack_require__(29);
+__webpack_require__(26);
 
 var _reactTapEventPlugin = __webpack_require__(497);
 
@@ -19060,7 +19060,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-__webpack_require__(29);
+__webpack_require__(26);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -19089,7 +19089,7 @@ var _QrCode = __webpack_require__(233);
 
 var _QrCode2 = _interopRequireDefault(_QrCode);
 
-__webpack_require__(29);
+__webpack_require__(26);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -19147,7 +19147,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-__webpack_require__(29);
+__webpack_require__(26);
 
 var _RaisedButton = __webpack_require__(105);
 
@@ -19333,7 +19333,7 @@ var _YotiDescription = __webpack_require__(234);
 
 var _YotiDescription2 = _interopRequireDefault(_YotiDescription);
 
-__webpack_require__(29);
+__webpack_require__(26);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
@@ -20945,7 +20945,7 @@ exports = module.exports = __webpack_require__(288)();
 
 
 // module
-exports.push([module.i, "@font-face {\n  font-family: childline;\n  src: url(" + __webpack_require__(307) + "); }\n\n@font-face {\n  font-family: childline-bold;\n  src: url(" + __webpack_require__(306) + "); }\n\n@font-face {\n  font-family: Rosie;\n  src: url(" + __webpack_require__(308) + "); }\n\n.page-title, .home-title {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 2.5rem;\n  color: white;\n  text-align: center; }\n\n.section-title, .scan-me {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 1.4rem;\n  color: white; }\n\n.action-button {\n  display: flex;\n  justify-content: center; }\n\n.home-header {\n  background-color: #00a1d0;\n  padding: 4rem 1rem 2.5rem 1rem;\n  text-align: center;\n  min-height: 28vh;\n  margin: 0;\n  padding-bottom: 2rem;\n  padding-top: 0rem; }\n  .home-header h3 {\n    font-size: 1.2rem;\n    font-weight: normal;\n    color: white;\n    margin-bottom: 1rem; }\n\n.home-header-info {\n  width: 100%;\n  margin: 0 auto;\n  font-size: 1rem;\n  display: flex;\n  justify-content: space-between; }\n  .home-header-info p {\n    color: white; }\n  .home-header-info a {\n    color: white; }\n\n.home-header-phone a {\n  margin-right: 0.5rem; }\n\n.home-title {\n  margin-bottom: 1rem; }\n\n.home-info {\n  margin: 1rem;\n  background-color: #234f62;\n  color: white;\n  padding: 1rem; }\n  .home-info a {\n    color: #039be5;\n    -webkit-tap-highlight-color: transparent; }\n    .home-info a:hover {\n      color: orange; }\n\n.home-logos {\n  display: flex;\n  flex-direction: row;\n  flex-wrap: wrap;\n  justify-content: space-around;\n  margin-bottom: 1.5rem; }\n  .home-logos img {\n    height: 6rem;\n    min-width: 6rem; }\n\n.page-title, .home-title {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 2.5rem;\n  color: white;\n  text-align: center; }\n\n.section-title, .scan-me {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 1.4rem;\n  color: white; }\n\n.action-button {\n  display: flex;\n  justify-content: center; }\n\n.age-info-1 {\n  margin: 1rem;\n  background-color: #73cfe8;\n  color: #0c3d52;\n  padding: 1rem; }\n  .age-info-1 a {\n    color: inherit; }\n\n.age-info-2 {\n  margin: 1rem;\n  background-color: #F28C00;\n  color: #234f62;\n  padding: 1rem; }\n  .age-info-2 i {\n    padding: 0.6rem;\n    color: #ffffff; }\n  .age-info-2 a {\n    color: inherit; }\n\n.yoti-info {\n  margin: 1rem;\n  background-color: #234f62;\n  color: white;\n  padding: 1rem; }\n\n.yoti-intro {\n  display: flex;\n  flex-direction: row; }\n  .yoti-intro img {\n    width: 15%;\n    height: 2rem; }\n  .yoti-intro h3 {\n    width: 85%;\n    margin: 0; }\n\n.scan-me {\n  text-align: center;\n  padding: 0; }\n  .scan-me img {\n    width: 4rem;\n    margin-left: 1rem; }\n\n.page-title, .home-title {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 2.5rem;\n  color: white;\n  text-align: center; }\n\n.section-title, .scan-me {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 1.4rem;\n  color: white; }\n\n.action-button {\n  display: flex;\n  justify-content: center; }\n\n.form-container {\n  max-width: 94%;\n  margin: 1rem auto;\n  padding: 1rem;\n  background-color: #3EBB98; }\n\n.other-options {\n  background-color: #F28C00;\n  color: #0c3d52;\n  padding: 1rem; }\n\n.page-title, .home-title {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 2.5rem;\n  color: white;\n  text-align: center; }\n\n.section-title, .scan-me {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 1.4rem;\n  color: white; }\n\n.action-button {\n  display: flex;\n  justify-content: center; }\n\n.message {\n  margin: 1rem;\n  padding: 0.75rem;\n  color: #234f62;\n  background-color: #F28C00; }\n\n.title-div {\n  padding: 2.5rem 1rem 2.5rem 1rem;\n  margin-bottom: 1rem;\n  height: 35vh;\n  background-color: #234f62; }\n\n.form-container {\n  max-width: 94%;\n  margin: 1rem auto;\n  padding: 1rem;\n  background-color: #CCECF5; }\n\n.page-title, .home-title {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 2.5rem;\n  color: white;\n  text-align: center; }\n\n.section-title, .scan-me {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 1.4rem;\n  color: white; }\n\n.action-button {\n  display: flex;\n  justify-content: center; }\n\n.title-container {\n  background-color: #3EBB98;\n  padding: 4rem 1rem 2.5rem 1rem;\n  text-align: center;\n  min-height: 28vh;\n  margin: 0; }\n\n.what-now {\n  background-color: #D8F1EA;\n  margin: 1rem;\n  padding: 1rem; }\n  .what-now h3 {\n    font-family: 'childline-bold';\n    font-size: 1.6rem;\n    margin: 0;\n    width: 90%;\n    float: left;\n    color: #632c7a; }\n  .what-now .identity {\n    width: 10%;\n    text-align: right;\n    color: #632c7a;\n    padding-left: 0.2rem;\n    padding-top: 0.2rem; }\n  .what-now p {\n    padding-top: 0.5rem;\n    margin: 0;\n    margin-bottom: 1rem;\n    font-size: 1.2rem;\n    color: #632c7a; }\n\n.other-ops {\n  position: relative;\n  margin: 0 auto;\n  background-color: white;\n  padding: 0;\n  display: flex;\n  justify-content: center;\n  flex-direction: column; }\n\n.contact {\n  float: left;\n  text-align: left !important;\n  display: block;\n  color: #632c7a;\n  padding: 0.5rem;\n  margin-left: 1rem;\n  transition: all 0.5s ease;\n  font-family: 'childline-bold'; }\n\n.option {\n  border: 0.2rem solid #3EBB98;\n  width: 94%;\n  padding: 0.45rem;\n  margin: 0.5rem auto;\n  display: flex;\n  flex-direction: row; }\n  .option i {\n    width: 10%;\n    text-align: right;\n    color: #632c7a;\n    padding-left: 0.2rem;\n    padding-top: 0.2rem; }\n  .option a {\n    float: left;\n    text-align: left !important;\n    display: block;\n    color: #632c7a;\n    padding: 0.5rem;\n    margin-left: 1rem;\n    transition: all 0.5s ease;\n    font-family: 'childline-bold'; }\n\n.page-title, .home-title {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 2.5rem;\n  color: white;\n  text-align: center; }\n\n.section-title, .scan-me {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 1.4rem;\n  color: white; }\n\n.action-button {\n  display: flex;\n  justify-content: center; }\n\nbody {\n  margin: 0 auto;\n  font-family: 'childline'; }\n\na {\n  text-decoration: none; }\n  a:hover {\n    text-decoration: underline; }\n\np {\n  line-height: 1.5; }\n\ndiv {\n  display: block; }\n\n.title-container-light-blue {\n  background-color: #00a1d0;\n  padding: 4rem 1rem 2.5rem 1rem;\n  text-align: center;\n  min-height: 28vh;\n  margin: 0; }\n\n.title-container-dark-cobalt {\n  background-color: #0c3d52;\n  padding: 4rem 1rem 2.5rem 1rem;\n  text-align: center;\n  min-height: 28vh;\n  margin: 0; }\n\n.title-container-plum {\n  background-color: #632c7a;\n  padding: 4rem 1rem 2.5rem 1rem;\n  text-align: center;\n  min-height: 28vh;\n  margin: 0; }\n\n.mod {\n  color: #0c3d52;\n  font-family: 'childline-regular'; }\n  .mod h1 {\n    font-size: 2rem;\n    font-family: 'childline-bold';\n    margin-top: 2rem; }\n  .mod p {\n    font-family: 'childline'; }\n\n.close_btn {\n  position: absolute;\n  z-index: 1;\n  top: 0;\n  right: 0;\n  background: #234f62;\n  color: white;\n  font-size: 1.2rem; }\n\n.page-title-heading {\n  font-family: 'Rosie', 'childline-bold';\n  font-size: 3rem;\n  margin: 0;\n  color: #fff;\n  text-align: center;\n  padding-bottom: 1rem; }\n\n.progress-bar {\n  position: relative;\n  height: 4px;\n  display: block;\n  width: 100%;\n  background-color: #acece6;\n  border-radius: 2px;\n  margin: .5rem 0 1rem 0;\n  overflow: hidden; }\n\n.determinate33 {\n  width: 33%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  background-color: #26a69a;\n  transition: width .3s linear; }\n\n.determinate66 {\n  width: 66%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  background-color: #26a69a;\n  transition: width .3s linear; }\n\n.determinate100 {\n  width: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  background-color: #26a69a;\n  transition: width .3s linear; }\n", ""]);
+exports.push([module.i, "@font-face {\n  font-family: childline;\n  src: url(" + __webpack_require__(307) + "); }\n\n@font-face {\n  font-family: childline-bold;\n  src: url(" + __webpack_require__(306) + "); }\n\n@font-face {\n  font-family: Rosie;\n  src: url(" + __webpack_require__(308) + "); }\n\n.page-title, .home-title {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 2.5rem;\n  color: white;\n  text-align: center; }\n\n.section-title, .scan-me {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 1.4rem;\n  color: white; }\n\n.action-button {\n  display: flex;\n  justify-content: center; }\n\n.home-header {\n  background-color: #00a1d0;\n  padding: 4rem 1rem 2.5rem 1rem;\n  text-align: center;\n  min-height: 28vh;\n  margin: 0;\n  padding-bottom: 2rem;\n  padding-top: 0rem; }\n  .home-header h3 {\n    font-size: 1.2rem;\n    font-weight: normal;\n    color: white;\n    margin-bottom: 1rem; }\n\n.home-header-info {\n  width: 100%;\n  margin: 0 auto;\n  font-size: 1rem;\n  display: flex;\n  justify-content: space-between; }\n  .home-header-info p {\n    color: white; }\n  .home-header-info a {\n    color: white; }\n\n.home-header-phone a {\n  margin-right: 0.5rem; }\n\n.home-title {\n  margin-bottom: 1rem; }\n\n.home-info {\n  margin: 1rem;\n  background-color: #234f62;\n  color: white;\n  padding: 1rem; }\n  .home-info a {\n    color: #039be5;\n    -webkit-tap-highlight-color: transparent; }\n    .home-info a:hover {\n      color: orange; }\n\n.home-logos {\n  display: flex;\n  flex-direction: row;\n  flex-wrap: wrap;\n  justify-content: space-around;\n  margin-bottom: 1.5rem; }\n  .home-logos img {\n    height: 6rem;\n    min-width: 6rem; }\n\n.page-title, .home-title {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 2.5rem;\n  color: white;\n  text-align: center; }\n\n.section-title, .scan-me {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 1.4rem;\n  color: white; }\n\n.action-button {\n  display: flex;\n  justify-content: center; }\n\n.age-info-1 {\n  margin: 1rem;\n  background-color: #73cfe8;\n  color: #0c3d52;\n  padding: 1rem; }\n  .age-info-1 a {\n    color: inherit; }\n\n.age-info-2 {\n  margin: 1rem;\n  background-color: #F28C00;\n  color: #234f62;\n  padding: 1rem; }\n  .age-info-2 i {\n    padding: 0.6rem;\n    color: #ffffff; }\n  .age-info-2 a {\n    color: inherit; }\n\n.yoti-info {\n  margin: 1rem;\n  background-color: #234f62;\n  color: white;\n  padding: 1rem; }\n\n.yoti-intro {\n  display: flex;\n  flex-direction: row; }\n  .yoti-intro img {\n    width: 15%;\n    height: 2rem; }\n  .yoti-intro h3 {\n    width: 85%;\n    margin: 0; }\n\n.scan-me {\n  text-align: center;\n  padding: 0; }\n  .scan-me img {\n    width: 4rem;\n    margin-left: 1rem; }\n\n.page-title, .home-title {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 2.5rem;\n  color: white;\n  text-align: center; }\n\n.section-title, .scan-me {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 1.4rem;\n  color: white; }\n\n.action-button {\n  display: flex;\n  justify-content: center; }\n\n.form-container {\n  max-width: 94%;\n  margin: 1rem auto;\n  padding: 1rem;\n  background-color: #3EBB98; }\n\n.other-options {\n  background-color: #F28C00;\n  color: #0c3d52;\n  padding: 1rem; }\n\n.page-title, .home-title {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 2.5rem;\n  color: white;\n  text-align: center; }\n\n.section-title, .scan-me {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 1.4rem;\n  color: white; }\n\n.action-button {\n  display: flex;\n  justify-content: center; }\n\n.message {\n  margin: 1rem;\n  padding: 0.75rem;\n  color: #234f62;\n  background-color: #F28C00; }\n\n.title-div {\n  padding: 2.5rem 1rem 2.5rem 1rem;\n  margin-bottom: 1rem;\n  height: 35vh;\n  background-color: #234f62; }\n\n.form-container {\n  max-width: 94%;\n  margin: 1rem auto;\n  padding: 1rem;\n  background-color: #CCECF5; }\n\n.page-title, .home-title {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 2.5rem;\n  color: white;\n  text-align: center; }\n\n.section-title, .scan-me {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 1.4rem;\n  color: white; }\n\n.action-button {\n  display: flex;\n  justify-content: center; }\n\n.title-container {\n  background-color: #3EBB98;\n  padding: 4rem 1rem 2.5rem 1rem;\n  text-align: center;\n  min-height: 28vh;\n  margin: 0; }\n\n.page-title-subheading {\n  color: #fff;\n  text-align: center; }\n\n.what-now {\n  background-color: #D8F1EA;\n  margin: 1rem;\n  padding: 1rem; }\n  .what-now h3 {\n    font-family: 'childline-bold';\n    font-size: 1.6rem;\n    margin: 0;\n    width: 90%;\n    float: left;\n    color: #632c7a; }\n  .what-now .identity {\n    width: 10%;\n    text-align: right;\n    color: #632c7a;\n    padding-left: 0.2rem;\n    padding-top: 0.2rem; }\n  .what-now p {\n    padding-top: 0.5rem;\n    margin: 0;\n    margin-bottom: 1rem;\n    font-size: 1.2rem;\n    color: #632c7a; }\n\n.other-ops {\n  position: relative;\n  margin: 0 auto;\n  background-color: white;\n  padding: 0;\n  display: flex;\n  justify-content: center;\n  flex-direction: column; }\n\n.contact {\n  float: left;\n  text-align: left !important;\n  display: block;\n  color: #632c7a;\n  padding: 0.5rem;\n  margin-left: 1rem;\n  transition: all 0.5s ease;\n  font-family: 'childline-bold'; }\n\n.option {\n  border: 0.2rem solid #3EBB98;\n  width: 94%;\n  padding: 0.45rem;\n  margin: 0.5rem auto;\n  display: flex;\n  flex-direction: row; }\n  .option i {\n    width: 10%;\n    text-align: right;\n    color: #632c7a;\n    padding-left: 0.2rem;\n    padding-top: 0.2rem; }\n  .option a {\n    float: left;\n    text-align: left !important;\n    display: block;\n    color: #632c7a;\n    padding: 0.5rem;\n    margin-left: 1rem;\n    transition: all 0.5s ease;\n    font-family: 'childline-bold'; }\n\n.page-title, .home-title {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 2.5rem;\n  color: white;\n  text-align: center; }\n\n.section-title, .scan-me {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 1.4rem;\n  color: white; }\n\n.action-button {\n  display: flex;\n  justify-content: center; }\n\nbody {\n  margin: 0 auto;\n  font-family: 'childline'; }\n\na {\n  text-decoration: none; }\n  a:hover {\n    text-decoration: underline; }\n\np {\n  line-height: 1.5; }\n\ndiv {\n  display: block; }\n\n.title-container-light-blue {\n  background-color: #00a1d0;\n  padding: 4rem 1rem 2.5rem 1rem;\n  text-align: center;\n  min-height: 28vh;\n  margin: 0; }\n\n.title-container-dark-cobalt {\n  background-color: #0c3d52;\n  padding: 4rem 1rem 2.5rem 1rem;\n  text-align: center;\n  min-height: 28vh;\n  margin: 0; }\n\n.title-container-plum {\n  background-color: #632c7a;\n  padding: 4rem 1rem 2.5rem 1rem;\n  text-align: center;\n  min-height: 28vh;\n  margin: 0; }\n\n.mod {\n  color: #0c3d52;\n  font-family: 'childline-regular'; }\n  .mod h1 {\n    font-size: 2rem;\n    font-family: 'childline-bold';\n    margin-top: 2rem; }\n  .mod p {\n    font-family: 'childline'; }\n\n.close_btn {\n  position: absolute;\n  z-index: 1;\n  top: 0;\n  right: 0;\n  background: #234f62;\n  color: white;\n  font-size: 1.2rem; }\n\n.page-title-heading {\n  font-family: 'Rosie', 'childline-bold';\n  font-size: 3rem;\n  margin: 0;\n  color: #fff;\n  text-align: center;\n  padding-bottom: 1rem; }\n\n.progress-bar {\n  position: relative;\n  height: 4px;\n  display: block;\n  width: 100%;\n  background-color: #acece6;\n  border-radius: 2px;\n  margin: .5rem 0 1rem 0;\n  overflow: hidden; }\n\n.determinate33 {\n  width: 33%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  background-color: #26a69a;\n  transition: width .3s linear; }\n\n.determinate66 {\n  width: 66%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  background-color: #26a69a;\n  transition: width .3s linear; }\n\n.determinate100 {\n  width: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  background-color: #26a69a;\n  transition: width .3s linear; }\n", ""]);
 
 // exports
 
@@ -22808,7 +22808,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = calc;
 
-var _getPrefixedValue = __webpack_require__(27);
+var _getPrefixedValue = __webpack_require__(28);
 
 var _getPrefixedValue2 = _interopRequireDefault(_getPrefixedValue);
 
@@ -22843,7 +22843,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = flex;
 
-var _getPrefixedValue = __webpack_require__(27);
+var _getPrefixedValue = __webpack_require__(28);
 
 var _getPrefixedValue2 = _interopRequireDefault(_getPrefixedValue);
 
@@ -22880,7 +22880,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = flexboxIE;
 
-var _getPrefixedValue = __webpack_require__(27);
+var _getPrefixedValue = __webpack_require__(28);
 
 var _getPrefixedValue2 = _interopRequireDefault(_getPrefixedValue);
 
@@ -22945,7 +22945,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = flexboxOld;
 
-var _getPrefixedValue = __webpack_require__(27);
+var _getPrefixedValue = __webpack_require__(28);
 
 var _getPrefixedValue2 = _interopRequireDefault(_getPrefixedValue);
 
@@ -23017,7 +23017,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = grabCursor;
 
-var _getPrefixedValue = __webpack_require__(27);
+var _getPrefixedValue = __webpack_require__(28);
 
 var _getPrefixedValue2 = _interopRequireDefault(_getPrefixedValue);
 
@@ -23053,7 +23053,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = gradient;
 
-var _getPrefixedValue = __webpack_require__(27);
+var _getPrefixedValue = __webpack_require__(28);
 
 var _getPrefixedValue2 = _interopRequireDefault(_getPrefixedValue);
 
@@ -23090,7 +23090,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = position;
 
-var _getPrefixedValue = __webpack_require__(27);
+var _getPrefixedValue = __webpack_require__(28);
 
 var _getPrefixedValue2 = _interopRequireDefault(_getPrefixedValue);
 
@@ -23123,7 +23123,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = sizing;
 
-var _getPrefixedValue = __webpack_require__(27);
+var _getPrefixedValue = __webpack_require__(28);
 
 var _getPrefixedValue2 = _interopRequireDefault(_getPrefixedValue);
 
@@ -23241,7 +23241,7 @@ Object.defineProperty(exports, "__esModule", {
 });
 exports.default = zoomCursor;
 
-var _getPrefixedValue = __webpack_require__(27);
+var _getPrefixedValue = __webpack_require__(28);
 
 var _getPrefixedValue2 = _interopRequireDefault(_getPrefixedValue);
 
@@ -27301,7 +27301,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(26);
+var _reactDom = __webpack_require__(27);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -29414,7 +29414,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(26);
+var _reactDom = __webpack_require__(27);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -30358,7 +30358,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(26);
+var _reactDom = __webpack_require__(27);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -31123,7 +31123,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(26);
+var _reactDom = __webpack_require__(27);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -32971,7 +32971,7 @@ var EventPropagators = __webpack_require__(51);
 var ExecutionEnvironment = __webpack_require__(15);
 var ReactDOMComponentTree = __webpack_require__(12);
 var ReactUpdates = __webpack_require__(24);
-var SyntheticEvent = __webpack_require__(28);
+var SyntheticEvent = __webpack_require__(29);
 
 var getEventTarget = __webpack_require__(121);
 var isEventSupported = __webpack_require__(122);
@@ -40030,7 +40030,7 @@ var EventPropagators = __webpack_require__(51);
 var ExecutionEnvironment = __webpack_require__(15);
 var ReactDOMComponentTree = __webpack_require__(12);
 var ReactInputSelection = __webpack_require__(186);
-var SyntheticEvent = __webpack_require__(28);
+var SyntheticEvent = __webpack_require__(29);
 
 var getActiveElement = __webpack_require__(157);
 var isTextInputElement = __webpack_require__(195);
@@ -40230,7 +40230,7 @@ var EventPropagators = __webpack_require__(51);
 var ReactDOMComponentTree = __webpack_require__(12);
 var SyntheticAnimationEvent = __webpack_require__(439);
 var SyntheticClipboardEvent = __webpack_require__(440);
-var SyntheticEvent = __webpack_require__(28);
+var SyntheticEvent = __webpack_require__(29);
 var SyntheticFocusEvent = __webpack_require__(443);
 var SyntheticKeyboardEvent = __webpack_require__(445);
 var SyntheticMouseEvent = __webpack_require__(77);
@@ -40456,7 +40456,7 @@ module.exports = SimpleEventPlugin;
 
 
 
-var SyntheticEvent = __webpack_require__(28);
+var SyntheticEvent = __webpack_require__(29);
 
 /**
  * @interface Event
@@ -40500,7 +40500,7 @@ module.exports = SyntheticAnimationEvent;
 
 
 
-var SyntheticEvent = __webpack_require__(28);
+var SyntheticEvent = __webpack_require__(29);
 
 /**
  * @interface Event
@@ -40543,7 +40543,7 @@ module.exports = SyntheticClipboardEvent;
 
 
 
-var SyntheticEvent = __webpack_require__(28);
+var SyntheticEvent = __webpack_require__(29);
 
 /**
  * @interface Event
@@ -40666,7 +40666,7 @@ module.exports = SyntheticFocusEvent;
 
 
 
-var SyntheticEvent = __webpack_require__(28);
+var SyntheticEvent = __webpack_require__(29);
 
 /**
  * @interface Event
@@ -40847,7 +40847,7 @@ module.exports = SyntheticTouchEvent;
 
 
 
-var SyntheticEvent = __webpack_require__(28);
+var SyntheticEvent = __webpack_require__(29);
 
 /**
  * @interface Event
@@ -41808,12 +41808,12 @@ var passiveOption = exports.passiveOption = function () {
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {var React = __webpack_require__(1);
-var ReactDOM = __webpack_require__(26);
+var ReactDOM = __webpack_require__(27);
 var ExecutionEnvironment = __webpack_require__(290);
 var ModalPortal = React.createFactory(__webpack_require__(464));
 var ariaAppHider = __webpack_require__(465);
 var elementClass = __webpack_require__(289);
-var renderSubtreeIntoContainer = __webpack_require__(26).unstable_renderSubtreeIntoContainer;
+var renderSubtreeIntoContainer = __webpack_require__(27).unstable_renderSubtreeIntoContainer;
 var Assign = __webpack_require__(167);
 
 var SafeHTMLElement = ExecutionEnvironment.canUseDOM ? window.HTMLElement : {};
@@ -47513,7 +47513,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(26);
+var _reactDom = __webpack_require__(27);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
