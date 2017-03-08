@@ -1590,7 +1590,7 @@ var _prodInvariant = __webpack_require__(4),
 var CallbackQueue = __webpack_require__(179);
 var PooledClass = __webpack_require__(41);
 var ReactFeatureFlags = __webpack_require__(184);
-var ReactReconciler = __webpack_require__(53);
+var ReactReconciler = __webpack_require__(52);
 var Transaction = __webpack_require__(78);
 
 var invariant = __webpack_require__(2);
@@ -3360,7 +3360,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "match", function() { return __WEBPACK_IMPORTED_MODULE_11__match__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__useRouterHistory__ = __webpack_require__(211);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "useRouterHistory", function() { return __WEBPACK_IMPORTED_MODULE_12__useRouterHistory__["a"]; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__PatternUtils__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__PatternUtils__ = __webpack_require__(54);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "formatPattern", function() { return __WEBPACK_IMPORTED_MODULE_13__PatternUtils__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__applyRouterMiddleware__ = __webpack_require__(484);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "applyRouterMiddleware", function() { return __WEBPACK_IMPORTED_MODULE_14__applyRouterMiddleware__["a"]; });
@@ -3420,7 +3420,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isObject = __webpack_require__(57);
+var isObject = __webpack_require__(56);
 module.exports = function(it){
   if(!isObject(it))throw TypeError(it + ' is not an object!');
   return it;
@@ -3443,7 +3443,7 @@ module.exports = function(exec){
 /***/ (function(module, exports, __webpack_require__) {
 
 var dP         = __webpack_require__(32)
-  , createDesc = __webpack_require__(59);
+  , createDesc = __webpack_require__(58);
 module.exports = __webpack_require__(38) ? function(object, key, value){
   return dP.f(object, key, createDesc(1, value));
 } : function(object, key, value){
@@ -3567,255 +3567,6 @@ var locationsAreEqual = exports.locationsAreEqual = function locationsAreEqual(a
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.convertColorToString = convertColorToString;
-exports.convertHexToRGB = convertHexToRGB;
-exports.decomposeColor = decomposeColor;
-exports.getContrastRatio = getContrastRatio;
-exports.getLuminance = getLuminance;
-exports.emphasize = emphasize;
-exports.fade = fade;
-exports.darken = darken;
-exports.lighten = lighten;
-
-var _warning = __webpack_require__(19);
-
-var _warning2 = _interopRequireDefault(_warning);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/**
- * Returns a number whose value is limited to the given range.
- *
- * @param {number} value The value to be clamped
- * @param {number} min The lower boundary of the output range
- * @param {number} max The upper boundary of the output range
- * @returns {number} A number in the range [min, max]
- */
-function clamp(value, min, max) {
-  if (value < min) {
-    return min;
-  }
-  if (value > max) {
-    return max;
-  }
-  return value;
-}
-
-/**
- * Converts a color object with type and values to a string.
- *
- * @param {object} color - Decomposed color
- * @param {string} color.type - One of, 'rgb', 'rgba', 'hsl', 'hsla'
- * @param {array} color.values - [n,n,n] or [n,n,n,n]
- * @returns {string} A CSS color string
- */
-function convertColorToString(color) {
-  var type = color.type,
-      values = color.values;
-
-
-  if (type.indexOf('rgb') > -1) {
-    // Only convert the first 3 values to int (i.e. not alpha)
-    for (var i = 0; i < 3; i++) {
-      values[i] = parseInt(values[i]);
-    }
-  }
-
-  var colorString = void 0;
-
-  if (type.indexOf('hsl') > -1) {
-    colorString = color.type + '(' + values[0] + ', ' + values[1] + '%, ' + values[2] + '%';
-  } else {
-    colorString = color.type + '(' + values[0] + ', ' + values[1] + ', ' + values[2];
-  }
-
-  if (values.length === 4) {
-    colorString += ', ' + color.values[3] + ')';
-  } else {
-    colorString += ')';
-  }
-
-  return colorString;
-}
-
-/**
- * Converts a color from CSS hex format to CSS rgb format.
- *
- *  @param {string} color - Hex color, i.e. #nnn or #nnnnnn
- *  @returns {string} A CSS rgb color string
- */
-function convertHexToRGB(color) {
-  if (color.length === 4) {
-    var extendedColor = '#';
-    for (var i = 1; i < color.length; i++) {
-      extendedColor += color.charAt(i) + color.charAt(i);
-    }
-    color = extendedColor;
-  }
-
-  var values = {
-    r: parseInt(color.substr(1, 2), 16),
-    g: parseInt(color.substr(3, 2), 16),
-    b: parseInt(color.substr(5, 2), 16)
-  };
-
-  return 'rgb(' + values.r + ', ' + values.g + ', ' + values.b + ')';
-}
-
-/**
- * Returns an object with the type and values of a color.
- *
- * Note: Does not support rgb % values and color names.
- *
- * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla()
- * @returns {{type: string, values: number[]}} A MUI color object
- */
-function decomposeColor(color) {
-  if (color.charAt(0) === '#') {
-    return decomposeColor(convertHexToRGB(color));
-  }
-
-  var marker = color.indexOf('(');
-
-  process.env.NODE_ENV !== "production" ? (0, _warning2.default)(marker !== -1, 'Material-UI: The ' + color + ' color was not parsed correctly,\n  because it has an unsupported format (color name or RGB %). This may cause issues in component rendering.') : void 0;
-
-  var type = color.substring(0, marker);
-  var values = color.substring(marker + 1, color.length - 1).split(',');
-  values = values.map(function (value) {
-    return parseFloat(value);
-  });
-
-  return { type: type, values: values };
-}
-
-/**
- * Calculates the contrast ratio between two colors.
- *
- * Formula: http://www.w3.org/TR/2008/REC-WCAG20-20081211/#contrast-ratiodef
- *
- * @param {string} foreground - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla()
- * @param {string} background - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla()
- * @returns {number} A contrast ratio value in the range 0 - 21 with 2 digit precision.
- */
-function getContrastRatio(foreground, background) {
-  var lumA = getLuminance(foreground);
-  var lumB = getLuminance(background);
-  var contrastRatio = (Math.max(lumA, lumB) + 0.05) / (Math.min(lumA, lumB) + 0.05);
-
-  return Number(contrastRatio.toFixed(2)); // Truncate at two digits
-}
-
-/**
- * The relative brightness of any point in a color space,
- * normalized to 0 for darkest black and 1 for lightest white.
- *
- * Formula: https://www.w3.org/WAI/GL/wiki/Relative_luminance
- *
- * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla()
- * @returns {number} The relative brightness of the color in the range 0 - 1
- */
-function getLuminance(color) {
-  color = decomposeColor(color);
-
-  if (color.type.indexOf('rgb') > -1) {
-    var rgb = color.values.map(function (val) {
-      val /= 255; // normalized
-      return val <= 0.03928 ? val / 12.92 : Math.pow((val + 0.055) / 1.055, 2.4);
-    });
-    return Number((0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2]).toFixed(3)); // Truncate at 3 digits
-  } else if (color.type.indexOf('hsl') > -1) {
-    return color.values[2] / 100;
-  }
-}
-
-/**
- * Darken or lighten a colour, depending on its luminance.
- * Light colors are darkened, dark colors are lightened.
- *
- * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla()
- * @param {number} coefficient=0.15 - multiplier in the range 0 - 1
- * @returns {string} A CSS color string. Hex input values are returned as rgb
- */
-function emphasize(color) {
-  var coefficient = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0.15;
-
-  return getLuminance(color) > 0.5 ? darken(color, coefficient) : lighten(color, coefficient);
-}
-
-/**
- * Set the absolute transparency of a color.
- * Any existing alpha values are overwritten.
- *
- * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla()
- * @param {number} value - value to set the alpha channel to in the range 0 -1
- * @returns {string} A CSS color string. Hex input values are returned as rgb
- */
-function fade(color, value) {
-  color = decomposeColor(color);
-  value = clamp(value, 0, 1);
-
-  if (color.type === 'rgb' || color.type === 'hsl') {
-    color.type += 'a';
-  }
-  color.values[3] = value;
-
-  return convertColorToString(color);
-}
-
-/**
- * Darkens a color.
- *
- * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla()
- * @param {number} coefficient - multiplier in the range 0 - 1
- * @returns {string} A CSS color string. Hex input values are returned as rgb
- */
-function darken(color, coefficient) {
-  color = decomposeColor(color);
-  coefficient = clamp(coefficient, 0, 1);
-
-  if (color.type.indexOf('hsl') > -1) {
-    color.values[2] *= 1 - coefficient;
-  } else if (color.type.indexOf('rgb') > -1) {
-    for (var i = 0; i < 3; i++) {
-      color.values[i] *= 1 - coefficient;
-    }
-  }
-  return convertColorToString(color);
-}
-
-/**
- * Lightens a color.
- *
- * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla()
- * @param {number} coefficient - multiplier in the range 0 - 1
- * @returns {string} A CSS color string. Hex input values are returned as rgb
- */
-function lighten(color, coefficient) {
-  color = decomposeColor(color);
-  coefficient = clamp(coefficient, 0, 1);
-
-  if (color.type.indexOf('hsl') > -1) {
-    color.values[2] += (100 - color.values[2]) * coefficient;
-  } else if (color.type.indexOf('rgb') > -1) {
-    for (var i = 0; i < 3; i++) {
-      color.values[i] += (255 - color.values[i]) * coefficient;
-    }
-  }
-
-  return convertColorToString(color);
-}
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
-
-/***/ }),
-/* 50 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
 /**
  * Copyright 2015-present, Facebook, Inc.
  * All rights reserved.
@@ -3935,7 +3686,7 @@ DOMLazyTree.queueText = queueText;
 module.exports = DOMLazyTree;
 
 /***/ }),
-/* 51 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4219,7 +3970,7 @@ module.exports = EventPluginHub;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 52 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4235,7 +3986,7 @@ module.exports = EventPluginHub;
 
 
 
-var EventPluginHub = __webpack_require__(51);
+var EventPluginHub = __webpack_require__(50);
 var EventPluginUtils = __webpack_require__(75);
 
 var accumulateInto = __webpack_require__(190);
@@ -4359,7 +4110,7 @@ module.exports = EventPropagators;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 53 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4533,7 +4284,7 @@ module.exports = ReactReconciler;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 54 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4597,7 +4348,7 @@ SyntheticEvent.augmentClass(SyntheticUIEvent, UIEventInterface);
 module.exports = SyntheticUIEvent;
 
 /***/ }),
-/* 55 */
+/* 54 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4842,7 +4593,7 @@ function formatPattern(pattern, params) {
 /* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(0)))
 
 /***/ }),
-/* 56 */
+/* 55 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4878,7 +4629,7 @@ function _resetWarned() {
 }
 
 /***/ }),
-/* 57 */
+/* 56 */
 /***/ (function(module, exports) {
 
 module.exports = function(it){
@@ -4886,13 +4637,13 @@ module.exports = function(it){
 };
 
 /***/ }),
-/* 58 */
+/* 57 */
 /***/ (function(module, exports) {
 
 module.exports = {};
 
 /***/ }),
-/* 59 */
+/* 58 */
 /***/ (function(module, exports) {
 
 module.exports = function(bitmap, value){
@@ -4905,7 +4656,7 @@ module.exports = function(bitmap, value){
 };
 
 /***/ }),
-/* 60 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.1.13 ToObject(argument)
@@ -4915,7 +4666,7 @@ module.exports = function(it){
 };
 
 /***/ }),
-/* 61 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -4941,7 +4692,7 @@ module.exports = emptyObject;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 62 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -5012,6 +4763,255 @@ function shallowEqual(objA, objB) {
 }
 
 module.exports = shallowEqual;
+
+/***/ }),
+/* 62 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.convertColorToString = convertColorToString;
+exports.convertHexToRGB = convertHexToRGB;
+exports.decomposeColor = decomposeColor;
+exports.getContrastRatio = getContrastRatio;
+exports.getLuminance = getLuminance;
+exports.emphasize = emphasize;
+exports.fade = fade;
+exports.darken = darken;
+exports.lighten = lighten;
+
+var _warning = __webpack_require__(19);
+
+var _warning2 = _interopRequireDefault(_warning);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/**
+ * Returns a number whose value is limited to the given range.
+ *
+ * @param {number} value The value to be clamped
+ * @param {number} min The lower boundary of the output range
+ * @param {number} max The upper boundary of the output range
+ * @returns {number} A number in the range [min, max]
+ */
+function clamp(value, min, max) {
+  if (value < min) {
+    return min;
+  }
+  if (value > max) {
+    return max;
+  }
+  return value;
+}
+
+/**
+ * Converts a color object with type and values to a string.
+ *
+ * @param {object} color - Decomposed color
+ * @param {string} color.type - One of, 'rgb', 'rgba', 'hsl', 'hsla'
+ * @param {array} color.values - [n,n,n] or [n,n,n,n]
+ * @returns {string} A CSS color string
+ */
+function convertColorToString(color) {
+  var type = color.type,
+      values = color.values;
+
+
+  if (type.indexOf('rgb') > -1) {
+    // Only convert the first 3 values to int (i.e. not alpha)
+    for (var i = 0; i < 3; i++) {
+      values[i] = parseInt(values[i]);
+    }
+  }
+
+  var colorString = void 0;
+
+  if (type.indexOf('hsl') > -1) {
+    colorString = color.type + '(' + values[0] + ', ' + values[1] + '%, ' + values[2] + '%';
+  } else {
+    colorString = color.type + '(' + values[0] + ', ' + values[1] + ', ' + values[2];
+  }
+
+  if (values.length === 4) {
+    colorString += ', ' + color.values[3] + ')';
+  } else {
+    colorString += ')';
+  }
+
+  return colorString;
+}
+
+/**
+ * Converts a color from CSS hex format to CSS rgb format.
+ *
+ *  @param {string} color - Hex color, i.e. #nnn or #nnnnnn
+ *  @returns {string} A CSS rgb color string
+ */
+function convertHexToRGB(color) {
+  if (color.length === 4) {
+    var extendedColor = '#';
+    for (var i = 1; i < color.length; i++) {
+      extendedColor += color.charAt(i) + color.charAt(i);
+    }
+    color = extendedColor;
+  }
+
+  var values = {
+    r: parseInt(color.substr(1, 2), 16),
+    g: parseInt(color.substr(3, 2), 16),
+    b: parseInt(color.substr(5, 2), 16)
+  };
+
+  return 'rgb(' + values.r + ', ' + values.g + ', ' + values.b + ')';
+}
+
+/**
+ * Returns an object with the type and values of a color.
+ *
+ * Note: Does not support rgb % values and color names.
+ *
+ * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla()
+ * @returns {{type: string, values: number[]}} A MUI color object
+ */
+function decomposeColor(color) {
+  if (color.charAt(0) === '#') {
+    return decomposeColor(convertHexToRGB(color));
+  }
+
+  var marker = color.indexOf('(');
+
+  process.env.NODE_ENV !== "production" ? (0, _warning2.default)(marker !== -1, 'Material-UI: The ' + color + ' color was not parsed correctly,\n  because it has an unsupported format (color name or RGB %). This may cause issues in component rendering.') : void 0;
+
+  var type = color.substring(0, marker);
+  var values = color.substring(marker + 1, color.length - 1).split(',');
+  values = values.map(function (value) {
+    return parseFloat(value);
+  });
+
+  return { type: type, values: values };
+}
+
+/**
+ * Calculates the contrast ratio between two colors.
+ *
+ * Formula: http://www.w3.org/TR/2008/REC-WCAG20-20081211/#contrast-ratiodef
+ *
+ * @param {string} foreground - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla()
+ * @param {string} background - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla()
+ * @returns {number} A contrast ratio value in the range 0 - 21 with 2 digit precision.
+ */
+function getContrastRatio(foreground, background) {
+  var lumA = getLuminance(foreground);
+  var lumB = getLuminance(background);
+  var contrastRatio = (Math.max(lumA, lumB) + 0.05) / (Math.min(lumA, lumB) + 0.05);
+
+  return Number(contrastRatio.toFixed(2)); // Truncate at two digits
+}
+
+/**
+ * The relative brightness of any point in a color space,
+ * normalized to 0 for darkest black and 1 for lightest white.
+ *
+ * Formula: https://www.w3.org/WAI/GL/wiki/Relative_luminance
+ *
+ * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla()
+ * @returns {number} The relative brightness of the color in the range 0 - 1
+ */
+function getLuminance(color) {
+  color = decomposeColor(color);
+
+  if (color.type.indexOf('rgb') > -1) {
+    var rgb = color.values.map(function (val) {
+      val /= 255; // normalized
+      return val <= 0.03928 ? val / 12.92 : Math.pow((val + 0.055) / 1.055, 2.4);
+    });
+    return Number((0.2126 * rgb[0] + 0.7152 * rgb[1] + 0.0722 * rgb[2]).toFixed(3)); // Truncate at 3 digits
+  } else if (color.type.indexOf('hsl') > -1) {
+    return color.values[2] / 100;
+  }
+}
+
+/**
+ * Darken or lighten a colour, depending on its luminance.
+ * Light colors are darkened, dark colors are lightened.
+ *
+ * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla()
+ * @param {number} coefficient=0.15 - multiplier in the range 0 - 1
+ * @returns {string} A CSS color string. Hex input values are returned as rgb
+ */
+function emphasize(color) {
+  var coefficient = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 0.15;
+
+  return getLuminance(color) > 0.5 ? darken(color, coefficient) : lighten(color, coefficient);
+}
+
+/**
+ * Set the absolute transparency of a color.
+ * Any existing alpha values are overwritten.
+ *
+ * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla()
+ * @param {number} value - value to set the alpha channel to in the range 0 -1
+ * @returns {string} A CSS color string. Hex input values are returned as rgb
+ */
+function fade(color, value) {
+  color = decomposeColor(color);
+  value = clamp(value, 0, 1);
+
+  if (color.type === 'rgb' || color.type === 'hsl') {
+    color.type += 'a';
+  }
+  color.values[3] = value;
+
+  return convertColorToString(color);
+}
+
+/**
+ * Darkens a color.
+ *
+ * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla()
+ * @param {number} coefficient - multiplier in the range 0 - 1
+ * @returns {string} A CSS color string. Hex input values are returned as rgb
+ */
+function darken(color, coefficient) {
+  color = decomposeColor(color);
+  coefficient = clamp(coefficient, 0, 1);
+
+  if (color.type.indexOf('hsl') > -1) {
+    color.values[2] *= 1 - coefficient;
+  } else if (color.type.indexOf('rgb') > -1) {
+    for (var i = 0; i < 3; i++) {
+      color.values[i] *= 1 - coefficient;
+    }
+  }
+  return convertColorToString(color);
+}
+
+/**
+ * Lightens a color.
+ *
+ * @param {string} color - CSS color, i.e. one of: #nnn, #nnnnnn, rgb(), rgba(), hsl(), hsla()
+ * @param {number} coefficient - multiplier in the range 0 - 1
+ * @returns {string} A CSS color string. Hex input values are returned as rgb
+ */
+function lighten(color, coefficient) {
+  color = decomposeColor(color);
+  coefficient = clamp(coefficient, 0, 1);
+
+  if (color.type.indexOf('hsl') > -1) {
+    color.values[2] += (100 - color.values[2]) * coefficient;
+  } else if (color.type.indexOf('rgb') > -1) {
+    for (var i = 0; i < 3; i++) {
+      color.values[i] += (255 - color.values[i]) * coefficient;
+    }
+  }
+
+  return convertColorToString(color);
+}
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
 /* 63 */
@@ -5117,7 +5117,7 @@ var routes = oneOfType([route, arrayOf(route)]);
 
 exports.__esModule = true;
 
-var _shallowEqual = __webpack_require__(62);
+var _shallowEqual = __webpack_require__(61);
 
 var _shallowEqual2 = _interopRequireDefault(_shallowEqual);
 
@@ -6158,7 +6158,7 @@ module.exports = ReactBrowserEventEmitter;
 
 
 
-var SyntheticUIEvent = __webpack_require__(54);
+var SyntheticUIEvent = __webpack_require__(53);
 var ViewportMetrics = __webpack_require__(117);
 
 var getEventModifierState = __webpack_require__(120);
@@ -6752,12 +6752,12 @@ var PageTitle = function PageTitle(props) {
     { className: 'title-container ' + props.backgroundColor },
     _react2.default.createElement(
       'h1',
-      { className: 'title-heading' },
+      { className: 'page-title-heading' },
       props.heading
     ),
     _react2.default.createElement(
       'p',
-      { className: 'title-subheading' },
+      { className: 'page-title-subheading' },
       props.subheading
     )
   );
@@ -6927,7 +6927,7 @@ module.exports = function(it){
 /***/ (function(module, exports, __webpack_require__) {
 
 // 7.1.1 ToPrimitive(input [, PreferredType])
-var isObject = __webpack_require__(57);
+var isObject = __webpack_require__(56);
 // instead of the ES6 spec version, we didn't implement @@toPrimitive case
 // and the second argument - flag - preferred type is a string
 module.exports = function(it, S){
@@ -8205,7 +8205,7 @@ function extendChildren(children, extendedProps, extendedChildren) {
 
 
 
-var DOMLazyTree = __webpack_require__(50);
+var DOMLazyTree = __webpack_require__(49);
 var Danger = __webpack_require__(394);
 var ReactDOMComponentTree = __webpack_require__(12);
 var ReactInstrumentation = __webpack_require__(22);
@@ -10160,7 +10160,7 @@ var _prodInvariant = __webpack_require__(37);
 var ReactNoopUpdateQueue = __webpack_require__(131);
 
 var canDefineProperty = __webpack_require__(133);
-var emptyObject = __webpack_require__(61);
+var emptyObject = __webpack_require__(60);
 var invariant = __webpack_require__(2);
 var warning = __webpack_require__(3);
 
@@ -10559,7 +10559,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var ProgressBar = function ProgressBar(props) {
   return _react2.default.createElement(
     'div',
-    { className: 'progress' },
+    { className: 'progress-bar' },
     _react2.default.createElement('div', { className: 'determinate' + props.percentage })
   );
 };
@@ -10621,7 +10621,7 @@ exports.default = function (arr) {
 /* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
-var isObject = __webpack_require__(57)
+var isObject = __webpack_require__(56)
   , document = __webpack_require__(31).document
   // in old IE typeof document.createElement is 'object'
   , is = isObject(document) && isObject(document.createElement);
@@ -10658,7 +10658,7 @@ var LIBRARY        = __webpack_require__(88)
   , redefine       = __webpack_require__(152)
   , hide           = __webpack_require__(46)
   , has            = __webpack_require__(39)
-  , Iterators      = __webpack_require__(58)
+  , Iterators      = __webpack_require__(57)
   , $iterCreate    = __webpack_require__(262)
   , setToStringTag = __webpack_require__(91)
   , getPrototypeOf = __webpack_require__(149)
@@ -10728,7 +10728,7 @@ module.exports = function(Base, NAME, Constructor, next, DEFAULT, IS_SET, FORCED
 /***/ (function(module, exports, __webpack_require__) {
 
 var pIE            = __webpack_require__(68)
-  , createDesc     = __webpack_require__(59)
+  , createDesc     = __webpack_require__(58)
   , toIObject      = __webpack_require__(40)
   , toPrimitive    = __webpack_require__(95)
   , has            = __webpack_require__(39)
@@ -10762,7 +10762,7 @@ exports.f = Object.getOwnPropertyNames || function getOwnPropertyNames(O){
 
 // 19.1.2.9 / 15.2.3.2 Object.getPrototypeOf(O)
 var has         = __webpack_require__(39)
-  , toObject    = __webpack_require__(60)
+  , toObject    = __webpack_require__(59)
   , IE_PROTO    = __webpack_require__(92)('IE_PROTO')
   , ObjectProto = Object.prototype;
 
@@ -12969,7 +12969,7 @@ var _lodash = __webpack_require__(349);
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
-var _colorManipulator = __webpack_require__(49);
+var _colorManipulator = __webpack_require__(62);
 
 var _lightBaseTheme = __webpack_require__(375);
 
@@ -14458,7 +14458,7 @@ module.exports = ReactInputSelection;
 
 var _prodInvariant = __webpack_require__(4);
 
-var DOMLazyTree = __webpack_require__(50);
+var DOMLazyTree = __webpack_require__(49);
 var DOMProperty = __webpack_require__(34);
 var React = __webpack_require__(42);
 var ReactBrowserEventEmitter = __webpack_require__(76);
@@ -14470,11 +14470,11 @@ var ReactFeatureFlags = __webpack_require__(184);
 var ReactInstanceMap = __webpack_require__(63);
 var ReactInstrumentation = __webpack_require__(22);
 var ReactMarkupChecksum = __webpack_require__(427);
-var ReactReconciler = __webpack_require__(53);
+var ReactReconciler = __webpack_require__(52);
 var ReactUpdateQueue = __webpack_require__(116);
 var ReactUpdates = __webpack_require__(24);
 
-var emptyObject = __webpack_require__(61);
+var emptyObject = __webpack_require__(60);
 var instantiateReactComponent = __webpack_require__(194);
 var invariant = __webpack_require__(2);
 var setInnerHTML = __webpack_require__(80);
@@ -16517,7 +16517,7 @@ function isPromise(obj) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_invariant__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__RouteUtils__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__PatternUtils__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__PatternUtils__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__InternalPropTypes__ = __webpack_require__(64);
 
 
@@ -16688,7 +16688,7 @@ var canUseDOM = !!(typeof window !== 'undefined' && window.document && window.do
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__routerWarning__ = __webpack_require__(56);
+/* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__routerWarning__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__computeChangedRoutes__ = __webpack_require__(486);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__TransitionUtils__ = __webpack_require__(483);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__isActive__ = __webpack_require__(490);
@@ -18142,7 +18142,7 @@ var AgeCheckPage = function AgeCheckPage() {
   return _react2.default.createElement(
     'div',
     null,
-    _react2.default.createElement(_PageTitle2.default, { heading: 'ARE YOU UNDER 18?', backgroundColor: 'bg-light-blue' }),
+    _react2.default.createElement(_PageTitle2.default, { heading: 'ARE YOU UNDER 18?', backgroundColor: 'title-container-light-blue' }),
     _react2.default.createElement(_ProgressBar2.default, { percentage: '33' }),
     _react2.default.createElement(
       'div',
@@ -18221,22 +18221,16 @@ var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var style = {
-  margin: 12,
-  labelColor: '#632c7a',
-  backgroundColor: '#632c7a'
-};
-
 var Home = function Home() {
   return _react2.default.createElement(
     'div',
-    { className: 'home' },
+    null,
     _react2.default.createElement(
       'div',
-      { className: 'landing-header' },
+      { className: 'home-header' },
       _react2.default.createElement(
         'div',
-        { className: 'landing-header__info' },
+        { className: 'home-header-info' },
         _react2.default.createElement(
           'p',
           null,
@@ -18244,7 +18238,7 @@ var Home = function Home() {
         ),
         _react2.default.createElement(
           'p',
-          { className: 'landing-title__phone' },
+          { className: 'home-header-phone' },
           _react2.default.createElement(
             'a',
             { className: 'link', href: 'tel:+448001111' },
@@ -18258,13 +18252,9 @@ var Home = function Home() {
         )
       ),
       _react2.default.createElement(
-        'div',
-        null,
-        _react2.default.createElement(
-          'h1',
-          { className: 'page-title' },
-          'REPORT ONLINE CONTENT'
-        )
+        'h1',
+        { className: 'home-title' },
+        'REPORT ONLINE CONTENT'
       ),
       _react2.default.createElement(
         'h3',
@@ -18274,7 +18264,7 @@ var Home = function Home() {
     ),
     _react2.default.createElement(
       'div',
-      { className: 'landing-info' },
+      { className: 'home-info' },
       _react2.default.createElement(
         'h4',
         { className: 'section-title' },
@@ -18294,13 +18284,9 @@ var Home = function Home() {
     ),
     _react2.default.createElement(
       'div',
-      { className: 'landing-logo' },
-      _react2.default.createElement('img', { className: 'landing-logo__img', src: 'imgs/iwf-logo.png', alt: 'IWF logo' })
-    ),
-    _react2.default.createElement(
-      'div',
-      { className: 'landing-logo' },
-      _react2.default.createElement('img', { className: 'landing-logo__img', src: 'imgs/childline-logo.jpg', alt: 'childline logo' })
+      { className: 'home-logos' },
+      _react2.default.createElement('img', { src: 'imgs/iwf-logo.png', alt: 'IWF logo' }),
+      _react2.default.createElement('img', { src: 'imgs/childline-logo.jpg', alt: 'childline logo' })
     ),
     _react2.default.createElement(
       _reactRouter.Link,
@@ -18350,7 +18336,7 @@ var OverAge = function OverAge() {
   return _react2.default.createElement(
     'div',
     null,
-    _react2.default.createElement(_PageTitle2.default, { heading: 'ARE YOU UNDER 18?', subheading: 'You must be 17 or younger.', backgroundColor: 'bg-light-blue' }),
+    _react2.default.createElement(_PageTitle2.default, { heading: 'ARE YOU UNDER 18?', subheading: 'You must be 17 or younger.', backgroundColor: 'light-blue' }),
     _react2.default.createElement(
       'div',
       { className: 'what-now' },
@@ -18559,7 +18545,7 @@ var UrlForm = function (_React$Component) {
         this.props.forms.firstForm && _react2.default.createElement(
           'div',
           null,
-          _react2.default.createElement(_PageTitle2.default, { heading: 'DESCRIBE THE ONLINE CONTENT', backgroundColor: 'bg-plum' }),
+          _react2.default.createElement(_PageTitle2.default, { heading: 'DESCRIBE THE ONLINE CONTENT', backgroundColor: 'title-container-plum' }),
           _react2.default.createElement(_ProgressBar2.default, { percentage: '66' }),
           _react2.default.createElement(
             'div',
@@ -18620,7 +18606,7 @@ var UrlForm = function (_React$Component) {
                   leftCheckbox: _react2.default.createElement(_Checkbox2.default, null)
                 })
               ),
-              _react2.default.createElement(_RaisedButton2.default, { label: 'Confirm', onClick: function onClick() {
+              _react2.default.createElement(_RaisedButton2.default, { label: 'Confirm', primary: true, onClick: function onClick() {
                   return _this2.props.nextForm();
                 } })
             )
@@ -18712,7 +18698,7 @@ var UrlForm = function (_React$Component) {
                 }),
                 _react2.default.createElement('br', null)
               ),
-              _react2.default.createElement(_RaisedButton2.default, { label: 'Submit', onClick: function onClick() {
+              _react2.default.createElement(_RaisedButton2.default, { label: 'Submit', primary: true, onClick: function onClick() {
                   return _this2.props.openModal();
                 }, id: 'submit-url' })
             )
@@ -18730,7 +18716,7 @@ var UrlForm = function (_React$Component) {
             _react2.default.createElement(
               'div',
               { className: 'mod' },
-              _react2.default.createElement(_RaisedButton2.default, { className: 'close_btn', label: 'X', onClick: function onClick() {
+              _react2.default.createElement(_RaisedButton2.default, { className: 'close_btn', primary: true, label: 'X', onClick: function onClick() {
                   return _this2.props.closeModal();
                 } }),
               _react2.default.createElement(
@@ -18751,7 +18737,7 @@ var UrlForm = function (_React$Component) {
               _react2.default.createElement(
                 _reactRouter.Link,
                 { className: 'modal-link', to: '/' },
-                _react2.default.createElement(_RaisedButton2.default, { label: 'Home', onClick: function onClick() {
+                _react2.default.createElement(_RaisedButton2.default, { primary: true, label: 'Home', onClick: function onClick() {
                     return _this2.props.closeModal();
                   } })
               )
@@ -18877,10 +18863,6 @@ var _getMuiTheme = __webpack_require__(173);
 
 var _getMuiTheme2 = _interopRequireDefault(_getMuiTheme);
 
-var _colorManipulator = __webpack_require__(49);
-
-var _colorManipulator2 = _interopRequireDefault(_colorManipulator);
-
 var _spacing = __webpack_require__(174);
 
 var _spacing2 = _interopRequireDefault(_spacing);
@@ -18902,7 +18884,7 @@ var muiTheme = (0, _getMuiTheme2.default)({
     accent1Color: '#632c7a',
     accent2Color: '#632c7a',
     accent3Color: '#632c7a',
-    textColor: '#fff',
+    textColor: '#0c3d52', /*general text color e.g.: in list items*/
     alternateTextColor: '#fff', /*button text color*/
     canvasColor: '#632c7a',
     borderColor: '#632c7a',
@@ -19306,7 +19288,7 @@ var YotiShareButton = function (_React$Component) {
       //   Share your age using Yoti
       // </a>
       if (!this.props.yoti.haveQr) {
-        return _react2.default.createElement(_RaisedButton2.default, { onClick: clickHandler, target: this.props.yoti.target, label: 'Share your age using Yoti', labelColor: '#632c7a' });
+        return _react2.default.createElement(_RaisedButton2.default, { primary: true, onClick: clickHandler, target: this.props.yoti.target, label: 'Share your age using Yoti', labelColor: '#632c7a' });
       }
       return _react2.default.createElement(
         'p',
@@ -20178,7 +20160,7 @@ module.exports = function(it){
 "use strict";
 
 var $defineProperty = __webpack_require__(32)
-  , createDesc      = __webpack_require__(59);
+  , createDesc      = __webpack_require__(58);
 
 module.exports = function(object, index, value){
   if(index in object)$defineProperty.f(object, index, createDesc(0, value));
@@ -20216,7 +20198,7 @@ module.exports = __webpack_require__(31).document && document.documentElement;
 /***/ (function(module, exports, __webpack_require__) {
 
 // check on default Array iterator
-var Iterators  = __webpack_require__(58)
+var Iterators  = __webpack_require__(57)
   , ITERATOR   = __webpack_require__(23)('iterator')
   , ArrayProto = Array.prototype;
 
@@ -20258,7 +20240,7 @@ module.exports = function(iterator, fn, value, entries){
 "use strict";
 
 var create         = __webpack_require__(89)
-  , descriptor     = __webpack_require__(59)
+  , descriptor     = __webpack_require__(58)
   , setToStringTag = __webpack_require__(91)
   , IteratorPrototype = {};
 
@@ -20324,7 +20306,7 @@ module.exports = function(object, el){
 /***/ (function(module, exports, __webpack_require__) {
 
 var META     = __webpack_require__(69)('meta')
-  , isObject = __webpack_require__(57)
+  , isObject = __webpack_require__(56)
   , has      = __webpack_require__(39)
   , setDesc  = __webpack_require__(32).f
   , id       = 0;
@@ -20387,7 +20369,7 @@ var meta = module.exports = {
 var getKeys  = __webpack_require__(47)
   , gOPS     = __webpack_require__(90)
   , pIE      = __webpack_require__(68)
-  , toObject = __webpack_require__(60)
+  , toObject = __webpack_require__(59)
   , IObject  = __webpack_require__(145)
   , $assign  = Object.assign;
 
@@ -20465,7 +20447,7 @@ module.exports.f = function getOwnPropertyNames(it){
 
 // Works with __proto__ only. Old v8 can't work with null proto objects.
 /* eslint-disable no-proto */
-var isObject = __webpack_require__(57)
+var isObject = __webpack_require__(56)
   , anObject = __webpack_require__(44);
 var check = function(O, proto){
   anObject(O);
@@ -20529,7 +20511,7 @@ module.exports = function(index, length){
 
 var classof   = __webpack_require__(255)
   , ITERATOR  = __webpack_require__(23)('iterator')
-  , Iterators = __webpack_require__(58);
+  , Iterators = __webpack_require__(57);
 module.exports = __webpack_require__(21).getIteratorMethod = function(it){
   if(it != undefined)return it[ITERATOR]
     || it['@@iterator']
@@ -20544,7 +20526,7 @@ module.exports = __webpack_require__(21).getIteratorMethod = function(it){
 
 var ctx            = __webpack_require__(85)
   , $export        = __webpack_require__(30)
-  , toObject       = __webpack_require__(60)
+  , toObject       = __webpack_require__(59)
   , call           = __webpack_require__(261)
   , isArrayIter    = __webpack_require__(259)
   , toLength       = __webpack_require__(153)
@@ -20588,7 +20570,7 @@ $export($export.S + $export.F * !__webpack_require__(263)(function(iter){ Array.
 
 var addToUnscopables = __webpack_require__(253)
   , step             = __webpack_require__(264)
-  , Iterators        = __webpack_require__(58)
+  , Iterators        = __webpack_require__(57)
   , toIObject        = __webpack_require__(40);
 
 // 22.1.3.4 Array.prototype.entries()
@@ -20650,7 +20632,7 @@ $export($export.S + $export.F * !__webpack_require__(38), 'Object', {definePrope
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.9 Object.getPrototypeOf(O)
-var toObject        = __webpack_require__(60)
+var toObject        = __webpack_require__(59)
   , $getPrototypeOf = __webpack_require__(149);
 
 __webpack_require__(151)('getPrototypeOf', function(){
@@ -20664,7 +20646,7 @@ __webpack_require__(151)('getPrototypeOf', function(){
 /***/ (function(module, exports, __webpack_require__) {
 
 // 19.1.2.14 Object.keys(O)
-var toObject = __webpack_require__(60)
+var toObject = __webpack_require__(59)
   , $keys    = __webpack_require__(47);
 
 __webpack_require__(151)('keys', function(){
@@ -20713,7 +20695,7 @@ var global         = __webpack_require__(31)
   , anObject       = __webpack_require__(44)
   , toIObject      = __webpack_require__(40)
   , toPrimitive    = __webpack_require__(95)
-  , createDesc     = __webpack_require__(59)
+  , createDesc     = __webpack_require__(58)
   , _create        = __webpack_require__(89)
   , gOPNExt        = __webpack_require__(269)
   , $GOPD          = __webpack_require__(147)
@@ -20947,7 +20929,7 @@ __webpack_require__(96)('observable');
 __webpack_require__(275);
 var global        = __webpack_require__(31)
   , hide          = __webpack_require__(46)
-  , Iterators     = __webpack_require__(58)
+  , Iterators     = __webpack_require__(57)
   , TO_STRING_TAG = __webpack_require__(23)('toStringTag');
 
 for(var collections = ['NodeList', 'DOMTokenList', 'MediaList', 'StyleSheetList', 'CSSRuleList'], i = 0; i < 5; i++){
@@ -20967,7 +20949,7 @@ exports = module.exports = __webpack_require__(288)();
 
 
 // module
-exports.push([module.i, "@font-face {\n  font-family: childline;\n  src: url(" + __webpack_require__(307) + "); }\n\n@font-face {\n  font-family: childline-bold;\n  src: url(" + __webpack_require__(306) + "); }\n\n@font-face {\n  font-family: Rosie;\n  src: url(" + __webpack_require__(308) + "); }\n\n.landing-header {\n  background-color: #00a1d0;\n  padding: 4rem 1rem 1rem 1rem; }\n  .landing-header h3 {\n    font-size: 1.2rem;\n    font-weight: normal;\n    color: white;\n    text-align: center; }\n\n.landing-header__info {\n  position: absolute;\n  width: 100%;\n  top: 0;\n  display: flex;\n  justify-content: space-between; }\n  .landing-header__info p {\n    color: white; }\n  .landing-header__info a {\n    color: white; }\n\n.landing-info {\n  margin: 1rem;\n  background-color: #234f62;\n  color: white;\n  padding: 1rem; }\n  .landing-info a {\n    text-decoration: none;\n    color: #039be5;\n    text-decoration: none;\n    -webkit-tap-highlight-color: transparent; }\n    .landing-info a:hover {\n      color: orange; }\n\n.landing-logo {\n  float: left;\n  min-width: 50%;\n  box-sizing: border-box;\n  text-align: center;\n  margin-bottom: 1rem; }\n  .landing-logo img {\n    height: 6rem;\n    width: auto;\n    margin-bottom: 1rem; }\n\n.bg-light-blue {\n  background-color: #00a1d0; }\n\n.bg-dark-cobalt {\n  background-color: #0c3d52; }\n\n.bg-plum {\n  background-color: #632c7a; }\n\n.page-title {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 2.5rem;\n  color: white; }\n\n.section-title, .scan-me {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 1.5rem;\n  color: white; }\n\nbutton {\n  background-color: #632c7a; }\n\n.text {\n  font-size: 1.2rem;\n  margin: 0; }\n\na {\n  text-decoration: none; }\n\n.age-info-text, .age-info-blue p, .age-info-orange a {\n  margin: 0;\n  font-size: 1.2rem;\n  padding: 1rem; }\n\n.btn {\n  width: 20rem;\n  margin: 0 auto;\n  background-color: #632c7a;\n  text-transform: none;\n  margin-bottom: 2rem; }\n\ndiv {\n  display: block; }\n\n.age-title {\n  margin: 0;\n  background-color: #00a1d0;\n  padding: 2.5rem 1rem 2.5rem 1rem;\n  text-align: center;\n  height: 28vh; }\n\n.age-info-blue {\n  background-color: #73cfe8;\n  display: flex;\n  flex-direction: row;\n  color: white;\n  margin: 1rem; }\n  .age-info-blue p {\n    color: #0c3d52; }\n\n.age-info-orange {\n  background-color: #F28C00;\n  display: flex;\n  flex-direction: row;\n  color: white;\n  margin: 1rem; }\n  .age-info-orange i {\n    padding: 0.6rem; }\n  .age-info-orange a {\n    color: #234f62; }\n\n.scan-me {\n  text-align: center;\n  padding: 0; }\n  .scan-me img {\n    width: 4rem;\n    margin-left: 1rem; }\n\n.yoti-info {\n  margin: 1rem;\n  background-color: #234f62;\n  box-sizing: border-box;\n  padding: 1rem;\n  color: white; }\n  .yoti-info h3 {\n    margin: 0;\n    width: 90%;\n    float: left; }\n\n.yoti-intro img {\n  width: 15%;\n  height: 2rem; }\n\n.bg-light-blue {\n  background-color: #00a1d0; }\n\n.bg-dark-cobalt {\n  background-color: #0c3d52; }\n\n.bg-plum {\n  background-color: #632c7a; }\n\n.page-title {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 2.5rem;\n  color: white; }\n\n.section-title, .scan-me {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 1.5rem;\n  color: white; }\n\nbutton {\n  background-color: #632c7a; }\n\n.text {\n  font-size: 1.2rem;\n  margin: 0; }\n\na {\n  text-decoration: none; }\n\n.age-info-text, .age-info-blue p, .age-info-orange a {\n  margin: 0;\n  font-size: 1.2rem;\n  padding: 1rem; }\n\n.btn {\n  width: 20rem;\n  margin: 0 auto;\n  background-color: #632c7a;\n  text-transform: none;\n  margin-bottom: 2rem; }\n\ndiv {\n  display: block; }\n\n.content-title {\n  background-color: #632c7a;\n  padding: 4rem 1rem 2.5rem 1rem;\n  padding: 4rem 1rem 2.5rem 1rem; }\n\n.form-container {\n  max-width: 94%;\n  margin: 1rem auto;\n  padding: 1rem;\n  background-color: #3EBB98; }\n\n.other-options {\n  background-color: #F28C00;\n  color: #0c3d52;\n  padding: 1rem; }\n\n.bg-light-blue {\n  background-color: #00a1d0; }\n\n.bg-dark-cobalt {\n  background-color: #0c3d52; }\n\n.bg-plum {\n  background-color: #632c7a; }\n\n.page-title {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 2.5rem;\n  color: white; }\n\n.section-title, .scan-me {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 1.5rem;\n  color: white; }\n\nbutton {\n  background-color: #632c7a; }\n\n.text {\n  font-size: 1.2rem;\n  margin: 0; }\n\na {\n  text-decoration: none; }\n\n.age-info-text, .age-info-blue p, .age-info-orange a {\n  margin: 0;\n  font-size: 1.2rem;\n  padding: 1rem; }\n\n.btn {\n  width: 20rem;\n  margin: 0 auto;\n  background-color: #632c7a;\n  text-transform: none;\n  margin-bottom: 2rem; }\n\ndiv {\n  display: block; }\n\n.message {\n  margin: 1rem;\n  padding: 0.75rem;\n  color: #234f62;\n  background-color: #F28C00; }\n\n.title-div {\n  padding: 2.5rem 1rem 2.5rem 1rem;\n  margin-bottom: 1rem;\n  height: 35vh;\n  background-color: #234f62; }\n\n.form-container {\n  max-width: 94%;\n  margin: 1rem auto;\n  padding: 1rem;\n  background-color: #CCECF5; }\n\n.bg-light-blue {\n  background-color: #00a1d0; }\n\n.bg-dark-cobalt {\n  background-color: #0c3d52; }\n\n.bg-plum {\n  background-color: #632c7a; }\n\n.page-title {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 2.5rem;\n  color: white; }\n\n.section-title, .scan-me {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 1.5rem;\n  color: white; }\n\nbutton {\n  background-color: #632c7a; }\n\n.text {\n  font-size: 1.2rem;\n  margin: 0; }\n\na {\n  text-decoration: none; }\n\n.age-info-text, .age-info-blue p, .age-info-orange a {\n  margin: 0;\n  font-size: 1.2rem;\n  padding: 1rem; }\n\n.btn {\n  width: 20rem;\n  margin: 0 auto;\n  background-color: #632c7a;\n  text-transform: none;\n  margin-bottom: 2rem; }\n\ndiv {\n  display: block; }\n\n.content-title-overage {\n  background-color: #3EBB98;\n  padding: 4rem 1rem 2.5rem 1rem; }\n\n.what-now {\n  background-color: #D8F1EA;\n  margin: 1rem;\n  padding: 1rem; }\n  .what-now h3 {\n    font-family: 'childline-bold';\n    font-size: 1.6rem;\n    margin: 0;\n    width: 90%;\n    float: left;\n    color: #632c7a; }\n  .what-now .identity {\n    width: 10%;\n    text-align: right;\n    color: #632c7a;\n    padding-left: 0.2rem;\n    padding-top: 0.2rem; }\n  .what-now p {\n    padding-top: 0.5rem;\n    margin: 0;\n    margin-bottom: 1rem;\n    font-size: 1.2rem;\n    color: #632c7a; }\n\n.other-ops {\n  position: relative;\n  margin: 0 auto;\n  background-color: white;\n  padding: 0;\n  display: flex;\n  justify-content: center;\n  flex-direction: column; }\n\n.contact {\n  float: left;\n  text-align: left !important;\n  display: block;\n  color: #632c7a;\n  padding: 0.5rem;\n  margin-left: 1rem;\n  transition: all 0.5s ease;\n  font-family: 'childline-bold'; }\n\n.option {\n  border: 0.2rem solid #3EBB98;\n  width: 94%;\n  padding: 0.45rem;\n  margin: 0.5rem auto;\n  display: flex;\n  flex-direction: row; }\n  .option i {\n    width: 10%;\n    text-align: right;\n    color: #632c7a;\n    padding-left: 0.2rem;\n    padding-top: 0.2rem; }\n  .option a {\n    float: left;\n    text-align: left !important;\n    display: block;\n    color: #632c7a;\n    padding: 0.5rem;\n    margin-left: 1rem;\n    transition: all 0.5s ease;\n    font-family: 'childline-bold'; }\n\n.bg-light-blue {\n  background-color: #00a1d0; }\n\n.bg-dark-cobalt {\n  background-color: #0c3d52; }\n\n.bg-plum {\n  background-color: #632c7a; }\n\n.page-title {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 2.5rem;\n  color: white; }\n\n.section-title, .scan-me {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 1.5rem;\n  color: white; }\n\nbutton {\n  background-color: #632c7a; }\n\n.text {\n  font-size: 1.2rem;\n  margin: 0; }\n\na {\n  text-decoration: none; }\n\n.age-info-text, .age-info-blue p, .age-info-orange a {\n  margin: 0;\n  font-size: 1.2rem;\n  padding: 1rem; }\n\n.btn {\n  width: 20rem;\n  margin: 0 auto;\n  background-color: #632c7a;\n  text-transform: none;\n  margin-bottom: 2rem; }\n\ndiv {\n  display: block; }\n\nbody {\n  font-size: 1.2rem;\n  /*max-width: 440px;*/\n  margin: 0 auto;\n  font-family: 'childline'; }\n\n.mod {\n  color: #0c3d52;\n  font-family: 'childline-regular'; }\n  .mod h1 {\n    font-size: 2rem;\n    font-family: 'childline-bold';\n    margin-top: 2rem; }\n  .mod p {\n    font-family: 'childline'; }\n\n.close_btn {\n  position: absolute;\n  z-index: 1;\n  top: 0;\n  right: 0;\n  background: #234f62;\n  color: white;\n  font-size: 1.2rem; }\n\n.title-heading {\n  font-family: 'Rosie', 'childline-bold';\n  font-size: 3rem;\n  margin: 0;\n  color: #fff;\n  text-align: center;\n  padding-bottom: 1rem; }\n\n.title-container {\n  padding: 4rem 1rem 2.5rem 1rem;\n  height: 25vh; }\n\n.progress {\n  position: relative;\n  height: 4px;\n  display: block;\n  width: 100%;\n  background-color: #acece6;\n  border-radius: 2px;\n  margin: .5rem 0 1rem 0;\n  overflow: hidden; }\n\n.determinate33 {\n  width: 33%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  background-color: #26a69a;\n  transition: width .3s linear; }\n\n.determinate66 {\n  width: 66%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  background-color: #26a69a;\n  transition: width .3s linear; }\n\n.determinate100 {\n  width: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  background-color: #26a69a;\n  transition: width .3s linear; }\n", ""]);
+exports.push([module.i, "@font-face {\n  font-family: childline;\n  src: url(" + __webpack_require__(307) + "); }\n\n@font-face {\n  font-family: childline-bold;\n  src: url(" + __webpack_require__(306) + "); }\n\n@font-face {\n  font-family: Rosie;\n  src: url(" + __webpack_require__(308) + "); }\n\n.page-title, .home-title {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 2.5rem;\n  color: white;\n  text-align: center; }\n\n.section-title, .scan-me {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 1.4rem;\n  color: white; }\n\n.age-info-text {\n  margin: 0;\n  font-size: 1.2rem;\n  padding: 1rem; }\n\n.action-button {\n  display: flex;\n  justify-content: center; }\n\n.home-header {\n  background-color: #00a1d0;\n  padding: 4rem 1rem 2.5rem 1rem;\n  text-align: center;\n  min-height: 28vh;\n  margin: 0;\n  padding-bottom: 2rem;\n  padding-top: 0rem; }\n  .home-header h3 {\n    font-size: 1.2rem;\n    font-weight: normal;\n    color: white;\n    margin-bottom: 1rem; }\n\n.home-header-info {\n  width: 100%;\n  margin: 0 auto;\n  font-size: 1rem;\n  display: flex;\n  justify-content: space-between; }\n  .home-header-info p {\n    color: white; }\n  .home-header-info a {\n    color: white; }\n\n.home-header-phone a {\n  margin-right: 0.5rem; }\n\n.home-title {\n  margin-bottom: 1rem; }\n\n.home-info {\n  margin: 1rem;\n  background-color: #234f62;\n  color: white;\n  padding: 1rem; }\n  .home-info a {\n    color: #039be5;\n    -webkit-tap-highlight-color: transparent; }\n    .home-info a:hover {\n      color: orange; }\n\n.home-logos {\n  display: flex;\n  flex-direction: row;\n  flex-wrap: wrap;\n  justify-content: space-around;\n  margin-bottom: 1.5rem; }\n  .home-logos img {\n    height: 6rem;\n    min-width: 6rem; }\n\n.page-title, .home-title {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 2.5rem;\n  color: white;\n  text-align: center; }\n\n.section-title, .scan-me {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 1.4rem;\n  color: white; }\n\n.age-info-text {\n  margin: 0;\n  font-size: 1.2rem;\n  padding: 1rem; }\n\n.action-button {\n  display: flex;\n  justify-content: center; }\n\n.age-title {\n  margin: 0;\n  background-color: #00a1d0;\n  padding: 4rem 1rem 2.5rem 1rem;\n  text-align: center;\n  min-height: 28vh;\n  margin: 0; }\n\n.age-info-blue {\n  margin: 1rem;\n  background-color: #73cfe8;\n  color: #0c3d52;\n  padding: 1rem; }\n\n.age-info-orange {\n  margin: 1rem;\n  background-color: #F28C00;\n  color: #234f62;\n  padding: 1rem; }\n  .age-info-orange i {\n    padding: 0.6rem;\n    color: #ffffff; }\n\n.scan-me {\n  text-align: center;\n  padding: 0; }\n  .scan-me img {\n    width: 4rem;\n    margin-left: 1rem; }\n\n.yoti-info {\n  margin: 1rem;\n  background-color: #234f62;\n  box-sizing: border-box;\n  padding: 1rem;\n  color: white; }\n  .yoti-info h3 {\n    margin: 0;\n    width: 90%;\n    float: left; }\n\n.yoti-intro img {\n  width: 15%;\n  height: 2rem; }\n\n.page-title, .home-title {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 2.5rem;\n  color: white;\n  text-align: center; }\n\n.section-title, .scan-me {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 1.4rem;\n  color: white; }\n\n.age-info-text {\n  margin: 0;\n  font-size: 1.2rem;\n  padding: 1rem; }\n\n.action-button {\n  display: flex;\n  justify-content: center; }\n\n.form-container {\n  max-width: 94%;\n  margin: 1rem auto;\n  padding: 1rem;\n  background-color: #3EBB98; }\n\n.other-options {\n  background-color: #F28C00;\n  color: #0c3d52;\n  padding: 1rem; }\n\n.page-title, .home-title {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 2.5rem;\n  color: white;\n  text-align: center; }\n\n.section-title, .scan-me {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 1.4rem;\n  color: white; }\n\n.age-info-text {\n  margin: 0;\n  font-size: 1.2rem;\n  padding: 1rem; }\n\n.action-button {\n  display: flex;\n  justify-content: center; }\n\n.message {\n  margin: 1rem;\n  padding: 0.75rem;\n  color: #234f62;\n  background-color: #F28C00; }\n\n.title-div {\n  padding: 2.5rem 1rem 2.5rem 1rem;\n  margin-bottom: 1rem;\n  height: 35vh;\n  background-color: #234f62; }\n\n.form-container {\n  max-width: 94%;\n  margin: 1rem auto;\n  padding: 1rem;\n  background-color: #CCECF5; }\n\n.page-title, .home-title {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 2.5rem;\n  color: white;\n  text-align: center; }\n\n.section-title, .scan-me {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 1.4rem;\n  color: white; }\n\n.age-info-text {\n  margin: 0;\n  font-size: 1.2rem;\n  padding: 1rem; }\n\n.action-button {\n  display: flex;\n  justify-content: center; }\n\n.content-title-overage {\n  background-color: #3EBB98;\n  padding: 4rem 1rem 2.5rem 1rem;\n  text-align: center;\n  min-height: 28vh;\n  margin: 0; }\n\n.what-now {\n  background-color: #D8F1EA;\n  margin: 1rem;\n  padding: 1rem; }\n  .what-now h3 {\n    font-family: 'childline-bold';\n    font-size: 1.6rem;\n    margin: 0;\n    width: 90%;\n    float: left;\n    color: #632c7a; }\n  .what-now .identity {\n    width: 10%;\n    text-align: right;\n    color: #632c7a;\n    padding-left: 0.2rem;\n    padding-top: 0.2rem; }\n  .what-now p {\n    padding-top: 0.5rem;\n    margin: 0;\n    margin-bottom: 1rem;\n    font-size: 1.2rem;\n    color: #632c7a; }\n\n.other-ops {\n  position: relative;\n  margin: 0 auto;\n  background-color: white;\n  padding: 0;\n  display: flex;\n  justify-content: center;\n  flex-direction: column; }\n\n.contact {\n  float: left;\n  text-align: left !important;\n  display: block;\n  color: #632c7a;\n  padding: 0.5rem;\n  margin-left: 1rem;\n  transition: all 0.5s ease;\n  font-family: 'childline-bold'; }\n\n.option {\n  border: 0.2rem solid #3EBB98;\n  width: 94%;\n  padding: 0.45rem;\n  margin: 0.5rem auto;\n  display: flex;\n  flex-direction: row; }\n  .option i {\n    width: 10%;\n    text-align: right;\n    color: #632c7a;\n    padding-left: 0.2rem;\n    padding-top: 0.2rem; }\n  .option a {\n    float: left;\n    text-align: left !important;\n    display: block;\n    color: #632c7a;\n    padding: 0.5rem;\n    margin-left: 1rem;\n    transition: all 0.5s ease;\n    font-family: 'childline-bold'; }\n\n.page-title, .home-title {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 2.5rem;\n  color: white;\n  text-align: center; }\n\n.section-title, .scan-me {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 1.4rem;\n  color: white; }\n\n.age-info-text {\n  margin: 0;\n  font-size: 1.2rem;\n  padding: 1rem; }\n\n.action-button {\n  display: flex;\n  justify-content: center; }\n\nbody {\n  margin: 0 auto;\n  font-family: 'childline'; }\n\na {\n  text-decoration: none; }\n\np {\n  line-height: 1.5; }\n\ndiv {\n  display: block; }\n\n.title-container-light-blue {\n  background-color: #00a1d0;\n  padding: 4rem 1rem 2.5rem 1rem;\n  text-align: center;\n  min-height: 28vh;\n  margin: 0; }\n\n.title-container-dark-cobalt {\n  background-color: #0c3d52;\n  padding: 4rem 1rem 2.5rem 1rem;\n  text-align: center;\n  min-height: 28vh;\n  margin: 0; }\n\n.title-container-plum {\n  background-color: #632c7a;\n  padding: 4rem 1rem 2.5rem 1rem;\n  text-align: center;\n  min-height: 28vh;\n  margin: 0; }\n\n.link:hover {\n  text-decoration: underline; }\n\n.mod {\n  color: #0c3d52;\n  font-family: 'childline-regular'; }\n  .mod h1 {\n    font-size: 2rem;\n    font-family: 'childline-bold';\n    margin-top: 2rem; }\n  .mod p {\n    font-family: 'childline'; }\n\n.close_btn {\n  position: absolute;\n  z-index: 1;\n  top: 0;\n  right: 0;\n  background: #234f62;\n  color: white;\n  font-size: 1.2rem; }\n\n.page-title-heading {\n  font-family: 'Rosie', 'childline-bold';\n  font-size: 3rem;\n  margin: 0;\n  color: #fff;\n  text-align: center;\n  padding-bottom: 1rem; }\n\n.progress-bar {\n  position: relative;\n  height: 4px;\n  display: block;\n  width: 100%;\n  background-color: #acece6;\n  border-radius: 2px;\n  margin: .5rem 0 1rem 0;\n  overflow: hidden; }\n\n.determinate33 {\n  width: 33%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  background-color: #26a69a;\n  transition: width .3s linear; }\n\n.determinate66 {\n  width: 66%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  background-color: #26a69a;\n  transition: width .3s linear; }\n\n.determinate100 {\n  width: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  background-color: #26a69a;\n  transition: width .3s linear; }\n", ""]);
 
 // exports
 
@@ -27331,7 +27313,7 @@ var _shallowEqual = __webpack_require__(65);
 
 var _shallowEqual2 = _interopRequireDefault(_shallowEqual);
 
-var _colorManipulator = __webpack_require__(49);
+var _colorManipulator = __webpack_require__(62);
 
 var _transitions = __webpack_require__(16);
 
@@ -28129,7 +28111,7 @@ var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _colorManipulator = __webpack_require__(49);
+var _colorManipulator = __webpack_require__(62);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -28458,7 +28440,7 @@ var _transitions = __webpack_require__(16);
 
 var _transitions2 = _interopRequireDefault(_transitions);
 
-var _colorManipulator = __webpack_require__(49);
+var _colorManipulator = __webpack_require__(62);
 
 var _childUtils = __webpack_require__(109);
 
@@ -31514,7 +31496,7 @@ Object.defineProperty(exports, "__esModule", {
 
 var _colors = __webpack_require__(107);
 
-var _colorManipulator = __webpack_require__(49);
+var _colorManipulator = __webpack_require__(62);
 
 var _spacing = __webpack_require__(174);
 
@@ -32383,7 +32365,7 @@ module.exports = AutoFocusUtils;
 
 
 
-var EventPropagators = __webpack_require__(52);
+var EventPropagators = __webpack_require__(51);
 var ExecutionEnvironment = __webpack_require__(15);
 var FallbackCompositionState = __webpack_require__(398);
 var SyntheticCompositionEvent = __webpack_require__(441);
@@ -32988,8 +32970,8 @@ module.exports = CSSPropertyOperations;
 
 
 
-var EventPluginHub = __webpack_require__(51);
-var EventPropagators = __webpack_require__(52);
+var EventPluginHub = __webpack_require__(50);
+var EventPropagators = __webpack_require__(51);
 var ExecutionEnvironment = __webpack_require__(15);
 var ReactDOMComponentTree = __webpack_require__(12);
 var ReactUpdates = __webpack_require__(24);
@@ -33316,7 +33298,7 @@ module.exports = ChangeEventPlugin;
 
 var _prodInvariant = __webpack_require__(4);
 
-var DOMLazyTree = __webpack_require__(50);
+var DOMLazyTree = __webpack_require__(49);
 var ExecutionEnvironment = __webpack_require__(15);
 
 var createNodesFromMarkup = __webpack_require__(295);
@@ -33399,7 +33381,7 @@ module.exports = DefaultEventPluginOrder;
 
 
 
-var EventPropagators = __webpack_require__(52);
+var EventPropagators = __webpack_require__(51);
 var ReactDOMComponentTree = __webpack_require__(12);
 var SyntheticMouseEvent = __webpack_require__(77);
 
@@ -33918,7 +33900,7 @@ module.exports = HTMLDOMPropertyConfig;
 
 
 
-var ReactReconciler = __webpack_require__(53);
+var ReactReconciler = __webpack_require__(52);
 
 var instantiateReactComponent = __webpack_require__(194);
 var KeyEscapeUtils = __webpack_require__(112);
@@ -34123,15 +34105,15 @@ var ReactErrorUtils = __webpack_require__(115);
 var ReactInstanceMap = __webpack_require__(63);
 var ReactInstrumentation = __webpack_require__(22);
 var ReactNodeTypes = __webpack_require__(188);
-var ReactReconciler = __webpack_require__(53);
+var ReactReconciler = __webpack_require__(52);
 
 if (process.env.NODE_ENV !== 'production') {
   var checkReactTypeSpec = __webpack_require__(450);
 }
 
-var emptyObject = __webpack_require__(61);
+var emptyObject = __webpack_require__(60);
 var invariant = __webpack_require__(2);
-var shallowEqual = __webpack_require__(62);
+var shallowEqual = __webpack_require__(61);
 var shouldUpdateReactComponent = __webpack_require__(123);
 var warning = __webpack_require__(3);
 
@@ -35026,7 +35008,7 @@ module.exports = ReactCompositeComponent;
 var ReactDOMComponentTree = __webpack_require__(12);
 var ReactDefaultInjection = __webpack_require__(420);
 var ReactMount = __webpack_require__(187);
-var ReactReconciler = __webpack_require__(53);
+var ReactReconciler = __webpack_require__(52);
 var ReactUpdates = __webpack_require__(24);
 var ReactVersion = __webpack_require__(435);
 
@@ -35145,11 +35127,11 @@ var _prodInvariant = __webpack_require__(4),
 
 var AutoFocusUtils = __webpack_require__(390);
 var CSSPropertyOperations = __webpack_require__(392);
-var DOMLazyTree = __webpack_require__(50);
+var DOMLazyTree = __webpack_require__(49);
 var DOMNamespaces = __webpack_require__(111);
 var DOMProperty = __webpack_require__(34);
 var DOMPropertyOperations = __webpack_require__(180);
-var EventPluginHub = __webpack_require__(51);
+var EventPluginHub = __webpack_require__(50);
 var EventPluginRegistry = __webpack_require__(74);
 var ReactBrowserEventEmitter = __webpack_require__(76);
 var ReactDOMComponentFlags = __webpack_require__(181);
@@ -35166,7 +35148,7 @@ var emptyFunction = __webpack_require__(20);
 var escapeTextContentForBrowser = __webpack_require__(79);
 var invariant = __webpack_require__(2);
 var isEventSupported = __webpack_require__(122);
-var shallowEqual = __webpack_require__(62);
+var shallowEqual = __webpack_require__(61);
 var validateDOMNesting = __webpack_require__(124);
 var warning = __webpack_require__(3);
 
@@ -36186,7 +36168,7 @@ module.exports = ReactDOMContainerInfo;
 
 var _assign = __webpack_require__(5);
 
-var DOMLazyTree = __webpack_require__(50);
+var DOMLazyTree = __webpack_require__(49);
 var ReactDOMComponentTree = __webpack_require__(12);
 
 var ReactDOMEmptyComponent = function (instantiate) {
@@ -37094,7 +37076,7 @@ var _prodInvariant = __webpack_require__(4),
     _assign = __webpack_require__(5);
 
 var DOMChildrenOperations = __webpack_require__(110);
-var DOMLazyTree = __webpack_require__(50);
+var DOMLazyTree = __webpack_require__(49);
 var ReactDOMComponentTree = __webpack_require__(12);
 
 var escapeTextContentForBrowser = __webpack_require__(79);
@@ -38242,7 +38224,7 @@ module.exports = REACT_ELEMENT_TYPE;
 
 
 
-var EventPluginHub = __webpack_require__(51);
+var EventPluginHub = __webpack_require__(50);
 
 function runEventQueueInBatch(events) {
   EventPluginHub.enqueueEvents(events);
@@ -38480,7 +38462,7 @@ module.exports = ReactHostOperationHistoryHook;
 
 
 var DOMProperty = __webpack_require__(34);
-var EventPluginHub = __webpack_require__(51);
+var EventPluginHub = __webpack_require__(50);
 var EventPluginUtils = __webpack_require__(75);
 var ReactComponentEnvironment = __webpack_require__(114);
 var ReactEmptyComponent = __webpack_require__(183);
@@ -38623,7 +38605,7 @@ var ReactInstanceMap = __webpack_require__(63);
 var ReactInstrumentation = __webpack_require__(22);
 
 var ReactCurrentOwner = __webpack_require__(25);
-var ReactReconciler = __webpack_require__(53);
+var ReactReconciler = __webpack_require__(52);
 var ReactChildReconciler = __webpack_require__(400);
 
 var emptyFunction = __webpack_require__(20);
@@ -40048,7 +40030,7 @@ module.exports = SVGDOMPropertyConfig;
 
 
 
-var EventPropagators = __webpack_require__(52);
+var EventPropagators = __webpack_require__(51);
 var ExecutionEnvironment = __webpack_require__(15);
 var ReactDOMComponentTree = __webpack_require__(12);
 var ReactInputSelection = __webpack_require__(186);
@@ -40056,7 +40038,7 @@ var SyntheticEvent = __webpack_require__(29);
 
 var getActiveElement = __webpack_require__(157);
 var isTextInputElement = __webpack_require__(195);
-var shallowEqual = __webpack_require__(62);
+var shallowEqual = __webpack_require__(61);
 
 var skipSelectionChangeEvent = ExecutionEnvironment.canUseDOM && 'documentMode' in document && document.documentMode <= 11;
 
@@ -40248,7 +40230,7 @@ module.exports = SelectEventPlugin;
 var _prodInvariant = __webpack_require__(4);
 
 var EventListener = __webpack_require__(155);
-var EventPropagators = __webpack_require__(52);
+var EventPropagators = __webpack_require__(51);
 var ReactDOMComponentTree = __webpack_require__(12);
 var SyntheticAnimationEvent = __webpack_require__(439);
 var SyntheticClipboardEvent = __webpack_require__(440);
@@ -40259,7 +40241,7 @@ var SyntheticMouseEvent = __webpack_require__(77);
 var SyntheticDragEvent = __webpack_require__(442);
 var SyntheticTouchEvent = __webpack_require__(446);
 var SyntheticTransitionEvent = __webpack_require__(447);
-var SyntheticUIEvent = __webpack_require__(54);
+var SyntheticUIEvent = __webpack_require__(53);
 var SyntheticWheelEvent = __webpack_require__(448);
 
 var emptyFunction = __webpack_require__(20);
@@ -40647,7 +40629,7 @@ module.exports = SyntheticDragEvent;
 
 
 
-var SyntheticUIEvent = __webpack_require__(54);
+var SyntheticUIEvent = __webpack_require__(53);
 
 /**
  * @interface FocusEvent
@@ -40730,7 +40712,7 @@ module.exports = SyntheticInputEvent;
 
 
 
-var SyntheticUIEvent = __webpack_require__(54);
+var SyntheticUIEvent = __webpack_require__(53);
 
 var getEventCharCode = __webpack_require__(119);
 var getEventKey = __webpack_require__(454);
@@ -40819,7 +40801,7 @@ module.exports = SyntheticKeyboardEvent;
 
 
 
-var SyntheticUIEvent = __webpack_require__(54);
+var SyntheticUIEvent = __webpack_require__(53);
 
 var getEventModifierState = __webpack_require__(120);
 
@@ -42960,7 +42942,7 @@ var IndexLink = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createClass({
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__routerWarning__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__routerWarning__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_invariant__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_invariant__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__Redirect__ = __webpack_require__(206);
@@ -43019,7 +43001,7 @@ var IndexRedirect = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createClass({
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__routerWarning__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__routerWarning__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_invariant__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_invariant___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_invariant__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__RouteUtils__ = __webpack_require__(35);
@@ -43141,7 +43123,7 @@ var Route = __WEBPACK_IMPORTED_MODULE_0_react___default.a.createClass({
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__RouterContext__ = __webpack_require__(129);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__RouteUtils__ = __webpack_require__(35);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__RouterUtils__ = __webpack_require__(207);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__routerWarning__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__routerWarning__ = __webpack_require__(55);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
@@ -43462,7 +43444,7 @@ function runLeaveHooks(routes, prevState) {
 /* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__RouterContext__ = __webpack_require__(129);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__routerWarning__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__routerWarning__ = __webpack_require__(55);
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 
@@ -43523,7 +43505,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PatternUtils__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PatternUtils__ = __webpack_require__(54);
 
 
 function routeParamsChanged(route, prevState, nextState) {
@@ -43644,7 +43626,7 @@ function getComponents(nextState, callback) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PatternUtils__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PatternUtils__ = __webpack_require__(54);
 
 
 /**
@@ -43684,7 +43666,7 @@ function getRouteParams(route, params) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PatternUtils__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__PatternUtils__ = __webpack_require__(54);
 /* harmony export (immutable) */ __webpack_exports__["a"] = isActive;
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
@@ -43909,8 +43891,8 @@ function match(_ref, callback) {
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__AsyncUtils__ = __webpack_require__(126);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__PromiseUtils__ = __webpack_require__(205);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__PatternUtils__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__routerWarning__ = __webpack_require__(56);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__PatternUtils__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__routerWarning__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__RouteUtils__ = __webpack_require__(35);
 /* harmony export (immutable) */ __webpack_exports__["a"] = matchRoutes;
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
@@ -44264,8 +44246,8 @@ function withRouter(WrappedComponent, options) {
 
 var EventConstants = __webpack_require__(397);
 var EventPluginUtils = __webpack_require__(75);
-var EventPropagators = __webpack_require__(52);
-var SyntheticUIEvent = __webpack_require__(54);
+var EventPropagators = __webpack_require__(51);
+var SyntheticUIEvent = __webpack_require__(53);
 var TouchEventUtils = __webpack_require__(495);
 var ViewportMetrics = __webpack_require__(117);
 
@@ -44499,7 +44481,7 @@ should be injected by the application.'
 
   alreadyInjected = true;
 
-  __webpack_require__(51).injection.injectEventPluginsByName({
+  __webpack_require__(50).injection.injectEventPluginsByName({
     'TapEventPlugin':       __webpack_require__(494)(shouldRejectClick)
   });
 };
@@ -44649,7 +44631,7 @@ var ReactElement = __webpack_require__(36);
 var ReactPropTypeLocationNames = __webpack_require__(132);
 var ReactNoopUpdateQueue = __webpack_require__(131);
 
-var emptyObject = __webpack_require__(61);
+var emptyObject = __webpack_require__(60);
 var invariant = __webpack_require__(2);
 var warning = __webpack_require__(3);
 
@@ -46060,7 +46042,7 @@ var _assign = __webpack_require__(5);
 var ReactComponent = __webpack_require__(130);
 var ReactNoopUpdateQueue = __webpack_require__(131);
 
-var emptyObject = __webpack_require__(61);
+var emptyObject = __webpack_require__(60);
 
 /**
  * Base class helpers for the updating state of a component.
@@ -46683,7 +46665,7 @@ module.exports = onlyChild;
 
 
 
-var shallowEqual = __webpack_require__(62);
+var shallowEqual = __webpack_require__(61);
 
 /**
  * Does a shallow comparison for props and state.
