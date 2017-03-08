@@ -18681,7 +18681,7 @@ var UrlForm = function (_React$Component) {
             _react2.default.createElement(
               'div',
               { className: 'mod' },
-              _react2.default.createElement(_RaisedButton2.default, { label: 'X', onClick: function onClick() {
+              _react2.default.createElement(_RaisedButton2.default, { className: 'close_btn', label: 'X', onClick: function onClick() {
                   return _this2.props.closeModal();
                 } }),
               _react2.default.createElement(
