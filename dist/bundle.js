@@ -18456,8 +18456,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-// import Toggle from 'material-ui/Toggle'
-
 
 (0, _reactTapEventPlugin2.default)();
 
@@ -18718,10 +18716,6 @@ var UrlForm = function (_React$Component) {
 
   return UrlForm;
 }(_react2.default.Component);
-//
-// UrlForm.propTypes = {
-//   imageCriteria: React.PropTypes.array
-// }
 
 var mapStateToProps = function mapStateToProps(state) {
   return { forms: state.forms };
