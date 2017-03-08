@@ -18702,7 +18702,9 @@ var UrlForm = function (_React$Component) {
               _react2.default.createElement(
                 _reactRouter.Link,
                 { className: 'modal-link', to: '/' },
-                _react2.default.createElement(_RaisedButton2.default, { label: 'Home' })
+                _react2.default.createElement(_RaisedButton2.default, { label: 'Home', onClick: function onClick() {
+                    return _this2.props.closeModal();
+                  } })
               )
             )
           )
