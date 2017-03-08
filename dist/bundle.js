@@ -18667,14 +18667,14 @@ var UrlForm = function (_React$Component) {
           _react2.default.createElement(
             'button',
             { onClick: function onClick() {
-                return _this2.props.openModal();
+                console.log(_this2.props.forms);_this2.props.openModal();
               } },
             'Open Modal'
           ),
           _react2.default.createElement(
             _reactModal2.default,
             {
-              isOpen: this.props.modalIsOpen,
+              isOpen: this.props.forms.modalIsOpen,
               onRequestClose: function onRequestClose() {
                 return _this2.props.closeModal();
               },
