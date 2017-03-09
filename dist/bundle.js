@@ -18112,6 +18112,49 @@ module.exports = function(module) {
 "use strict";
 
 
+var _getMuiTheme = __webpack_require__(173);
+
+var _getMuiTheme2 = _interopRequireDefault(_getMuiTheme);
+
+var _spacing = __webpack_require__(174);
+
+var _spacing2 = _interopRequireDefault(_spacing);
+
+var _zIndex = __webpack_require__(175);
+
+var _zIndex2 = _interopRequireDefault(_zIndex);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var muiTheme = (0, _getMuiTheme2.default)({
+  palette: {
+    spacing: _spacing2.default,
+    zIndex: _zIndex2.default,
+    fontFamily: 'Roboto, sans-serif',
+    primary1Color: '#632c7a', /*backgroundColor*/
+    primary2Color: '#632c7a',
+    primary3Color: '#632c7a',
+    accent1Color: '#632c7a',
+    accent2Color: '#632c7a',
+    accent3Color: '#632c7a',
+    textColor: '#0c3d52', /*general text color e.g.: in list items*/
+    alternateTextColor: '#fff', /*button text color*/
+    canvasColor: '#632c7a',
+    borderColor: '#632c7a',
+    disabledColor: '#632c7a',
+    pickerHeaderColor: '#632c7a'
+  }
+});
+
+module.exports = muiTheme;
+
+/***/ }),
+/* 224 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -18146,45 +18189,41 @@ var AgeCheckPage = function AgeCheckPage() {
     _react2.default.createElement(_ProgressBar2.default, { percentage: '33' }),
     _react2.default.createElement(
       'div',
-      { className: 'age-responsive' },
+      { className: 'age-info-1' },
       _react2.default.createElement(
-        'div',
-        { className: 'age-info-blue' },
-        _react2.default.createElement(
-          'p',
-          { className: 'why-eighteen' },
-          'To remove explicit online content we will only ask for your age. Not even your name! You must be under 18 years old.',
-          _react2.default.createElement(
-            'a',
-            { className: 'link text-blue', href: 'https://www.iwf.org.uk/what-we-do', target: '_blank' },
-            'Find out why here',
-            _react2.default.createElement(
-              'i',
-              { className: 'tiny material-icons' },
-              'info_outline'
-            )
-          )
-        )
-      ),
-      _react2.default.createElement(
-        'div',
-        { className: 'age-info-orange' },
-        _react2.default.createElement(
-          'i',
-          { className: 'age-page small material-icons' },
-          'info_outline'
-        ),
+        'p',
+        null,
+        'To remove explicit online content we will only ask for your age. Not even your name! You must be under 18 years old.',
         _react2.default.createElement(
           'a',
-          { className: 'link text-white', href: 'https://www.childline.org.uk/info-advice/bullying-abuse-safety/online-mobile-safety/sexting/', target: '_blank' },
-          'What can I do if I am over 17?'
+          { href: 'https://www.iwf.org.uk/what-we-do', target: '_blank' },
+          ' Find out why here',
+          _react2.default.createElement(
+            'i',
+            { className: 'tiny material-icons' },
+            'info_outline'
+          )
         )
+      )
+    ),
+    _react2.default.createElement(
+      'div',
+      { className: 'age-info-2' },
+      _react2.default.createElement(
+        'i',
+        { className: 'small material-icons' },
+        'info_outline'
+      ),
+      _react2.default.createElement(
+        'a',
+        { href: 'https://www.childline.org.uk/info-advice/bullying-abuse-safety/online-mobile-safety/sexting/', target: '_blank' },
+        'What can I do if I am over 17?'
       )
     ),
     _react2.default.createElement(_Yoti2.default, null),
     _react2.default.createElement(
       _reactRouter.Link,
-      { to: '/form' },
+      { className: 'action-button', to: '/form' },
       _react2.default.createElement(
         'p',
         null,
@@ -18197,7 +18236,7 @@ var AgeCheckPage = function AgeCheckPage() {
 exports.default = AgeCheckPage;
 
 /***/ }),
-/* 224 */
+/* 225 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18290,7 +18329,7 @@ var Home = function Home() {
     ),
     _react2.default.createElement(
       _reactRouter.Link,
-      { className: 'landing-btn', to: '/age-check' },
+      { className: 'action-button', to: '/age-check' },
       _react2.default.createElement(_RaisedButton2.default, { label: 'Verify age', primary: true })
     ),
     _react2.default.createElement(
@@ -18308,7 +18347,7 @@ var Home = function Home() {
 exports.default = Home;
 
 /***/ }),
-/* 225 */
+/* 226 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18336,7 +18375,7 @@ var OverAge = function OverAge() {
   return _react2.default.createElement(
     'div',
     null,
-    _react2.default.createElement(_PageTitle2.default, { heading: 'ARE YOU UNDER 18?', subheading: 'You must be 17 or younger.', backgroundColor: 'light-blue' }),
+    _react2.default.createElement(_PageTitle2.default, { heading: 'ARE YOU UNDER 18?', subheading: 'You must be 17 or younger.', backgroundColor: 'title-container-turquoise' }),
     _react2.default.createElement(
       'div',
       { className: 'what-now' },
@@ -18417,7 +18456,7 @@ var OverAge = function OverAge() {
 exports.default = OverAge;
 
 /***/ }),
-/* 226 */
+/* 227 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18760,7 +18799,7 @@ var actionCreators = _extends({}, formActions);
 exports.default = (0, _reactRedux.connect)(mapStateToProps, actionCreators)(UrlForm);
 
 /***/ }),
-/* 227 */
+/* 228 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18809,7 +18848,7 @@ var forms = function forms() {
 exports.default = forms;
 
 /***/ }),
-/* 228 */
+/* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -18851,49 +18890,6 @@ var yoti = function yoti() {
 };
 
 exports.default = yoti;
-
-/***/ }),
-/* 229 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _getMuiTheme = __webpack_require__(173);
-
-var _getMuiTheme2 = _interopRequireDefault(_getMuiTheme);
-
-var _spacing = __webpack_require__(174);
-
-var _spacing2 = _interopRequireDefault(_spacing);
-
-var _zIndex = __webpack_require__(175);
-
-var _zIndex2 = _interopRequireDefault(_zIndex);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var muiTheme = (0, _getMuiTheme2.default)({
-  palette: {
-    spacing: _spacing2.default,
-    zIndex: _zIndex2.default,
-    fontFamily: 'Roboto, sans-serif',
-    primary1Color: '#632c7a', /*backgroundColor*/
-    primary2Color: '#632c7a',
-    primary3Color: '#632c7a',
-    accent1Color: '#632c7a',
-    accent2Color: '#632c7a',
-    accent3Color: '#632c7a',
-    textColor: '#0c3d52', /*general text color e.g.: in list items*/
-    alternateTextColor: '#fff', /*button text color*/
-    canvasColor: '#632c7a',
-    borderColor: '#632c7a',
-    disabledColor: '#632c7a',
-    pickerHeaderColor: '#632c7a'
-  }
-});
-
-module.exports = muiTheme;
 
 /***/ }),
 /* 230 */
@@ -19101,7 +19097,7 @@ var YotiDescription = function YotiDescription(props) {
   if (!props.yoti.haveQr) {
     return _react2.default.createElement(
       'div',
-      { className: 'yoti-info ' },
+      { className: 'yoti-info' },
       _react2.default.createElement(
         'div',
         { className: 'yoti-intro' },
@@ -19288,7 +19284,11 @@ var YotiShareButton = function (_React$Component) {
       //   Share your age using Yoti
       // </a>
       if (!this.props.yoti.haveQr) {
-        return _react2.default.createElement(_RaisedButton2.default, { primary: true, onClick: clickHandler, target: this.props.yoti.target, label: 'Share your age using Yoti', labelColor: '#632c7a' });
+        return _react2.default.createElement(
+          'div',
+          { className: 'yoti-btn' },
+          _react2.default.createElement(_RaisedButton2.default, { primary: true, onClick: clickHandler, target: this.props.yoti.target, label: 'Share your age using Yoti', labelColor: '#632c7a' })
+        );
       }
       return _react2.default.createElement(
         'p',
@@ -20949,7 +20949,7 @@ exports = module.exports = __webpack_require__(288)();
 
 
 // module
-exports.push([module.i, "@font-face {\n  font-family: childline;\n  src: url(" + __webpack_require__(307) + "); }\n\n@font-face {\n  font-family: childline-bold;\n  src: url(" + __webpack_require__(306) + "); }\n\n@font-face {\n  font-family: Rosie;\n  src: url(" + __webpack_require__(308) + "); }\n\n.page-title, .home-title {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 2.5rem;\n  color: white;\n  text-align: center; }\n\n.section-title, .scan-me {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 1.4rem;\n  color: white; }\n\n.age-info-text {\n  margin: 0;\n  font-size: 1.2rem;\n  padding: 1rem; }\n\n.action-button {\n  display: flex;\n  justify-content: center; }\n\n.home-header {\n  background-color: #00a1d0;\n  padding: 4rem 1rem 2.5rem 1rem;\n  text-align: center;\n  min-height: 28vh;\n  margin: 0;\n  padding-bottom: 2rem;\n  padding-top: 0rem; }\n  .home-header h3 {\n    font-size: 1.2rem;\n    font-weight: normal;\n    color: white;\n    margin-bottom: 1rem; }\n\n.home-header-info {\n  width: 100%;\n  margin: 0 auto;\n  font-size: 1rem;\n  display: flex;\n  justify-content: space-between; }\n  .home-header-info p {\n    color: white; }\n  .home-header-info a {\n    color: white; }\n\n.home-header-phone a {\n  margin-right: 0.5rem; }\n\n.home-title {\n  margin-bottom: 1rem; }\n\n.home-info {\n  margin: 1rem;\n  background-color: #234f62;\n  color: white;\n  padding: 1rem; }\n  .home-info a {\n    color: #039be5;\n    -webkit-tap-highlight-color: transparent; }\n    .home-info a:hover {\n      color: orange; }\n\n.home-logos {\n  display: flex;\n  flex-direction: row;\n  flex-wrap: wrap;\n  justify-content: space-around;\n  margin-bottom: 1.5rem; }\n  .home-logos img {\n    height: 6rem;\n    min-width: 6rem; }\n\n.page-title, .home-title {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 2.5rem;\n  color: white;\n  text-align: center; }\n\n.section-title, .scan-me {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 1.4rem;\n  color: white; }\n\n.age-info-text {\n  margin: 0;\n  font-size: 1.2rem;\n  padding: 1rem; }\n\n.action-button {\n  display: flex;\n  justify-content: center; }\n\n.age-title {\n  margin: 0;\n  background-color: #00a1d0;\n  padding: 4rem 1rem 2.5rem 1rem;\n  text-align: center;\n  min-height: 28vh;\n  margin: 0; }\n\n.age-info-blue {\n  margin: 1rem;\n  background-color: #73cfe8;\n  color: #0c3d52;\n  padding: 1rem; }\n\n.age-info-orange {\n  margin: 1rem;\n  background-color: #F28C00;\n  color: #234f62;\n  padding: 1rem; }\n  .age-info-orange i {\n    padding: 0.6rem;\n    color: #ffffff; }\n\n.scan-me {\n  text-align: center;\n  padding: 0; }\n  .scan-me img {\n    width: 4rem;\n    margin-left: 1rem; }\n\n.yoti-info {\n  margin: 1rem;\n  background-color: #234f62;\n  box-sizing: border-box;\n  padding: 1rem;\n  color: white; }\n  .yoti-info h3 {\n    margin: 0;\n    width: 90%;\n    float: left; }\n\n.yoti-intro img {\n  width: 15%;\n  height: 2rem; }\n\n.page-title, .home-title {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 2.5rem;\n  color: white;\n  text-align: center; }\n\n.section-title, .scan-me {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 1.4rem;\n  color: white; }\n\n.age-info-text {\n  margin: 0;\n  font-size: 1.2rem;\n  padding: 1rem; }\n\n.action-button {\n  display: flex;\n  justify-content: center; }\n\n.form-container {\n  max-width: 94%;\n  margin: 1rem auto;\n  padding: 1rem;\n  background-color: #3EBB98; }\n\n.other-options {\n  background-color: #F28C00;\n  color: #0c3d52;\n  padding: 1rem; }\n\n.page-title, .home-title {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 2.5rem;\n  color: white;\n  text-align: center; }\n\n.section-title, .scan-me {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 1.4rem;\n  color: white; }\n\n.age-info-text {\n  margin: 0;\n  font-size: 1.2rem;\n  padding: 1rem; }\n\n.action-button {\n  display: flex;\n  justify-content: center; }\n\n.message {\n  margin: 1rem;\n  padding: 0.75rem;\n  color: #234f62;\n  background-color: #F28C00; }\n\n.title-div {\n  padding: 2.5rem 1rem 2.5rem 1rem;\n  margin-bottom: 1rem;\n  height: 35vh;\n  background-color: #234f62; }\n\n.form-container {\n  max-width: 94%;\n  margin: 1rem auto;\n  padding: 1rem;\n  background-color: #CCECF5; }\n\n.page-title, .home-title {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 2.5rem;\n  color: white;\n  text-align: center; }\n\n.section-title, .scan-me {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 1.4rem;\n  color: white; }\n\n.age-info-text {\n  margin: 0;\n  font-size: 1.2rem;\n  padding: 1rem; }\n\n.action-button {\n  display: flex;\n  justify-content: center; }\n\n.content-title-overage {\n  background-color: #3EBB98;\n  padding: 4rem 1rem 2.5rem 1rem;\n  text-align: center;\n  min-height: 28vh;\n  margin: 0; }\n\n.what-now {\n  background-color: #D8F1EA;\n  margin: 1rem;\n  padding: 1rem; }\n  .what-now h3 {\n    font-family: 'childline-bold';\n    font-size: 1.6rem;\n    margin: 0;\n    width: 90%;\n    float: left;\n    color: #632c7a; }\n  .what-now .identity {\n    width: 10%;\n    text-align: right;\n    color: #632c7a;\n    padding-left: 0.2rem;\n    padding-top: 0.2rem; }\n  .what-now p {\n    padding-top: 0.5rem;\n    margin: 0;\n    margin-bottom: 1rem;\n    font-size: 1.2rem;\n    color: #632c7a; }\n\n.other-ops {\n  position: relative;\n  margin: 0 auto;\n  background-color: white;\n  padding: 0;\n  display: flex;\n  justify-content: center;\n  flex-direction: column; }\n\n.contact {\n  float: left;\n  text-align: left !important;\n  display: block;\n  color: #632c7a;\n  padding: 0.5rem;\n  margin-left: 1rem;\n  transition: all 0.5s ease;\n  font-family: 'childline-bold'; }\n\n.option {\n  border: 0.2rem solid #3EBB98;\n  width: 94%;\n  padding: 0.45rem;\n  margin: 0.5rem auto;\n  display: flex;\n  flex-direction: row; }\n  .option i {\n    width: 10%;\n    text-align: right;\n    color: #632c7a;\n    padding-left: 0.2rem;\n    padding-top: 0.2rem; }\n  .option a {\n    float: left;\n    text-align: left !important;\n    display: block;\n    color: #632c7a;\n    padding: 0.5rem;\n    margin-left: 1rem;\n    transition: all 0.5s ease;\n    font-family: 'childline-bold'; }\n\n.page-title, .home-title {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 2.5rem;\n  color: white;\n  text-align: center; }\n\n.section-title, .scan-me {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 1.4rem;\n  color: white; }\n\n.age-info-text {\n  margin: 0;\n  font-size: 1.2rem;\n  padding: 1rem; }\n\n.action-button {\n  display: flex;\n  justify-content: center; }\n\nbody {\n  margin: 0 auto;\n  font-family: 'childline'; }\n\na {\n  text-decoration: none; }\n\np {\n  line-height: 1.5; }\n\ndiv {\n  display: block; }\n\n.title-container-light-blue {\n  background-color: #00a1d0;\n  padding: 4rem 1rem 2.5rem 1rem;\n  text-align: center;\n  min-height: 28vh;\n  margin: 0; }\n\n.title-container-dark-cobalt {\n  background-color: #0c3d52;\n  padding: 4rem 1rem 2.5rem 1rem;\n  text-align: center;\n  min-height: 28vh;\n  margin: 0; }\n\n.title-container-plum {\n  background-color: #632c7a;\n  padding: 4rem 1rem 2.5rem 1rem;\n  text-align: center;\n  min-height: 28vh;\n  margin: 0; }\n\n.link:hover {\n  text-decoration: underline; }\n\n.mod {\n  color: #0c3d52;\n  font-family: 'childline-regular'; }\n  .mod h1 {\n    font-size: 2rem;\n    font-family: 'childline-bold';\n    margin-top: 2rem; }\n  .mod p {\n    font-family: 'childline'; }\n\n.close_btn {\n  position: absolute;\n  z-index: 1;\n  top: 0;\n  right: 0;\n  background: #234f62;\n  color: white;\n  font-size: 1.2rem; }\n\n.page-title-heading {\n  font-family: 'Rosie', 'childline-bold';\n  font-size: 3rem;\n  margin: 0;\n  color: #fff;\n  text-align: center;\n  padding-bottom: 1rem; }\n\n.progress-bar {\n  position: relative;\n  height: 4px;\n  display: block;\n  width: 100%;\n  background-color: #acece6;\n  border-radius: 2px;\n  margin: .5rem 0 1rem 0;\n  overflow: hidden; }\n\n.determinate33 {\n  width: 33%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  background-color: #26a69a;\n  transition: width .3s linear; }\n\n.determinate66 {\n  width: 66%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  background-color: #26a69a;\n  transition: width .3s linear; }\n\n.determinate100 {\n  width: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  background-color: #26a69a;\n  transition: width .3s linear; }\n", ""]);
+exports.push([module.i, "@font-face {\n  font-family: childline;\n  src: url(" + __webpack_require__(307) + "); }\n\n@font-face {\n  font-family: childline-bold;\n  src: url(" + __webpack_require__(306) + "); }\n\n@font-face {\n  font-family: Rosie;\n  src: url(" + __webpack_require__(308) + "); }\n\n.page-title, .home-title {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 2.5rem;\n  color: white;\n  text-align: center; }\n\n.section-title, .scan-me {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 1.4rem;\n  color: white; }\n\n.action-button {\n  display: flex;\n  justify-content: center; }\n\n.home-header {\n  background-color: #00a1d0;\n  padding: 4rem 1rem 2.5rem 1rem;\n  text-align: center;\n  min-height: 28vh;\n  margin: 0;\n  padding-bottom: 2rem;\n  padding-top: 0rem; }\n  .home-header h3 {\n    font-size: 1.2rem;\n    font-weight: normal;\n    color: white;\n    margin-bottom: 1rem; }\n\n.home-header-info {\n  width: 100%;\n  margin: 0 auto;\n  font-size: 1rem;\n  display: flex;\n  justify-content: space-between; }\n  .home-header-info p {\n    color: white; }\n  .home-header-info a {\n    color: white; }\n\n.home-header-phone a {\n  margin-right: 0.5rem; }\n\n.home-title {\n  margin-bottom: 1rem; }\n\n.home-info {\n  margin: 1rem;\n  background-color: #234f62;\n  color: white;\n  padding: 1rem; }\n  .home-info a {\n    color: #039be5;\n    -webkit-tap-highlight-color: transparent; }\n    .home-info a:hover {\n      color: orange; }\n\n.home-logos {\n  display: flex;\n  flex-direction: row;\n  flex-wrap: wrap;\n  justify-content: space-around;\n  margin-bottom: 1.5rem; }\n  .home-logos img {\n    height: 6rem;\n    min-width: 6rem; }\n\n.page-title, .home-title {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 2.5rem;\n  color: white;\n  text-align: center; }\n\n.section-title, .scan-me {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 1.4rem;\n  color: white; }\n\n.action-button {\n  display: flex;\n  justify-content: center; }\n\n.age-info-1 {\n  margin: 1rem;\n  background-color: #73cfe8;\n  color: #0c3d52;\n  padding: 1rem; }\n  .age-info-1 a {\n    color: inherit; }\n\n.age-info-2 {\n  margin: 1rem;\n  background-color: #F28C00;\n  color: #234f62;\n  padding: 1rem; }\n  .age-info-2 i {\n    padding: 0.6rem;\n    color: #ffffff; }\n  .age-info-2 a {\n    color: inherit; }\n\n.yoti-info {\n  margin: 1rem;\n  background-color: #234f62;\n  color: white;\n  padding: 1rem; }\n\n.yoti-intro {\n  display: flex;\n  flex-direction: row; }\n  .yoti-intro img {\n    width: 15%;\n    height: 2rem; }\n  .yoti-intro h3 {\n    width: 85%;\n    margin: 0; }\n\n.yoti-btn {\n  display: flex;\n  justify-content: center;\n  align-items: center; }\n\n.scan-me {\n  text-align: center;\n  padding: 0; }\n  .scan-me img {\n    width: 4rem;\n    margin-left: 1rem; }\n\n.page-title, .home-title {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 2.5rem;\n  color: white;\n  text-align: center; }\n\n.section-title, .scan-me {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 1.4rem;\n  color: white; }\n\n.action-button {\n  display: flex;\n  justify-content: center; }\n\n.form-container {\n  max-width: 94%;\n  margin: 1rem auto;\n  padding: 1rem;\n  background-color: #3EBB98; }\n\n.other-options {\n  background-color: #F28C00;\n  color: #0c3d52;\n  padding: 1rem; }\n\n.page-title, .home-title {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 2.5rem;\n  color: white;\n  text-align: center; }\n\n.section-title, .scan-me {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 1.4rem;\n  color: white; }\n\n.action-button {\n  display: flex;\n  justify-content: center; }\n\n.message {\n  margin: 1rem;\n  padding: 0.75rem;\n  color: #234f62;\n  background-color: #F28C00; }\n\n.title-div {\n  padding: 2.5rem 1rem 2.5rem 1rem;\n  margin-bottom: 1rem;\n  height: 35vh;\n  background-color: #234f62; }\n\n.form-container {\n  max-width: 94%;\n  margin: 1rem auto;\n  padding: 1rem;\n  background-color: #CCECF5; }\n\n.page-title, .home-title {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 2.5rem;\n  color: white;\n  text-align: center; }\n\n.section-title, .scan-me {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 1.4rem;\n  color: white; }\n\n.action-button {\n  display: flex;\n  justify-content: center; }\n\n.title-container-turquoise {\n  background-color: #3EBB98;\n  padding: 4rem 1rem 2.5rem 1rem;\n  text-align: center;\n  min-height: 28vh;\n  margin: 0; }\n\n.page-title-subheading {\n  color: #fff;\n  text-align: center; }\n\n.what-now {\n  background-color: #D8F1EA;\n  margin: 1rem;\n  padding: 1rem; }\n  .what-now h3 {\n    font-family: 'childline-bold';\n    font-size: 1.6rem;\n    margin: 0;\n    width: 90%;\n    float: left;\n    color: #632c7a; }\n  .what-now .identity {\n    width: 10%;\n    text-align: right;\n    color: #632c7a;\n    padding-left: 0.2rem;\n    padding-top: 0.2rem; }\n  .what-now p {\n    padding-top: 0.5rem;\n    margin: 0;\n    margin-bottom: 1rem;\n    font-size: 1.2rem;\n    color: #632c7a; }\n\n.other-ops {\n  position: relative;\n  margin: 0 auto;\n  background-color: white;\n  padding: 1rem;\n  display: flex;\n  justify-content: center;\n  flex-direction: column; }\n\n.contact {\n  float: left;\n  text-align: left !important;\n  display: block;\n  color: #632c7a;\n  padding: 0.5rem;\n  margin-left: 1rem;\n  transition: all 0.5s ease;\n  font-family: 'childline-bold'; }\n\n.option {\n  border: 0.2rem solid #3EBB98;\n  width: 94%;\n  padding: 0.45rem;\n  margin: 0.5rem auto;\n  display: flex;\n  flex-direction: row; }\n  .option i {\n    width: 10%;\n    text-align: right;\n    color: #632c7a;\n    padding-left: 0.2rem;\n    padding-top: 0.2rem; }\n  .option a {\n    float: left;\n    text-align: left !important;\n    display: block;\n    color: #632c7a;\n    padding: 0.5rem;\n    margin-left: 1rem;\n    transition: all 0.5s ease;\n    font-family: 'childline-bold'; }\n\n.page-title, .home-title {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 2.5rem;\n  color: white;\n  text-align: center; }\n\n.section-title, .scan-me {\n  font-family: 'Rosie','childline-bold';\n  margin: 0;\n  font-size: 1.4rem;\n  color: white; }\n\n.action-button {\n  display: flex;\n  justify-content: center; }\n\nbody {\n  margin: 0 auto;\n  font-family: 'childline'; }\n\na {\n  text-decoration: none; }\n  a:hover {\n    text-decoration: underline; }\n\np {\n  line-height: 1.5; }\n\ndiv {\n  display: block; }\n\n.title-container-light-blue {\n  background-color: #00a1d0;\n  padding: 4rem 1rem 2.5rem 1rem;\n  text-align: center;\n  min-height: 28vh;\n  margin: 0; }\n\n.title-container-dark-cobalt {\n  background-color: #0c3d52;\n  padding: 4rem 1rem 2.5rem 1rem;\n  text-align: center;\n  min-height: 28vh;\n  margin: 0; }\n\n.title-container-plum {\n  background-color: #632c7a;\n  padding: 4rem 1rem 2.5rem 1rem;\n  text-align: center;\n  min-height: 28vh;\n  margin: 0; }\n\n.mod {\n  color: #0c3d52;\n  font-family: 'childline-regular'; }\n  .mod h1 {\n    font-size: 2rem;\n    font-family: 'childline-bold';\n    margin-top: 2rem; }\n  .mod p {\n    font-family: 'childline'; }\n\n.close_btn {\n  position: absolute;\n  z-index: 1;\n  top: 0;\n  right: 0;\n  background: #234f62;\n  color: white;\n  font-size: 1.2rem; }\n\n.page-title-heading {\n  font-family: 'Rosie', 'childline-bold';\n  font-size: 3rem;\n  margin: 0;\n  color: #fff;\n  text-align: center;\n  padding-bottom: 1rem; }\n\n.progress-bar {\n  position: relative;\n  height: 4px;\n  display: block;\n  width: 100%;\n  background-color: #acece6;\n  border-radius: 2px;\n  margin: .5rem 0 1rem 0;\n  overflow: hidden; }\n\n.determinate33 {\n  width: 33%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  background-color: #26a69a;\n  transition: width .3s linear; }\n\n.determinate66 {\n  width: 66%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  background-color: #26a69a;\n  transition: width .3s linear; }\n\n.determinate100 {\n  width: 100%;\n  position: absolute;\n  top: 0;\n  left: 0;\n  bottom: 0;\n  background-color: #26a69a;\n  transition: width .3s linear; }\n", ""]);
 
 // exports
 
@@ -47527,19 +47527,19 @@ var _MuiThemeProvider = __webpack_require__(230);
 
 var _MuiThemeProvider2 = _interopRequireDefault(_MuiThemeProvider);
 
-var _AgeCheckPage = __webpack_require__(223);
+var _AgeCheckPage = __webpack_require__(224);
 
 var _AgeCheckPage2 = _interopRequireDefault(_AgeCheckPage);
 
-var _Home = __webpack_require__(224);
+var _Home = __webpack_require__(225);
 
 var _Home2 = _interopRequireDefault(_Home);
 
-var _Forms = __webpack_require__(226);
+var _Forms = __webpack_require__(227);
 
 var _Forms2 = _interopRequireDefault(_Forms);
 
-var _OverAge = __webpack_require__(225);
+var _OverAge = __webpack_require__(226);
 
 var _OverAge2 = _interopRequireDefault(_OverAge);
 
@@ -47547,15 +47547,15 @@ var _reactRedux = __webpack_require__(82);
 
 var _redux = __webpack_require__(136);
 
-var _yoti = __webpack_require__(228);
+var _yoti = __webpack_require__(229);
 
 var _yoti2 = _interopRequireDefault(_yoti);
 
-var _forms = __webpack_require__(227);
+var _forms = __webpack_require__(228);
 
 var _forms2 = _interopRequireDefault(_forms);
 
-var _theme = __webpack_require__(229);
+var _theme = __webpack_require__(223);
 
 var _theme2 = _interopRequireDefault(_theme);
 
