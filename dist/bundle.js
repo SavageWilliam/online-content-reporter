@@ -18684,7 +18684,7 @@ var UrlForm = function (_React$Component) {
                 _react2.default.createElement(_List.ListItem, {
                   primaryText: 'Someone hurting someone else',
                   onChange: function onChange() {
-                    _this2.props.addCriteria('Someone hurting someone else');
+                    _this2.props.addCriteria('Someone hurting someone else');console.log(_this2.props.forms.imageCriteria);
                   },
                   leftCheckbox: _react2.default.createElement(_Checkbox2.default, null)
                 }),
@@ -18893,7 +18893,10 @@ var forms = function forms() {
       });
     case _actionTypes.ADD_CRITERIA:
       return _extends({}, state, {
-        imageCriteria: state.imageCriteria.concat(action.criteria)
+        imageCriteria: state.imageCriteria.indexOf(action.criteria) !== -1 ? function () {
+          state.imageCriteria.splice(state.imageCriteria.indexOf(action.criteria), 1);
+          return state.imageCriteria;
+        }() : state.imageCriteria.concat(action.criteria)
       });
     case _actionTypes.SAVE_URL:
       return _extends({}, state, {
