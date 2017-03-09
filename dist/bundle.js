@@ -19329,6 +19329,7 @@ var YotiShareButton = function (_React$Component) {
       var xhr = new XMLHttpRequest();
       xhr.addEventListener('load', function (e) {
         var responseObj = JSON.parse(e.target.responseText);
+        console.log(responseObj);
         _this4.props.addQr(responseObj.svg);
         _this4.listenForToken(responseObj.proto, responseObj.url);
       });
@@ -47662,7 +47663,6 @@ _reactDom2.default.render(_react2.default.createElement(
       _react2.default.createElement(_reactRouter.Route, { path: '/age-check', component: _AgeCheckPage2.default }),
       _react2.default.createElement(_reactRouter.Route, { path: '/form', component: _Forms2.default }),
       _react2.default.createElement(_reactRouter.Route, { path: '/over-age', component: _OverAge2.default }),
-      _react2.default.createElement(_reactRouter.Route, { path: '/form-email', component: _FormEmail2.default }),
       _react2.default.createElement(_reactRouter.Route, { path: '*', component: _Home2.default })
     )
   )
