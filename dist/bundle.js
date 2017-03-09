@@ -19277,6 +19277,7 @@ var YotiShareButton = function (_React$Component) {
       };
       socket.onmessage = function (msg) {
         var data = JSON.parse(msg.data);
+        console.log('token', msg.data);
         switch (data.status) {
           case 'COMPLETED':
             {
