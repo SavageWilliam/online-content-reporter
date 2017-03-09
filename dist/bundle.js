@@ -19291,6 +19291,7 @@ var YotiShareButton = function (_React$Component) {
       var xhr = new XMLHttpRequest();
       xhr.addEventListener('load', function (e) {
         var responseObj = JSON.parse(e.target.responseText);
+        console.log('HAHÓ', responseObj);
         responseObj.isUnder18 ? _reactRouter.browserHistory.push('/form') : _reactRouter.browserHistory.push('/over-age');
       });
       xhr.open('GET', '/thankyou?token=' + token);
