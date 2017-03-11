@@ -19217,8 +19217,6 @@ var UrlForm = function (_React$Component) {
   _createClass(UrlForm, [{
     key: 'handleUrlChange',
     value: function handleUrlChange(self, url, cb) {
-      //  this.props.saveUrl(url)
-      console.log('urlchange', url, self);
       setTimeout(function () {
         return cb(null, self.props.saveUrl(url));
       }, 1000);
@@ -19226,8 +19224,6 @@ var UrlForm = function (_React$Component) {
   }, {
     key: 'handleDescriptionChange',
     value: function handleDescriptionChange(self, des, cb) {
-      console.log('descChange', self);
-      //  this.props.saveDescription(des)
       setTimeout(function () {
         return cb(null, self.props.saveDescription(des));
       }, 1000);
@@ -19237,10 +19233,7 @@ var UrlForm = function (_React$Component) {
     value: function waterfall(args, tasks, cb) {
       var next = tasks[0];
       var nextArg = args.shift();
-      console.log('in waterfall', next);
-      console.log(nextArg, "nextARGGGG");
       var self = this;
-      console.log(self.props.forms, "FORM");
       var tail = tasks.slice(1);
       if (typeof next !== 'undefined') {
         if (nextArg) {
@@ -19262,14 +19255,11 @@ var UrlForm = function (_React$Component) {
         }
         return;
       }
-      cb(null, 'sucesss');
+      // cb(null, 'sucesss')
     }
   }, {
     key: 'handleSubmit',
     value: function handleSubmit(self, cb) {
-      console.log('I have been called!!!');
-      //  console.log(e)
-      //6  e.preventDefault()
       var payload = {
         "imageCriteria": self.props.forms.imageCriteria,
         "url": self.props.forms.url,
@@ -19454,10 +19444,6 @@ var UrlForm = function (_React$Component) {
                 label: 'Submit',
                 primary: true,
                 onClick: function onClick(e) {
-                  /*  this.props.openModal(),
-                    this.handleUrlChange(this.refs.url.getValue()),
-                    this.handleDescriptionChange(this.refs.description.getValue()),
-                    this.handleSubmit(e)*/
                   var url = _this2.refs.url.getValue();
                   var desc = _this2.refs.description.getValue();
                   var ev = e;
