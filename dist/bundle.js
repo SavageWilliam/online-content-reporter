@@ -19444,6 +19444,7 @@ var UrlForm = function (_React$Component) {
                 label: 'Submit',
                 primary: true,
                 onClick: function onClick(e) {
+                  _this2.props.openModal();
                   var url = _this2.refs.url.getValue();
                   var desc = _this2.refs.description.getValue();
                   var ev = e;
