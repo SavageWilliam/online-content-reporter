@@ -16,6 +16,9 @@ export const setUpForMobile = (href) => {
   }
 }
 
-export const getQr = () => {
-  console.log('here we will do the yoti desktop flow?')
+export const sagaTest = (tester) => {
+  return {
+    type: types.TEST,
+    tester
+  }
 }

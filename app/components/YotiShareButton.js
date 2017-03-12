@@ -99,7 +99,8 @@ class YotiShareButton extends React.Component {
   // }
 
   render () {
-    const clickHandler = this.props.yoti.isMobile ? (window.location = this.props.yoti.href) : (this.getQr)
+    console.log('PROPS :', this.props)
+    const clickHandler = this.props.yoti.isMobile ? (window.location = this.props.yoti.href) : this.props.saga() /* (this.getQr) */
 
     // this is for when mobilesetup works! Keep this comment
     // const clickHandler = this.props.yoti.isMobile ? (this.navigateToYoti) : (this.getQr)

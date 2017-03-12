@@ -1,13 +1,14 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
 import { Route, Router, browserHistory } from 'react-router'
+import { Provider } from 'react-redux'
+import { createStore, combineReducers, applyMiddleware } from 'redux'
+import createSagaMiddleware from 'redux-saga'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import AgeCheck from './components/AgeCheckPage'
 import Home from './components/Home'
 import Forms from './containers/Forms'
 import OverAge from './components/OverAge'
-import { Provider } from 'react-redux'
-import { createStore, combineReducers } from 'redux'
 import yoti from './reducers/yoti'
 import forms from './reducers/forms'
 import muiTheme from './assets/theme'
@@ -17,8 +18,21 @@ const reducers = combineReducers({
   forms
 })
 
-const store = createStore(reducers)
+import mySaga from './sagas'
 
+// create the saga middleware
+const sagaMiddleware = createSagaMiddleware()
+
+// mount it on the Store
+const store = createStore(
+  reducers,
+  applyMiddleware(sagaMiddleware)
+)
+
+// then run the saga
+sagaMiddleware.run(mySaga)
+
+// render the application
 ReactDOM.render(
   <MuiThemeProvider muiTheme={muiTheme}>
     <Provider store={store}>
