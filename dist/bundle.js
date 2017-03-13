@@ -5502,7 +5502,7 @@ module.exports = {
   SET_UP_FOR_MOBILE: 'SET_UP_FOR_MOBILE',
   // forms
   CHANGE_MODAL: 'CHANGE_MODAL',
-  NEXT_FORM: 'NEXT_FORM',
+  CHANGE_FORM: 'CHANGE_FORM',
   TOGGLE_CRITERIA: 'TOGGLE_CRITERIA',
   SAVE_URL: 'SAVE_URL',
   SAVE_DESCRIPTION: 'SAVE_DESCRIPTION'
@@ -19239,9 +19239,9 @@ var forms = function forms() {
       return _extends({}, state, {
         modalIsOpen: !state.modalIsOpen
       });
-    case _actionTypes.NEXT_FORM:
+    case _actionTypes.CHANGE_FORM:
       return _extends({}, state, {
-        firstForm: false
+        firstForm: !state.firstForm
       });
     case _actionTypes.TOGGLE_CRITERIA:
       return _extends({}, state, {
@@ -20233,7 +20233,7 @@ module.exports = function spread(callback) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.saveDescription = exports.saveUrl = exports.toggleCriteria = exports.nextForm = exports.changeModal = undefined;
+exports.saveDescription = exports.saveUrl = exports.toggleCriteria = exports.changeForm = exports.changeModal = undefined;
 
 var _actionTypes = __webpack_require__(69);
 
@@ -20246,9 +20246,9 @@ var changeModal = exports.changeModal = function changeModal() {
     type: types.CHANGE_MODAL
   };
 };
-var nextForm = exports.nextForm = function nextForm() {
+var changeForm = exports.changeForm = function changeForm() {
   return {
-    type: types.NEXT_FORM
+    type: types.CHANGE_FORM
   };
 };
 
@@ -20519,7 +20519,7 @@ var ImgCriteriaForm = function ImgCriteriaForm(props) {
           })
         ),
         _react2.default.createElement(_RaisedButton2.default, { label: 'Confirm', primary: true, onClick: function onClick() {
-            return props.nextForm();
+            return props.changeForm();
           } })
       )
     ),
@@ -20724,7 +20724,10 @@ var UrlDescriptionForm = function (_React$Component) {
               id: 'submit-url' })
           )
         ),
-        _react2.default.createElement(_ConfirmationModal2.default, this.props)
+        _react2.default.createElement(_ConfirmationModal2.default, this.props),
+        _react2.default.createElement(_RaisedButton2.default, { label: 'Previous', primary: true, onClick: function onClick() {
+            return _this2.props.changeForm();
+          } })
       );
     }
   }]);
