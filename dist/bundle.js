@@ -5501,8 +5501,7 @@ module.exports = {
   ADD_QR_CODE: 'ADD_QR_CODE',
   SET_UP_FOR_MOBILE: 'SET_UP_FOR_MOBILE',
   // forms
-  OPEN_MODAL: 'OPEN_MODAL',
-  CLOSE_MODAL: 'CLOSE_MODAL',
+  CHANGE_MODAL: 'CHANGE_MODAL',
   NEXT_FORM: 'NEXT_FORM',
   TOGGLE_CRITERIA: 'TOGGLE_CRITERIA',
   SAVE_URL: 'SAVE_URL',
@@ -19236,13 +19235,9 @@ var forms = function forms() {
   var action = arguments[1];
 
   switch (action.type) {
-    case _actionTypes.OPEN_MODAL:
+    case _actionTypes.CHANGE_MODAL:
       return _extends({}, state, {
-        modalIsOpen: true
-      });
-    case _actionTypes.CLOSE_MODAL:
-      return _extends({}, state, {
-        modalIsOpen: false
+        modalIsOpen: !state.modalIsOpen
       });
     case _actionTypes.NEXT_FORM:
       return _extends({}, state, {
@@ -20238,7 +20233,7 @@ module.exports = function spread(callback) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.saveDescription = exports.saveUrl = exports.toggleCriteria = exports.nextForm = exports.closeModal = exports.openModal = undefined;
+exports.saveDescription = exports.saveUrl = exports.toggleCriteria = exports.nextForm = exports.changeModal = undefined;
 
 var _actionTypes = __webpack_require__(69);
 
@@ -20246,18 +20241,11 @@ var types = _interopRequireWildcard(_actionTypes);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-var openModal = exports.openModal = function openModal() {
+var changeModal = exports.changeModal = function changeModal() {
   return {
-    type: types.OPEN_MODAL
+    type: types.CHANGE_MODAL
   };
 };
-
-var closeModal = exports.closeModal = function closeModal() {
-  return {
-    type: types.CLOSE_MODAL
-  };
-};
-
 var nextForm = exports.nextForm = function nextForm() {
   return {
     type: types.NEXT_FORM
@@ -20389,7 +20377,7 @@ var ConfirmationModal = function ConfirmationModal(props) {
     {
       isOpen: props.modalIsOpen,
       onRequestClose: function onRequestClose() {
-        return props.closeModal();
+        return props.changeModal();
       },
       style: modalOverlay,
       contentLabel: 'Reassuring message'
@@ -20398,7 +20386,7 @@ var ConfirmationModal = function ConfirmationModal(props) {
       'div',
       { className: 'mod' },
       _react2.default.createElement(_RaisedButton2.default, { className: 'close_btn', primary: true, label: 'X', onClick: function onClick() {
-          return props.closeModal();
+          return props.changeModal();
         } }),
       _react2.default.createElement(
         'h1',
@@ -20419,7 +20407,7 @@ var ConfirmationModal = function ConfirmationModal(props) {
         _reactRouter.Link,
         { className: 'modal-link', to: '/' },
         _react2.default.createElement(_RaisedButton2.default, { primary: true, label: 'Home', onClick: function onClick() {
-            return props.closeModal();
+            return props.changeModal();
           } })
       )
     )
@@ -20726,7 +20714,7 @@ var UrlDescriptionForm = function (_React$Component) {
               label: 'Submit',
               primary: true,
               onClick: function onClick(e) {
-                _this2.props.openModal();
+                _this2.props.changeModal();
                 _this2.handleSubmit().then(function () {
                   console.log('Success submitting form');
                 }).catch(function (error) {
