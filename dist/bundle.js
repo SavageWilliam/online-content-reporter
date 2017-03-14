@@ -20644,7 +20644,7 @@ var ImgCriteriaForm = function ImgCriteriaForm(props) {
     null,
     _react2.default.createElement(_Header2.default, null),
     _react2.default.createElement(_ProgressBar2.default, { form: '1' }),
-    _react2.default.createElement(_SectionTitle2.default, { heading: 'WHY ARE YOUR REPORTING?', subheading: 'The content must fit a certain criteria for us to legally remove it.', span: 'Please select from boxes below that tell us what you are concerned about the content.' }),
+    _react2.default.createElement(_SectionTitle2.default, { heading: 'TELL US ABOUT THE IMAGE OR VIDEO', subheading: 'Does the image or video contain:', span: 'Please select from boxes below that tell us what you are concerned about the content.' }),
     _react2.default.createElement(
       'div',
       { className: 'form-container' },
@@ -20695,7 +20695,7 @@ var ImgCriteriaForm = function ImgCriteriaForm(props) {
             leftCheckbox: _react2.default.createElement(_Checkbox2.default, null)
           })
         ),
-        _react2.default.createElement(_RaisedButton2.default, { label: 'Next', primary: true, onClick: function onClick() {
+        _react2.default.createElement(_RaisedButton2.default, { label: 'NEXT', primary: true, onClick: function onClick() {
             return props.changeForm();
           } })
       )
@@ -20711,13 +20711,19 @@ var ImgCriteriaForm = function ImgCriteriaForm(props) {
       _react2.default.createElement(
         'span',
         null,
-        'If the picture or video doesnt include any of the activities above, we may not be able to remove it. Talk to a',
+        'If the picture or video does not include any of the above, we may not be able to remove it. But there are other ways to get support - get advice on the ',
+        _react2.default.createElement(
+          'a',
+          { href: 'https://www.childline.org.uk' },
+          'Childline website'
+        ),
+        ' or talk to a',
         _react2.default.createElement(
           'a',
           { href: 'https://www.childline.org.uk/get-support/1-2-1-counsellor-chat/' },
-          ' Childline counsellor '
+          ' Childline counsellor'
         ),
-        'for more advice.'
+        '.'
       )
     ),
     _react2.default.createElement(_Footer2.default, null)
@@ -20862,7 +20868,7 @@ var UrlDescriptionForm = function (_React$Component) {
               'div',
               { className: 'input-field col s6' },
               _react2.default.createElement(_TextField2.default, {
-                hintText: 'http://...',
+                hintText: '[If there is more than one website, add these in the box below',
                 floatingLabelText: 'url',
                 value: this.props.url,
                 onChange: function onChange(e) {
@@ -20875,7 +20881,7 @@ var UrlDescriptionForm = function (_React$Component) {
               'div',
               { className: 'input-field-2 input-field col s6 ' },
               _react2.default.createElement(_TextField2.default, {
-                hintText: 'Message Field',
+                hintText: 'Tell us about where you found the image',
                 floatingLabelText: 'Description',
                 multiLine: true,
                 rows: 4,
