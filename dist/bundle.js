@@ -19442,7 +19442,8 @@ var forms = function forms() {
       });
     case _actionTypes.CHANGE_FORM:
       return _extends({}, state, {
-        firstForm: !state.firstForm
+        firstForm: !state.firstForm,
+        required: false
       });
     case _actionTypes.TOGGLE_CRITERIA:
       return _extends({}, state, {
@@ -20892,7 +20893,12 @@ var UrlDescriptionForm = function (_React$Component) {
                 },
                 errorStyle: styles.errorStyle
               }),
-              _react2.default.createElement('br', null)
+              _react2.default.createElement('br', null),
+              this.props.required && _react2.default.createElement(
+                'h2',
+                { className: 'required' },
+                'Check one of the options!!'
+              )
             ),
             _react2.default.createElement(
               'div',
@@ -20919,12 +20925,17 @@ var UrlDescriptionForm = function (_React$Component) {
                 label: 'Submit',
                 primary: true,
                 onClick: function onClick(e) {
-                  _this2.props.changeModal();
-                  _this2.handleSubmit().then(function () {
-                    console.log('Success submitting form');
-                  }).catch(function (error) {
-                    console.log(error);
-                  });
+                  console.log(_this2.props);
+                  if (!_this2.props.url) {
+                    _this2.props.requiredMessage();
+                  } else {
+                    _this2.props.changeModal();
+                    _this2.handleSubmit().then(function () {
+                      console.log('Success submitting form');
+                    }).catch(function (error) {
+                      console.log(error);
+                    });
+                  }
                 },
                 id: 'submit-url'
               })
