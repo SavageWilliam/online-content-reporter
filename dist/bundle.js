@@ -20704,10 +20704,10 @@ var ImgCriteriaForm = function ImgCriteriaForm(props) {
         props.required && _react2.default.createElement(
           'h2',
           { className: 'required' },
-          'Check one of the options!!'
+          'You can\'t proceed without selection at least one criteria.'
         ),
         _react2.default.createElement(_RaisedButton2.default, { label: 'Next', primary: true, onClick: function onClick() {
-            console.log(props);if (props.imageCriteria.length !== 0) {
+            if (props.imageCriteria.length !== 0) {
               props.changeForm();
             } else {
               props.requiredMessage();
@@ -20897,7 +20897,7 @@ var UrlDescriptionForm = function (_React$Component) {
               this.props.required && _react2.default.createElement(
                 'h2',
                 { className: 'required' },
-                'Check one of the options!!'
+                'You can nott proceed without sharing at least one url.'
               )
             ),
             _react2.default.createElement(
@@ -20925,10 +20925,10 @@ var UrlDescriptionForm = function (_React$Component) {
                 label: 'Submit',
                 primary: true,
                 onClick: function onClick(e) {
-                  console.log(_this2.props);
                   if (!_this2.props.url) {
                     _this2.props.requiredMessage();
                   } else {
+                    _this2.props.requiredMessage();
                     _this2.props.changeModal();
                     _this2.handleSubmit().then(function () {
                       console.log('Success submitting form');
