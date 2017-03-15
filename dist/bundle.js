@@ -5695,8 +5695,7 @@ exports.default = SectionTitle;
 module.exports = {
   // YOTI
   ADD_QR_CODE: 'ADD_QR_CODE',
-  SHOW_QR: 'SHOW_QR',
-  HIDE_QR: 'HIDE_QR',
+  CHANGE_QR: 'CHANGE_QR',
   SET_UP_FOR_MOBILE: 'SET_UP_FOR_MOBILE',
   // forms
   CHANGE_MODAL: 'CHANGE_MODAL',
@@ -11357,7 +11356,7 @@ module.exports = function bind(fn, thisArg) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.hideQr = exports.showQr = exports.setUpForMobile = exports.addQr = undefined;
+exports.changeQr = exports.setUpForMobile = exports.addQr = undefined;
 
 var _actionTypes = __webpack_require__(74);
 
@@ -11384,16 +11383,9 @@ var setUpForMobile = exports.setUpForMobile = function setUpForMobile(href) {
   };
 };
 
-var showQr = exports.showQr = function showQr() {
+var changeQr = exports.changeQr = function changeQr() {
   return {
-    type: types.SHOW_QR,
-    showQr: true
-  };
-};
-
-var hideQr = exports.hideQr = function hideQr() {
-  return {
-    type: types.HIDE_QR
+    type: types.CHANGE_QR
   };
 };
 
@@ -19514,13 +19506,9 @@ var yoti = function yoti() {
         buttonStyle: action.buttonStyle,
         buttonLabelStyle: action.buttonLabelStyle
       });
-    case _actionTypes.SHOW_QR:
+    case _actionTypes.CHANGE_QR:
       return _extends({}, state, {
-        showQr: action.showQr
-      });
-    case _actionTypes.HIDE_QR:
-      return _extends({}, state, {
-        showQr: false
+        showQr: !state.showQr
       });
     default:
       return state;
@@ -21133,7 +21121,7 @@ var YotiShareButton = function (_React$Component) {
       console.log('I am called!!');
       console.log(this.props.yoti.showQr);
       console.log(this.props);
-      this.props.hideQr();
+      this.props.changeQr();
       console.log(this.props.yoti.showQr);
     }
   }, {
@@ -21157,7 +21145,7 @@ var YotiShareButton = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var clickHandler = this.props.yoti.isMobile ? this.navigateToYoti : this.props.showQr;
+      var clickHandler = this.props.yoti.isMobile ? this.navigateToYoti : this.props.changeQr;
       return _react2.default.createElement(
         'div',
         null,
