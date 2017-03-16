@@ -20693,17 +20693,13 @@ var ConfirmationModal = function (_React$Component) {
             { className: 'last_p' },
             'If you are worried about anything, Childline is always here for you. Call us for free on 0800 1111 or speak to us online.'
           ),
-          _react2.default.createElement(
-            _reactRouter.Link,
-            { className: 'modal-link', to: '/' },
-            _react2.default.createElement(_RaisedButton2.default, { primary: true, label: 'Submit', onClick: function onClick() {
-                if (_this2.validateEmail()) {
-                  _this2.handleEmailSubmit();
-                } else {
-                  _this2.renderValidEmailRequired();
-                }
-              } })
-          )
+          _react2.default.createElement(_RaisedButton2.default, { primary: true, label: 'Submit', onClick: function onClick() {
+              if (_this2.validateEmail()) {
+                _this2.handleEmailSubmit();
+              } else {
+                _this2.renderValidEmailRequired();
+              }
+            } })
         )
       );
     }
@@ -20711,7 +20707,7 @@ var ConfirmationModal = function (_React$Component) {
 
   return ConfirmationModal;
 }(_react2.default.Component);
-//
+//<Link className='modal-link' to='/'></Link>;
 
 module.exports = ConfirmationModal;
 
