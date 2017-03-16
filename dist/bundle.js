@@ -20719,7 +20719,7 @@ var ConfirmationModal = function (_React$Component) {
           ),
           _react2.default.createElement(_RaisedButton2.default, { primary: true, label: 'Submit', onClick: function onClick() {
               if (_this2.validateEmail()) {
-                _this2.props.hideValidEmailRequiredMessage();editLink;_this2.handleEmailSubmit();
+                _this2.props.hideValidEmailRequiredMessage();_reactRouter.browserHistory.push('/');_this2.handleEmailSubmit();
               } else {
                 _this2.renderValidEmailRequired();
               }
