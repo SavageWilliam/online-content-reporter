@@ -20615,6 +20615,13 @@ var ConfirmationModal = function (_React$Component) {
   }
 
   _createClass(ConfirmationModal, [{
+    key: 'renderValidEmailRequired',
+    value: function renderValidEmailRequired() {
+      if (!this.validateEmail()) {
+        return true;
+      }
+    }
+  }, {
     key: 'handleEmailSubmit',
     value: function handleEmailSubmit() {
       var _props = this.props,
@@ -20677,6 +20684,11 @@ var ConfirmationModal = function (_React$Component) {
             }
           }),
           _react2.default.createElement('br', null),
+          !this.validateEmail() && _react2.default.createElement(
+            'h2',
+            { className: 'required' },
+            'Please enter a valid email address'
+          ),
           _react2.default.createElement(
             'p',
             { className: 'last_p' },
@@ -20686,7 +20698,11 @@ var ConfirmationModal = function (_React$Component) {
             _reactRouter.Link,
             { className: 'modal-link', to: '/' },
             _react2.default.createElement(_RaisedButton2.default, { primary: true, label: 'Submit', onClick: function onClick() {
-                _this2.validateEmail();_this2.handleEmailSubmit();
+                if (_this2.validateEmail()) {
+                  _this2.handleEmailSubmit();
+                } else {
+                  _this2.renderValidEmailRequired();
+                }
               } })
           )
         )
