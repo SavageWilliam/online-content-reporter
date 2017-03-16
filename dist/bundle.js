@@ -5680,13 +5680,17 @@ exports.default = SectionTitle;
 module.exports = {
   // YOTI
   ADD_QR_CODE: 'ADD_QR_CODE',
-  CHANGE_QR: 'CHANGE_QR',
   CLOSE_QR: 'CLOSE_QR',
   OPEN_QR: 'OPEN_QR',
   SET_UP_FOR_MOBILE: 'SET_UP_FOR_MOBILE',
   // forms
   CHANGE_MODAL: 'CHANGE_MODAL',
   CHANGE_FORM: 'CHANGE_FORM',
+  CHANGE_OPTION1: 'CHANGE_OPTION1',
+  CHANGE_OPTION2: 'CHANGE_OPTION2',
+  CHANGE_OPTION3: 'CHANGE_OPTION3',
+  CHANGE_OPTION4: 'CHANGE_OPTION4',
+  CHANGE_OPTION5: 'CHANGE_OPTION5',
   SHOW_URL_REQUIRED_MESSAGE: 'SHOW_URL_REQUIRED_MESSAGE',
   SHOW_CRITERIA_REQUIRED_MESSAGE: 'SHOW_CRITERIA_REQUIRED_MESSAGE',
   VALID_EMAIL_REQUIRED_MESSAGE: 'VALID_EMAIL_REQUIRED_MESSAGE',
@@ -11348,7 +11352,7 @@ module.exports = function bind(fn, thisArg) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.openQr = exports.closeQr = exports.changeQr = exports.setUpForMobile = exports.addQr = undefined;
+exports.openQr = exports.closeQr = exports.setUpForMobile = exports.addQr = undefined;
 
 var _actionTypes = __webpack_require__(74);
 
@@ -11372,12 +11376,6 @@ var setUpForMobile = exports.setUpForMobile = function setUpForMobile(href) {
     isMobile: false,
     buttonLabelStyle: { fontSize: '0.8rem', textTransform: 'none', fontFamily: 'childline' },
     buttonStyle: { whiteSpace: 'nowrap', minWidth: '5rem' }
-  };
-};
-
-var changeQr = exports.changeQr = function changeQr() {
-  return {
-    type: types.CHANGE_QR
   };
 };
 
@@ -19525,7 +19523,12 @@ var initialState = {
   description: '',
   criteriaRequiredMessage: false,
   urlRequiredMessage: false,
-  validEmail: true
+  validEmail: true,
+  option1: false,
+  option2: false,
+  option3: false,
+  option4: false,
+  option5: false
 };
 
 var forms = function forms() {
@@ -19549,6 +19552,26 @@ var forms = function forms() {
           state.imageCriteria.splice(state.imageCriteria.indexOf(action.criteria), 1);
           return state.imageCriteria;
         }() : state.imageCriteria.concat(action.criteria)
+      });
+    case _actionTypes.CHANGE_OPTION1:
+      return _extends({}, state, {
+        option1: !state.option1
+      });
+    case _actionTypes.CHANGE_OPTION2:
+      return _extends({}, state, {
+        option2: !state.option2
+      });
+    case _actionTypes.CHANGE_OPTION3:
+      return _extends({}, state, {
+        option3: !state.option3
+      });
+    case _actionTypes.CHANGE_OPTION4:
+      return _extends({}, state, {
+        option4: !state.option4
+      });
+    case _actionTypes.CHANGE_OPTION5:
+      return _extends({}, state, {
+        option5: !state.option5
       });
     case _actionTypes.SAVE_DESCRIPTION:
       return _extends({}, state, {
@@ -19628,10 +19651,6 @@ var yoti = function yoti() {
         target: action.target,
         buttonStyle: action.buttonStyle,
         buttonLabelStyle: action.buttonLabelStyle
-      });
-    case _actionTypes.CHANGE_QR:
-      return _extends({}, state, {
-        showQr: !state.showQr
       });
     case _actionTypes.CLOSE_QR:
       return _extends({}, state, {
@@ -20566,7 +20585,7 @@ module.exports = function spread(callback) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.hideValidEmailRequiredMessage = exports.validEmailRequiredMessage = exports.showCriteriaRequiredMessage = exports.showUrlRequiredMessage = exports.saveEmail = exports.saveDescription = exports.saveUrl = exports.toggleCriteria = exports.changeForm = exports.changeModal = undefined;
+exports.hideValidEmailRequiredMessage = exports.validEmailRequiredMessage = exports.showCriteriaRequiredMessage = exports.showUrlRequiredMessage = exports.saveEmail = exports.saveDescription = exports.saveUrl = exports.toggleCriteria = exports.checkOption5 = exports.checkOption4 = exports.checkOption3 = exports.checkOption2 = exports.checkOption1 = exports.changeForm = exports.changeModal = undefined;
 
 var _actionTypes = __webpack_require__(74);
 
@@ -20585,6 +20604,32 @@ var changeForm = exports.changeForm = function changeForm() {
   };
 };
 
+var checkOption1 = exports.checkOption1 = function checkOption1() {
+  return {
+    type: types.CHANGE_OPTION1
+  };
+};
+
+var checkOption2 = exports.checkOption2 = function checkOption2() {
+  return {
+    type: types.CHANGE_OPTION2
+  };
+};
+var checkOption3 = exports.checkOption3 = function checkOption3() {
+  return {
+    type: types.CHANGE_OPTION3
+  };
+};
+var checkOption4 = exports.checkOption4 = function checkOption4() {
+  return {
+    type: types.CHANGE_OPTION4
+  };
+};
+var checkOption5 = exports.checkOption5 = function checkOption5() {
+  return {
+    type: types.CHANGE_OPTION5
+  };
+};
 var toggleCriteria = exports.toggleCriteria = function toggleCriteria(criteria) {
   return {
     type: types.TOGGLE_CRITERIA,
@@ -20910,40 +20955,45 @@ var ImgCriteriaForm = function (_React$Component) {
                 primaryText: 'Someone posing in a sexual way',
                 onChange: function onChange() {
                   _this2.props.toggleCriteria('Someone posing in a sexual way');
+                  _this2.props.checkOption1();
                 },
-                leftCheckbox: _react2.default.createElement(_Checkbox2.default, null)
+                leftCheckbox: _react2.default.createElement(_Checkbox2.default, { checked: this.props.option1 })
               }),
               _react2.default.createElement(_List.ListItem, {
                 style: { backgroundColor: 'white', margin: '0.25rem 0' },
                 primaryText: 'Someone touching themselves in a sexual way',
                 onChange: function onChange() {
                   _this2.props.toggleCriteria('Someone touching themselves in a sexual way');
+                  _this2.props.checkOption2();
                 },
-                leftCheckbox: _react2.default.createElement(_Checkbox2.default, null)
+                leftCheckbox: _react2.default.createElement(_Checkbox2.default, { checked: this.props.option2 })
               }),
               _react2.default.createElement(_List.ListItem, {
                 style: { backgroundColor: 'white', margin: '0.25rem 0' },
                 primaryText: 'Any sexual activity involving a child, adult or both',
                 onChange: function onChange() {
                   _this2.props.toggleCriteria('Any sexual activity involving a child, adult or both');
+                  _this2.props.checkOption3();
                 },
-                leftCheckbox: _react2.default.createElement(_Checkbox2.default, null)
+                leftCheckbox: _react2.default.createElement(_Checkbox2.default, { checked: this.props.option3 })
               }),
               _react2.default.createElement(_List.ListItem, {
                 style: { backgroundColor: 'white', margin: '0.25rem 0' },
                 primaryText: 'Someone hurting someone else',
                 onChange: function onChange() {
                   _this2.props.toggleCriteria('Someone hurting someone else');
+                  _this2.props.checkOption4();
                 },
-                leftCheckbox: _react2.default.createElement(_Checkbox2.default, null)
+                leftCheckbox: _react2.default.createElement(_Checkbox2.default, { checked: this.props.option4 })
               }),
               _react2.default.createElement(_List.ListItem, {
                 style: { backgroundColor: 'white', margin: '0.25rem 0' },
                 primaryText: 'Sexual activity that includes animals',
                 onChange: function onChange() {
                   _this2.props.toggleCriteria('Sexual activity that includes animals');
+                  _this2.props.checkOption5();
                 },
-                leftCheckbox: _react2.default.createElement(_Checkbox2.default, null)
+                leftCheckbox: _react2.default.createElement(_Checkbox2.default, { checked: this.props.option5 })
               })
             ),
             this.renderRequiredMessage(),
