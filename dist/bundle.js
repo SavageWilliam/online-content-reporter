@@ -19114,13 +19114,21 @@ var _SectionTitle2 = _interopRequireDefault(_SectionTitle);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
+/*
+<div className='option'>
+  <i className='identity small material-icons'>contacts</i>
+  <a className='contact' href='https://www.ceop.police.uk/CEOP-Reporting/'>
+    Contact CEOP
+  </a>
+</div>
+*/
 var OverAge = function OverAge() {
   return _react2.default.createElement(
     'div',
     null,
     _react2.default.createElement(_Header2.default, null),
     _react2.default.createElement(_SectionTitle2.default, {
-      heading: 'SORRY, YOU\'RE TOO OLD FOR THIS SERVICE',
+      heading: 'SORRY, WE CAN ONLY HELP IF YOU\'RE UNDER 18',
       subheading: 'There are still lots of things you can do. Try contacting:'
     }),
     _react2.default.createElement(
@@ -19178,8 +19186,8 @@ var OverAge = function OverAge() {
         ),
         _react2.default.createElement(
           'a',
-          { className: 'contact', href: 'https://www.ceop.police.uk/CEOP-Reporting/' },
-          'Contact CEOP'
+          { className: 'contact', href: 'http://www.themix.org.uk/' },
+          'Contact The Mix'
         )
       ),
       _react2.default.createElement(
@@ -19192,8 +19200,8 @@ var OverAge = function OverAge() {
         ),
         _react2.default.createElement(
           'a',
-          { className: 'contact', href: 'http://www.themix.org.uk/' },
-          'Contact The Mix'
+          { className: 'contact', href: 'http://www.samaritans.org/' },
+          'Contact Samaritans'
         )
       )
     ),
