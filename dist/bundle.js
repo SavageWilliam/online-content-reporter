@@ -20667,7 +20667,6 @@ var ConfirmationModal = function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      var editLink = _react2.default.createElement(_reactRouter.Link, { className: 'modal-link', to: '/' });
       return _react2.default.createElement(
         _reactModal2.default,
         {
@@ -20731,7 +20730,6 @@ var ConfirmationModal = function (_React$Component) {
 
   return ConfirmationModal;
 }(_react2.default.Component);
-//<Link className='modal-link' to='/'></Link>;
 
 module.exports = ConfirmationModal;
 
