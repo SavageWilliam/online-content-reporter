@@ -19048,7 +19048,7 @@ var AgeCheckPage = function AgeCheckPage() {
       _react2.default.createElement(
         'h3',
         null,
-        'What can I do if I am over 17?'
+        'What can I do if I am over 18?'
       ),
       _react2.default.createElement(
         'p',
@@ -20737,6 +20737,7 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+// old span Please select from boxes below that tell us what you are concerned about the content.
 var ImgCriteriaForm = function (_React$Component) {
   _inherits(ImgCriteriaForm, _React$Component);
 
@@ -20753,7 +20754,7 @@ var ImgCriteriaForm = function (_React$Component) {
         return _react2.default.createElement(
           'h2',
           { className: 'required' },
-          'You can\'t proceed without selecting at least one criteria.'
+          'You can\'t proceed without ticking at least one option'
         );
       }
     }
@@ -20768,7 +20769,7 @@ var ImgCriteriaForm = function (_React$Component) {
         null,
         _react2.default.createElement(_Header2.default, null),
         _react2.default.createElement(_ProgressBar2.default, { form: '1' }),
-        _react2.default.createElement(_SectionTitle2.default, { heading: 'WHY ARE YOUR REPORTING?', subheading: 'The content must fit a certain criteria for us to legally remove it.', span: 'Please select from boxes below that tell us what you are concerned about the content.' }),
+        _react2.default.createElement(_SectionTitle2.default, { heading: 'PLEASE TELL US MORE ABOUT THE IMAGE OR VIDEO', subheading: 'The content must fit a certain criteria for us to legally remove it.', span: 'Does the image contain one or more of the following:' }),
         _react2.default.createElement(
           'div',
           { className: 'form-container' },
