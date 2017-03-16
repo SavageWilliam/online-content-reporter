@@ -20617,9 +20617,7 @@ var ConfirmationModal = function (_React$Component) {
   _createClass(ConfirmationModal, [{
     key: 'renderValidEmailRequired',
     value: function renderValidEmailRequired() {
-      if (!this.validateEmail()) {
-        return true;
-      }
+      this.props.showCriteriaRequiredMessage();
     }
   }, {
     key: 'handleEmailSubmit',
@@ -20638,6 +20636,7 @@ var ConfirmationModal = function (_React$Component) {
     value: function validateEmail() {
       var pattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
       console.log(pattern.test(this.props.email));
+      console.log(this.props.criteriaRequiredMessage);
       return pattern.test(this.props.email);
     }
   }, {
@@ -20659,7 +20658,7 @@ var ConfirmationModal = function (_React$Component) {
           'div',
           { className: 'mod' },
           _react2.default.createElement(_RaisedButton2.default, { className: 'close_btn', primary: true, label: 'X', onClick: function onClick() {
-              return props.changeModal();
+              return _this2.props.changeModal();
             } }),
           _react2.default.createElement(
             'h2',
@@ -20684,7 +20683,7 @@ var ConfirmationModal = function (_React$Component) {
             }
           }),
           _react2.default.createElement('br', null),
-          !this.validateEmail() && _react2.default.createElement(
+          this.props.criteriaRequiredMessage && _react2.default.createElement(
             'h2',
             { className: 'required' },
             'Please enter a valid email address'
