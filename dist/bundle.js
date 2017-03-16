@@ -20627,6 +20627,13 @@ var ConfirmationModal = function (_React$Component) {
       return _axios2.default.post('/email', payload);
     }
   }, {
+    key: 'validateEmail',
+    value: function validateEmail() {
+      var pattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
+      console.log(pattern.test(this.props.email));
+      return pattern.test(this.props.email);
+    }
+  }, {
     key: 'render',
     value: function render() {
       var _this2 = this;
@@ -20679,7 +20686,7 @@ var ConfirmationModal = function (_React$Component) {
             _reactRouter.Link,
             { className: 'modal-link', to: '/' },
             _react2.default.createElement(_RaisedButton2.default, { primary: true, label: 'Submit', onClick: function onClick() {
-                return _this2.handleEmailSubmit();
+                _this2.validateEmail();_this2.handleEmailSubmit();
               } })
           )
         )
@@ -20689,6 +20696,7 @@ var ConfirmationModal = function (_React$Component) {
 
   return ConfirmationModal;
 }(_react2.default.Component);
+//
 
 module.exports = ConfirmationModal;
 
