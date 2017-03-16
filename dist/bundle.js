@@ -5036,7 +5036,7 @@ var Header = function Header() {
   return _react2.default.createElement(
     'h2',
     { className: 'header' },
-    'REPORT CONCERN WITH ONLINE CONTENT'
+    'REPORT AN IMAGE OR VIDEO'
   );
 };
 
@@ -5681,6 +5681,8 @@ module.exports = {
   // YOTI
   ADD_QR_CODE: 'ADD_QR_CODE',
   CHANGE_QR: 'CHANGE_QR',
+  CLOSE_QR: 'CLOSE_QR',
+  OPEN_QR: 'OPEN_QR',
   SET_UP_FOR_MOBILE: 'SET_UP_FOR_MOBILE',
   // forms
   CHANGE_MODAL: 'CHANGE_MODAL',
@@ -11346,7 +11348,7 @@ module.exports = function bind(fn, thisArg) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.changeQr = exports.setUpForMobile = exports.addQr = undefined;
+exports.openQr = exports.closeQr = exports.changeQr = exports.setUpForMobile = exports.addQr = undefined;
 
 var _actionTypes = __webpack_require__(74);
 
@@ -11376,6 +11378,18 @@ var setUpForMobile = exports.setUpForMobile = function setUpForMobile(href) {
 var changeQr = exports.changeQr = function changeQr() {
   return {
     type: types.CHANGE_QR
+  };
+};
+
+var closeQr = exports.closeQr = function closeQr() {
+  return {
+    type: types.CLOSE_QR
+  };
+};
+
+var openQr = exports.openQr = function openQr() {
+  return {
+    type: types.OPEN_QR
   };
 };
 
@@ -19619,6 +19633,14 @@ var yoti = function yoti() {
       return _extends({}, state, {
         showQr: !state.showQr
       });
+    case _actionTypes.CLOSE_QR:
+      return _extends({}, state, {
+        showQr: false
+      });
+    case _actionTypes.OPEN_QR:
+      return _extends({}, state, {
+        showQr: true
+      });
     default:
       return state;
   }
@@ -21392,7 +21414,7 @@ var YotiShareButton = function (_React$Component) {
       //   /Mobile/i.test(navigator.userAgent)
       // if (isMobile) this.mobileSetup()
       // else this.getQr()
-
+      console.log(this.props);
       if (!this.props.yoti.isMobile) {
         this.getQr();
       }
@@ -21400,7 +21422,8 @@ var YotiShareButton = function (_React$Component) {
   }, {
     key: 'componentWillUnmount',
     value: function componentWillUnmount() {
-      this.props.changeQr();
+      console.log('I have been called');
+      this.props.closeQr();
     }
   }, {
     key: 'getQr',
@@ -21423,7 +21446,7 @@ var YotiShareButton = function (_React$Component) {
   }, {
     key: 'render',
     value: function render() {
-      var clickHandler = this.props.yoti.isMobile ? this.navigateToYoti : this.props.changeQr;
+      var clickHandler = this.props.yoti.isMobile ? this.navigateToYoti : this.props.openQr;
       return _react2.default.createElement(
         'div',
         null,
