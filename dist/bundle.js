@@ -20777,6 +20777,11 @@ var ConfirmationModal = function (_React$Component) {
       return pattern.test(this.props.email);
     }
   }, {
+    key: 'componentWillUnmount',
+    value: function componentWillUnmount() {
+      this.props.changeModal();
+    }
+  }, {
     key: 'render',
     value: function render() {
       var _this2 = this;
@@ -20926,7 +20931,6 @@ var ImgCriteriaForm = function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      console.log('PROPS for criteria', this.props);
       return _react2.default.createElement(
         'div',
         null,
@@ -21456,7 +21460,6 @@ var YotiShareButton = function (_React$Component) {
       //   /Mobile/i.test(navigator.userAgent)
       // if (isMobile) this.mobileSetup()
       // else this.getQr()
-      console.log(this.props);
       if (!this.props.yoti.isMobile) {
         this.getQr();
       }
@@ -21464,7 +21467,6 @@ var YotiShareButton = function (_React$Component) {
   }, {
     key: 'componentWillUnmount',
     value: function componentWillUnmount() {
-      console.log('I have been called');
       this.props.closeQr();
     }
   }, {
