@@ -21409,6 +21409,7 @@ var YotiShareButton = function (_React$Component) {
 
       var host = 'wss://api.yoti.com/api/v1/connect-sessions/' + proto;
       var socket = new WebSocket(host);
+      socket.set('transports', ['websocket', 'flashsocket', 'htmlfile', 'xhr-polling', 'jsonp-polling']);
       socket.onopen = function () {
         socket.send(JSON.stringify({ subscription: proto }));
       };
