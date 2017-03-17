@@ -11419,7 +11419,7 @@ var ProgressBar = function ProgressBar(props) {
       null,
       'Step ',
       props.form === '1' ? 1 : 2,
-      ' of 2 '
+      ' of 2'
     )
   );
 };
@@ -19183,14 +19183,6 @@ var _SectionTitle2 = _interopRequireDefault(_SectionTitle);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-/*
-<div className='option'>
-  <i className='identity small material-icons'>contacts</i>
-  <a className='contact' href='https://www.ceop.police.uk/CEOP-Reporting/'>
-    Contact CEOP
-  </a>
-</div>
-*/
 var OverAge = function OverAge() {
   return _react2.default.createElement(
     'div',
