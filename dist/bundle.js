@@ -50279,7 +50279,8 @@ var reducers = (0, _redux.combineReducers)({
 });
 
 var store = (0, _redux.createStore)(reducers);
-var history = (0, _reactRouterRedux.syncHistoryWithStore)(_reactRouter.browserHistory, store);
+// // try this for refresh..
+// const history = syncHistoryWithStore(browserHistory, store)
 
 _reactDom2.default.render(_react2.default.createElement(
   _MuiThemeProvider2.default,
@@ -50289,7 +50290,7 @@ _reactDom2.default.render(_react2.default.createElement(
     { store: store },
     _react2.default.createElement(
       _reactRouter.Router,
-      { history: history },
+      { history: _reactRouter.browserHistory },
       _react2.default.createElement(_reactRouter.Route, { path: '/', component: _Home2.default }),
       _react2.default.createElement(_reactRouter.Route, { path: '/age-check', component: _AgeCheckPage2.default }),
       _react2.default.createElement(_reactRouter.Route, { path: '/form', component: _Forms2.default }),
