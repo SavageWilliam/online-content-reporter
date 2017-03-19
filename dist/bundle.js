@@ -21256,7 +21256,7 @@ var UrlDescriptionForm = function (_React$Component) {
   }, {
     key: 'renderRequiredMessage',
     value: function renderRequiredMessage() {
-      if (this.props.urlRequiredMessage) {
+      if (this.props.forms.urlRequiredMessage) {
         return _react2.default.createElement(
           'h2',
           { className: 'required' },
