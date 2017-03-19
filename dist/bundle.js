@@ -5683,6 +5683,7 @@ module.exports = {
   CLOSE_QR: 'CLOSE_QR',
   OPEN_QR: 'OPEN_QR',
   SET_UP_FOR_MOBILE: 'SET_UP_FOR_MOBILE',
+  AGE_IS_VERIFIED: 'AGE_IS_VERIFIED',
   // forms
   CHANGE_MODAL: 'CHANGE_MODAL',
   CHANGE_FORM: 'CHANGE_FORM',
@@ -11352,7 +11353,7 @@ module.exports = function bind(fn, thisArg) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.openQr = exports.closeQr = exports.setUpForMobile = exports.addQr = undefined;
+exports.openQr = exports.closeQr = exports.ageIsVerified = exports.setUpForMobile = exports.addQr = undefined;
 
 var _actionTypes = __webpack_require__(74);
 
@@ -11376,6 +11377,12 @@ var setUpForMobile = exports.setUpForMobile = function setUpForMobile(href) {
     isMobile: false,
     buttonLabelStyle: { fontSize: '0.8rem', textTransform: 'none', fontFamily: 'childline' },
     buttonStyle: { whiteSpace: 'nowrap', minWidth: '5rem' }
+  };
+};
+
+var ageIsVerified = exports.ageIsVerified = function ageIsVerified() {
+  return {
+    type: types.AGE_IS_VERIFIED
   };
 };
 
@@ -17201,93 +17208,8 @@ function verifyPlainObject(value, displayName, methodName) {
 }
 
 /***/ }),
-/* 215 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-/**
- * This action type will be dispatched by the history actions below.
- * If you're writing a middleware to watch for navigation events, be sure to
- * look for actions of this type.
- */
-var CALL_HISTORY_METHOD = exports.CALL_HISTORY_METHOD = '@@router/CALL_HISTORY_METHOD';
-
-function updateLocation(method) {
-  return function () {
-    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
-      args[_key] = arguments[_key];
-    }
-
-    return {
-      type: CALL_HISTORY_METHOD,
-      payload: { method: method, args: args }
-    };
-  };
-}
-
-/**
- * These actions correspond to the history API.
- * The associated routerMiddleware will capture these events before they get to
- * your reducer and reissue them as the matching function on your history.
- */
-var push = exports.push = updateLocation('push');
-var replace = exports.replace = updateLocation('replace');
-var go = exports.go = updateLocation('go');
-var goBack = exports.goBack = updateLocation('goBack');
-var goForward = exports.goForward = updateLocation('goForward');
-
-var routerActions = exports.routerActions = { push: push, replace: replace, go: go, goBack: goBack, goForward: goForward };
-
-/***/ }),
-/* 216 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-exports.routerReducer = routerReducer;
-/**
- * This action type will be dispatched when your history
- * receives a location change.
- */
-var LOCATION_CHANGE = exports.LOCATION_CHANGE = '@@router/LOCATION_CHANGE';
-
-var initialState = {
-  locationBeforeTransitions: null
-};
-
-/**
- * This reducer will update the state with the most recent location history
- * has transitioned to. This may not be in sync with the router, particularly
- * if you have asynchronously-loaded routes, so reading from and relying on
- * this state is discouraged.
- */
-function routerReducer() {
-  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : initialState;
-
-  var _ref = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : {},
-      type = _ref.type,
-      payload = _ref.payload;
-
-  if (type === LOCATION_CHANGE) {
-    return _extends({}, state, { locationBeforeTransitions: payload });
-  }
-
-  return state;
-}
-
-/***/ }),
+/* 215 */,
+/* 216 */,
 /* 217 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -19450,8 +19372,8 @@ var UrlForm = function (_React$Component) {
       return _react2.default.createElement(
         'div',
         null,
-        this.props.firstForm && _react2.default.createElement(_ImgCriteriaForm2.default, this.props),
-        !this.props.firstForm && _react2.default.createElement(_UrlDescriptionForm2.default, this.props)
+        this.props.forms.firstForm && _react2.default.createElement(_ImgCriteriaForm2.default, this.props),
+        !this.props.forms.firstForm && _react2.default.createElement(_UrlDescriptionForm2.default, this.props)
       );
     }
   }]);
@@ -19460,7 +19382,7 @@ var UrlForm = function (_React$Component) {
 }(_react2.default.Component);
 
 var mapStateToProps = function mapStateToProps(state) {
-  return state.forms;
+  return state;
 };
 
 var actionCreators = _extends({}, formActions);
@@ -19518,13 +19440,18 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+// import axios from 'axios'
+
 var Home = function (_React$Component) {
   _inherits(Home, _React$Component);
 
-  function Home() {
+  function Home(props) {
     _classCallCheck(this, Home);
 
-    return _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).apply(this, arguments));
+    var _this = _possibleConstructorReturn(this, (Home.__proto__ || Object.getPrototypeOf(Home)).call(this, props));
+
+    _this.mobileSetup = _this.mobileSetup.bind(_this);
+    return _this;
   }
 
   _createClass(Home, [{
@@ -19532,7 +19459,26 @@ var Home = function (_React$Component) {
     value: function componentWillMount() {
       var isMobileRE = /webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini|Android/i;
       var isMobile = isMobileRE.test(navigator.userAgent) && /Mobile/i.test(navigator.userAgent);
-      if (isMobile) this.props.setUpForMobile('#');
+      if (isMobile) this.mobileSetup();
+    }
+  }, {
+    key: 'mobileSetup',
+    value: function mobileSetup() {
+      var href = 'https://www.yoti.com/connect/3392788e-e529-4309-8ed7-54d7ac554055';
+      this.props.setUpForMobile(href);
+
+      // Need Yoti api to fix before implementing this.
+      // var config = {
+      //   headers: {'X-Requested-With': 'XMLHttpRequest', 'content-type': 'application/json'}
+      // }
+      // axios.get('https://www.yoti.com/qr/5be10ae7-af29-40b0-8d33-a0fb90cb0e88', config)
+      //   .then((res) => {
+      //     const href = `${res.data.qrCodeUrl}?callback=${res.data.callbackUrl}&id=${res.data.application.id}&mobile=true`
+      //     this.props.setUpForMobile(href)
+      //   })
+      //   .catch((error) => {
+      //     console.log(error)
+      //   })
     }
   }, {
     key: 'render',
@@ -19684,7 +19630,7 @@ var forms = function forms() {
       });
     case _actionTypes.SHOW_CRITERIA_REQUIRED_MESSAGE:
       return _extends({}, state, {
-        criteriaRequiredMessage: !state.criteriaRequiredMessage
+        criteriaRequiredMessage: action.criteriaRequiredMessage
       });
     case _actionTypes.SHOW_URL_REQUIRED_MESSAGE:
       return _extends({}, state, {
@@ -19725,6 +19671,7 @@ var initialState = {
   target: '_blank',
   haveQr: false,
   showQr: false,
+  isAgeVerified: false,
   buttonLabelStyle: { fontSize: '1.1rem', textTransform: 'none', fontFamily: 'childline' },
   buttonStyle: { padding: '0.8rem 0', whiteSpace: 'nowrap', minWidth: '8rem' }
 };
@@ -19746,6 +19693,10 @@ var yoti = function yoti() {
         target: action.target,
         buttonStyle: action.buttonStyle,
         buttonLabelStyle: action.buttonLabelStyle
+      });
+    case _actionTypes.AGE_IS_VERIFIED:
+      return _extends({}, state, {
+        isAgeVerified: true
       });
     case _actionTypes.CLOSE_QR:
       return _extends({}, state, {
@@ -19836,91 +19787,7 @@ exports.default = MuiThemeProvider;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 245 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.routerMiddleware = exports.routerActions = exports.goForward = exports.goBack = exports.go = exports.replace = exports.push = exports.CALL_HISTORY_METHOD = exports.routerReducer = exports.LOCATION_CHANGE = exports.syncHistoryWithStore = undefined;
-
-var _reducer = __webpack_require__(216);
-
-Object.defineProperty(exports, 'LOCATION_CHANGE', {
-  enumerable: true,
-  get: function get() {
-    return _reducer.LOCATION_CHANGE;
-  }
-});
-Object.defineProperty(exports, 'routerReducer', {
-  enumerable: true,
-  get: function get() {
-    return _reducer.routerReducer;
-  }
-});
-
-var _actions = __webpack_require__(215);
-
-Object.defineProperty(exports, 'CALL_HISTORY_METHOD', {
-  enumerable: true,
-  get: function get() {
-    return _actions.CALL_HISTORY_METHOD;
-  }
-});
-Object.defineProperty(exports, 'push', {
-  enumerable: true,
-  get: function get() {
-    return _actions.push;
-  }
-});
-Object.defineProperty(exports, 'replace', {
-  enumerable: true,
-  get: function get() {
-    return _actions.replace;
-  }
-});
-Object.defineProperty(exports, 'go', {
-  enumerable: true,
-  get: function get() {
-    return _actions.go;
-  }
-});
-Object.defineProperty(exports, 'goBack', {
-  enumerable: true,
-  get: function get() {
-    return _actions.goBack;
-  }
-});
-Object.defineProperty(exports, 'goForward', {
-  enumerable: true,
-  get: function get() {
-    return _actions.goForward;
-  }
-});
-Object.defineProperty(exports, 'routerActions', {
-  enumerable: true,
-  get: function get() {
-    return _actions.routerActions;
-  }
-});
-
-var _sync = __webpack_require__(513);
-
-var _sync2 = _interopRequireDefault(_sync);
-
-var _middleware = __webpack_require__(512);
-
-var _middleware2 = _interopRequireDefault(_middleware);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-exports.syncHistoryWithStore = _sync2['default'];
-exports.routerMiddleware = _middleware2['default'];
-
-/***/ }),
+/* 245 */,
 /* 246 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -20846,7 +20713,8 @@ var showUrlRequiredMessage = exports.showUrlRequiredMessage = function showUrlRe
 
 var showCriteriaRequiredMessage = exports.showCriteriaRequiredMessage = function showCriteriaRequiredMessage() {
   return {
-    type: types.SHOW_CRITERIA_REQUIRED_MESSAGE
+    type: types.SHOW_CRITERIA_REQUIRED_MESSAGE,
+    criteriaRequiredMessage: true
   };
 };
 
@@ -21092,6 +20960,8 @@ var _react2 = _interopRequireDefault(_react);
 
 var _List = __webpack_require__(391);
 
+var _reactRouter = __webpack_require__(44);
+
 var _Checkbox = __webpack_require__(384);
 
 var _Checkbox2 = _interopRequireDefault(_Checkbox);
@@ -21138,12 +21008,19 @@ var ImgCriteriaForm = function (_React$Component) {
   _createClass(ImgCriteriaForm, [{
     key: 'renderRequiredMessage',
     value: function renderRequiredMessage() {
-      if (this.props.criteriaRequiredMessage) {
+      if (this.props.forms.criteriaRequiredMessage) {
         return _react2.default.createElement(
           'h2',
           { className: 'required' },
           'You can\'t proceed without ticking at least one option'
         );
+      }
+    }
+  }, {
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      if (!this.props.yoti.isAgeVerified && !this.props.yoti.isMobile) {
+        _reactRouter.browserHistory.push('/');
       }
     }
   }, {
@@ -21173,7 +21050,7 @@ var ImgCriteriaForm = function (_React$Component) {
                   _this2.props.toggleCriteria('Someone posing in a sexual way');
                   _this2.props.checkOption1();
                 },
-                leftCheckbox: _react2.default.createElement(_Checkbox2.default, { checked: this.props.option1 })
+                leftCheckbox: _react2.default.createElement(_Checkbox2.default, { checked: this.props.forms.option1 })
               }),
               _react2.default.createElement(_List.ListItem, {
                 style: { backgroundColor: 'white', margin: '0.25rem 0' },
@@ -21182,7 +21059,7 @@ var ImgCriteriaForm = function (_React$Component) {
                   _this2.props.toggleCriteria('Someone touching themselves in a sexual way');
                   _this2.props.checkOption2();
                 },
-                leftCheckbox: _react2.default.createElement(_Checkbox2.default, { checked: this.props.option2 })
+                leftCheckbox: _react2.default.createElement(_Checkbox2.default, { checked: this.props.forms.option2 })
               }),
               _react2.default.createElement(_List.ListItem, {
                 style: { backgroundColor: 'white', margin: '0.25rem 0' },
@@ -21191,7 +21068,7 @@ var ImgCriteriaForm = function (_React$Component) {
                   _this2.props.toggleCriteria('Any sexual activity involving a child, adult or both');
                   _this2.props.checkOption3();
                 },
-                leftCheckbox: _react2.default.createElement(_Checkbox2.default, { checked: this.props.option3 })
+                leftCheckbox: _react2.default.createElement(_Checkbox2.default, { checked: this.props.forms.option3 })
               }),
               _react2.default.createElement(_List.ListItem, {
                 style: { backgroundColor: 'white', margin: '0.25rem 0' },
@@ -21200,7 +21077,7 @@ var ImgCriteriaForm = function (_React$Component) {
                   _this2.props.toggleCriteria('Someone hurting someone else');
                   _this2.props.checkOption4();
                 },
-                leftCheckbox: _react2.default.createElement(_Checkbox2.default, { checked: this.props.option4 })
+                leftCheckbox: _react2.default.createElement(_Checkbox2.default, { checked: this.props.forms.option4 })
               }),
               _react2.default.createElement(_List.ListItem, {
                 style: { backgroundColor: 'white', margin: '0.25rem 0' },
@@ -21209,7 +21086,7 @@ var ImgCriteriaForm = function (_React$Component) {
                   _this2.props.toggleCriteria('Sexual activity that includes animals');
                   _this2.props.checkOption5();
                 },
-                leftCheckbox: _react2.default.createElement(_Checkbox2.default, { checked: this.props.option5 })
+                leftCheckbox: _react2.default.createElement(_Checkbox2.default, { checked: this.props.forms.option5 })
               })
             ),
             this.renderRequiredMessage(),
@@ -21217,7 +21094,7 @@ var ImgCriteriaForm = function (_React$Component) {
               label: 'Next',
               primary: true,
               onClick: function onClick() {
-                _this2.props.imageCriteria.length !== 0 ? _this2.props.changeForm() : _this2.props.showCriteriaRequiredMessage();
+                _this2.props.forms.imageCriteria.length !== 0 ? _this2.props.changeForm() : _this2.props.showCriteriaRequiredMessage();
               }
             })
           )
@@ -21328,6 +21205,8 @@ var _axios = __webpack_require__(88);
 
 var _axios2 = _interopRequireDefault(_axios);
 
+var _reactRouter = __webpack_require__(44);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -21355,12 +21234,19 @@ var UrlDescriptionForm = function (_React$Component) {
   }
 
   _createClass(UrlDescriptionForm, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      if (!this.props.yoti.isAgeVerified && !this.props.yoti.isMobile) {
+        _reactRouter.browserHistory.push('/');
+      }
+    }
+  }, {
     key: 'handleUrlSubmit',
     value: function handleUrlSubmit() {
-      var _props = this.props,
-          imageCriteria = _props.imageCriteria,
-          url = _props.url,
-          description = _props.description;
+      var _props$forms = this.props.forms,
+          imageCriteria = _props$forms.imageCriteria,
+          url = _props$forms.url,
+          description = _props$forms.description;
 
       var payload = { imageCriteria: imageCriteria, url: url, description: description };
       return _axios2.default.post('/email', payload).catch(function (error) {
@@ -21432,7 +21318,7 @@ var UrlDescriptionForm = function (_React$Component) {
               _react2.default.createElement(_TextField2.default, {
                 hintText: 'If there is more than one website, add these in the box below',
                 floatingLabelText: 'url',
-                value: this.props.url,
+                value: this.props.forms.url,
                 errorText: 'This field is required',
                 onChange: function onChange(e) {
                   return _this2.props.saveUrl(e.target.value);
@@ -21450,7 +21336,7 @@ var UrlDescriptionForm = function (_React$Component) {
                 floatingLabelText: 'Description',
                 multiLine: true,
                 rows: 4,
-                value: this.props.description,
+                value: this.props.forms.description,
                 onChange: function onChange(e) {
                   return _this2.props.saveDescription(e.target.value);
                 }
@@ -21471,7 +21357,7 @@ var UrlDescriptionForm = function (_React$Component) {
                 label: 'Submit',
                 primary: true,
                 onClick: function onClick(e) {
-                  if (!_this2.props.url) {
+                  if (!_this2.props.forms.url) {
                     _this2.props.showUrlRequiredMessage();
                   } else {
                     _this2.props.changeModal();
@@ -21571,15 +21457,6 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-var t = {
-  config: {
-    service: 'https://www.yoti.com/connect/',
-    qr: 'https://www.yoti.com/qr/'
-  },
-  appId: '3392788e-e529-4309-8ed7-54d7ac554055',
-  scenId: '5be10ae7-af29-40b0-8d33-a0fb90cb0e88'
-};
-
 var YotiShareButton = function (_React$Component) {
   _inherits(YotiShareButton, _React$Component);
 
@@ -21591,34 +21468,47 @@ var YotiShareButton = function (_React$Component) {
     _this.getQr = _this.getQr.bind(_this);
     _this.listenForToken = _this.listenForToken.bind(_this);
     _this.yotiRedirect = _this.yotiRedirect.bind(_this);
-    // this.mobileSetup = this.mobileSetup.bind(this)
-    _this.navigateToYoti = _this.navigateToYoti.bind(_this);
+    // this.verifyAgeMobile = this.verifyAgeMobile.bind(this)
     return _this;
   }
 
   _createClass(YotiShareButton, [{
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      if (!this.props.yoti.isMobile) {
+        this.getQr();
+        this.props.closeQr();
+      }
+    }
+  }, {
+    key: 'getQr',
+    value: function getQr() {
+      var _this2 = this;
+
+      _axios2.default.get('/get-qr').then(function (res) {
+        _this2.props.addQr(res.data.svg);
+        _this2.listenForToken(res.data.proto, res.data.url);
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
+  }, {
     key: 'listenForToken',
     value: function listenForToken(proto, url) {
-      var _this2 = this;
+      var _this3 = this;
 
       var host = 'wss://api.yoti.com/api/v1/connect-sessions/' + proto;
       var socket = new WebSocket(host);
-      // socket.set('transports', [
-      //      'websocket'
-      //    , 'flashsocket'
-      //    , 'htmlfile'
-      //    , 'xhr-polling'
-      //    , 'jsonp-polling'
-      //  ])
       socket.onopen = function () {
         socket.send(JSON.stringify({ subscription: proto }));
       };
       socket.onmessage = function (msg) {
+        _this3.props.ageIsVerified();
         var data = JSON.parse(msg.data);
         switch (data.status) {
           case 'COMPLETED':
             {
-              _this2.yotiRedirect(data.token);
+              _this3.yotiRedirect(data.token);
             }
         }
       };
@@ -21627,65 +21517,28 @@ var YotiShareButton = function (_React$Component) {
     key: 'yotiRedirect',
     value: function yotiRedirect(token) {
       _axios2.default.get('/thankyou?token=' + token).then(function (res) {
-        res.data.isUnder18 ? _reactRouter.browserHistory.push('/form') : _reactRouter.browserHistory.push('/over-age');
+        if (res.data.isUnder18) {
+          _reactRouter.browserHistory.push('/form');
+        } else _reactRouter.browserHistory.push('/over-age');
       }).catch(function (error) {
         console.log(error);
       });
     }
 
-    // Need Yoti api to fix before implementing this.
-    // mobileSetup () {
-    //   var url = 'https://www.yoti.com/qr/' + t.scenId
-    //   var xhr = new XMLHttpRequest()
-    //   xhr.onreadystatechange = () => {
-    //     if (xhr.readyState === 4 && xhr.status === 200) {
-    //       var responseObj = JSON.parse(xhr.responseText)
-    //       const href = `${responseObj.qrCodeUrl}?callback=${responseObj.callbackUrl}&id=${responseObj.application.id}&mobile=true`
-    //       // normally href is passed here below...
-    //       // to fix use href=t.config.service + t.appId
-    //       this.props.setUpForMobile(href)
-    //     }
-    //   }
-    //   xhr.open('GET', url, true)
-    //   xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest')
-    //   xhr.setRequestHeader('content-type', 'application/json')
-    //   xhr.send(null)
+    // verifyAgeMobile (href) {
+    //   axios.get(href)
+    //   .then(res => {
+    //     res.data.isUnder18 ? browserHistory.push('/form') : browserHistory.push('/over-age')
+    //   })
+    //   .catch((error) => {
+    //     console.log(error)
+    //   })
     // }
 
   }, {
-    key: 'componentWillMount',
-    value: function componentWillMount() {
-      if (!this.props.yoti.isMobile) {
-        this.getQr();
-      }
-    }
-  }, {
-    key: 'componentWillUnmount',
-    value: function componentWillUnmount() {
-      this.props.closeQr();
-    }
-  }, {
-    key: 'getQr',
-    value: function getQr() {
-      var _this3 = this;
-
-      _axios2.default.get('/get-qr').then(function (res) {
-        _this3.props.addQr(res.data.svg);
-        _this3.listenForToken(res.data.proto, res.data.url);
-      }).catch(function (error) {
-        console.log(error);
-      });
-    }
-  }, {
-    key: 'navigateToYoti',
-    value: function navigateToYoti() {
-      // When yoti api fixes navigate here goes: window.location = this.props.yoti.href
-      window.location = t.config.service + t.appId;
-    }
-  }, {
     key: 'render',
     value: function render() {
-      var clickHandler = this.props.yoti.isMobile ? this.navigateToYoti : this.props.openQr;
+      var clickHandler = this.props.yoti.isMobile ? null : this.props.openQr;
       return _react2.default.createElement(
         'div',
         null,
@@ -21697,13 +21550,14 @@ var YotiShareButton = function (_React$Component) {
             style: this.props.yoti.buttonStyle,
             className: 'margin-right',
             primary: true,
+            href: this.props.yoti.href,
             onClick: clickHandler,
             target: this.props.yoti.target,
             label: 'I have YOTI'
           }),
           _react2.default.createElement(
             'a',
-            { href: 'http://www.yoti.com' },
+            { href: 'http://www.yoti.com', target: '_blank' },
             _react2.default.createElement(_RaisedButton2.default, {
               labelStyle: this.props.yoti.buttonLabelStyle,
               style: this.props.yoti.buttonStyle,
@@ -45416,206 +45270,8 @@ function shallowEqual(objA, objB) {
 }
 
 /***/ }),
-/* 512 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports['default'] = routerMiddleware;
-
-var _actions = __webpack_require__(215);
-
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
-/**
- * This middleware captures CALL_HISTORY_METHOD actions to redirect to the
- * provided history object. This will prevent these actions from reaching your
- * reducer or any middleware that comes after this one.
- */
-function routerMiddleware(history) {
-  return function () {
-    return function (next) {
-      return function (action) {
-        if (action.type !== _actions.CALL_HISTORY_METHOD) {
-          return next(action);
-        }
-
-        var _action$payload = action.payload,
-            method = _action$payload.method,
-            args = _action$payload.args;
-
-        history[method].apply(history, _toConsumableArray(args));
-      };
-    };
-  };
-}
-
-/***/ }),
-/* 513 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-exports['default'] = syncHistoryWithStore;
-
-var _reducer = __webpack_require__(216);
-
-var defaultSelectLocationState = function defaultSelectLocationState(state) {
-  return state.routing;
-};
-
-/**
- * This function synchronizes your history state with the Redux store.
- * Location changes flow from history to the store. An enhanced history is
- * returned with a listen method that responds to store updates for location.
- *
- * When this history is provided to the router, this means the location data
- * will flow like this:
- * history.push -> store.dispatch -> enhancedHistory.listen -> router
- * This ensures that when the store state changes due to a replay or other
- * event, the router will be updated appropriately and can transition to the
- * correct router state.
- */
-function syncHistoryWithStore(history, store) {
-  var _ref = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {},
-      _ref$selectLocationSt = _ref.selectLocationState,
-      selectLocationState = _ref$selectLocationSt === undefined ? defaultSelectLocationState : _ref$selectLocationSt,
-      _ref$adjustUrlOnRepla = _ref.adjustUrlOnReplay,
-      adjustUrlOnReplay = _ref$adjustUrlOnRepla === undefined ? true : _ref$adjustUrlOnRepla;
-
-  // Ensure that the reducer is mounted on the store and functioning properly.
-  if (typeof selectLocationState(store.getState()) === 'undefined') {
-    throw new Error('Expected the routing state to be available either as `state.routing` ' + 'or as the custom expression you can specify as `selectLocationState` ' + 'in the `syncHistoryWithStore()` options. ' + 'Ensure you have added the `routerReducer` to your store\'s ' + 'reducers via `combineReducers` or whatever method you use to isolate ' + 'your reducers.');
-  }
-
-  var initialLocation = void 0;
-  var isTimeTraveling = void 0;
-  var unsubscribeFromStore = void 0;
-  var unsubscribeFromHistory = void 0;
-  var currentLocation = void 0;
-
-  // What does the store say about current location?
-  var getLocationInStore = function getLocationInStore(useInitialIfEmpty) {
-    var locationState = selectLocationState(store.getState());
-    return locationState.locationBeforeTransitions || (useInitialIfEmpty ? initialLocation : undefined);
-  };
-
-  // Init initialLocation with potential location in store
-  initialLocation = getLocationInStore();
-
-  // If the store is replayed, update the URL in the browser to match.
-  if (adjustUrlOnReplay) {
-    var handleStoreChange = function handleStoreChange() {
-      var locationInStore = getLocationInStore(true);
-      if (currentLocation === locationInStore || initialLocation === locationInStore) {
-        return;
-      }
-
-      // Update address bar to reflect store state
-      isTimeTraveling = true;
-      currentLocation = locationInStore;
-      history.transitionTo(_extends({}, locationInStore, {
-        action: 'PUSH'
-      }));
-      isTimeTraveling = false;
-    };
-
-    unsubscribeFromStore = store.subscribe(handleStoreChange);
-    handleStoreChange();
-  }
-
-  // Whenever location changes, dispatch an action to get it in the store
-  var handleLocationChange = function handleLocationChange(location) {
-    // ... unless we just caused that location change
-    if (isTimeTraveling) {
-      return;
-    }
-
-    // Remember where we are
-    currentLocation = location;
-
-    // Are we being called for the first time?
-    if (!initialLocation) {
-      // Remember as a fallback in case state is reset
-      initialLocation = location;
-
-      // Respect persisted location, if any
-      if (getLocationInStore()) {
-        return;
-      }
-    }
-
-    // Tell the store to update by dispatching an action
-    store.dispatch({
-      type: _reducer.LOCATION_CHANGE,
-      payload: location
-    });
-  };
-  unsubscribeFromHistory = history.listen(handleLocationChange);
-
-  // History 3.x doesn't call listen synchronously, so fire the initial location change ourselves
-  if (history.getCurrentLocation) {
-    handleLocationChange(history.getCurrentLocation());
-  }
-
-  // The enhanced history uses store as source of truth
-  return _extends({}, history, {
-    // The listeners are subscribed to the store instead of history
-    listen: function listen(listener) {
-      // Copy of last location.
-      var lastPublishedLocation = getLocationInStore(true);
-
-      // Keep track of whether we unsubscribed, as Redux store
-      // only applies changes in subscriptions on next dispatch
-      var unsubscribed = false;
-      var unsubscribeFromStore = store.subscribe(function () {
-        var currentLocation = getLocationInStore(true);
-        if (currentLocation === lastPublishedLocation) {
-          return;
-        }
-        lastPublishedLocation = currentLocation;
-        if (!unsubscribed) {
-          listener(lastPublishedLocation);
-        }
-      });
-
-      // History 2.x listeners expect a synchronous call. Make the first call to the
-      // listener after subscribing to the store, in case the listener causes a
-      // location change (e.g. when it redirects)
-      if (!history.getCurrentLocation) {
-        listener(lastPublishedLocation);
-      }
-
-      // Let user unsubscribe later
-      return function () {
-        unsubscribed = true;
-        unsubscribeFromStore();
-      };
-    },
-
-
-    // It also provides a way to destroy internal listeners
-    unsubscribe: function unsubscribe() {
-      if (adjustUrlOnReplay) {
-        unsubscribeFromStore();
-      }
-      unsubscribeFromHistory();
-    }
-  });
-}
-
-/***/ }),
+/* 512 */,
+/* 513 */,
 /* 514 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -50228,8 +49884,6 @@ var _reactDom2 = _interopRequireDefault(_reactDom);
 
 var _reactRouter = __webpack_require__(44);
 
-var _reactRouterRedux = __webpack_require__(245);
-
 var _MuiThemeProvider = __webpack_require__(244);
 
 var _MuiThemeProvider2 = _interopRequireDefault(_MuiThemeProvider);
@@ -50274,8 +49928,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var reducers = (0, _redux.combineReducers)({
   yoti: _yoti2.default,
-  forms: _forms2.default,
-  routing: _reactRouterRedux.routerReducer
+  forms: _forms2.default
 });
 
 var store = (0, _redux.createStore)(reducers);
