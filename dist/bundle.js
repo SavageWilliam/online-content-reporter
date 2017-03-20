@@ -19083,29 +19083,11 @@ var AgeCheckPage = function AgeCheckPage() {
     _react2.default.createElement(_Footer2.default, null),
     _react2.default.createElement(
       _reactRouter.Link,
-      { className: 'action-button', to: '/form' },
-      _react2.default.createElement(
-        'p',
-        null,
-        'Take me to form'
-      )
-    ),
-    _react2.default.createElement(
-      _reactRouter.Link,
       { className: 'action-button', to: '/over-age' },
       _react2.default.createElement(
         'p',
         null,
-        'Take me to over-age'
-      )
-    ),
-    _react2.default.createElement(
-      _reactRouter.Link,
-      { className: 'action-button', to: '/somewhere' },
-      _react2.default.createElement(
-        'p',
-        null,
-        'test not found page'
+        'Take me to over-age (will be removed)'
       )
     )
   );
@@ -19189,8 +19171,6 @@ Object.defineProperty(exports, "__esModule", {
 var _react = __webpack_require__(1);
 
 var _react2 = _interopRequireDefault(_react);
-
-var _reactRouter = __webpack_require__(44);
 
 __webpack_require__(19);
 
@@ -19291,16 +19271,7 @@ var OverAge = function OverAge() {
         )
       )
     ),
-    _react2.default.createElement(_Footer2.default, null),
-    _react2.default.createElement(
-      _reactRouter.Link,
-      { to: '/' },
-      _react2.default.createElement(
-        'p',
-        null,
-        'Go Home'
-      )
-    )
+    _react2.default.createElement(_Footer2.default, null)
   );
 };
 
@@ -19672,6 +19643,7 @@ var initialState = {
   haveQr: false,
   showQr: false,
   isAgeVerified: false,
+  href: null,
   buttonLabelStyle: { fontSize: '1.1rem', textTransform: 'none', fontFamily: 'childline' },
   buttonStyle: { padding: '0.8rem 0', whiteSpace: 'nowrap', minWidth: '8rem' }
 };
@@ -20845,16 +20817,22 @@ var ConfirmationModal = function (_React$Component) {
   _createClass(ConfirmationModal, [{
     key: 'renderValidEmailRequired',
     value: function renderValidEmailRequired() {
-      this.props.validEmailRequiredMessage();
+      if (!this.props.forms.validEmail) {
+        return _react2.default.createElement(
+          'h2',
+          { className: 'required' },
+          'Please enter a valid email address'
+        );
+      }
     }
   }, {
     key: 'handleEmailSubmit',
     value: function handleEmailSubmit() {
-      var _props = this.props,
-          imageCriteria = _props.imageCriteria,
-          url = _props.url,
-          description = _props.description,
-          email = _props.email;
+      var _props$forms = this.props.forms,
+          imageCriteria = _props$forms.imageCriteria,
+          url = _props$forms.url,
+          description = _props$forms.description,
+          email = _props$forms.email;
 
       var payload = { imageCriteria: imageCriteria, url: url, description: description, email: email };
       return _axios2.default.post('/email', payload);
@@ -20863,7 +20841,7 @@ var ConfirmationModal = function (_React$Component) {
     key: 'validateEmail',
     value: function validateEmail() {
       var pattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
-      return pattern.test(this.props.email);
+      return pattern.test(this.props.forms.email);
     }
   }, {
     key: 'componentWillUnmount',
@@ -20875,14 +20853,15 @@ var ConfirmationModal = function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
+      console.log('email props', this.props);
       return _react2.default.createElement(
         _reactModal2.default,
         {
-          isOpen: this.props.modalIsOpen,
+          isOpen: this.props.forms.modalIsOpen,
           onRequestClose: function onRequestClose() {
             return _this2.props.changeModal();
           },
-          style: this.props.isMobile ? _modalStyle.modalMobileOverlay : _modalStyle.modalDesktopOverlay,
+          style: this.props.yoti.isMobile ? _modalStyle.modalMobileOverlay : _modalStyle.modalDesktopOverlay,
           contentLabel: 'Reassuring message'
         },
         _react2.default.createElement(
@@ -20914,23 +20893,25 @@ var ConfirmationModal = function (_React$Component) {
             }
           }),
           _react2.default.createElement('br', null),
-          !this.props.validEmail && _react2.default.createElement(
-            'h2',
-            { className: 'required' },
-            'Please enter a valid email address'
-          ),
+          this.renderValidEmailRequired(),
           _react2.default.createElement(
             'p',
             { className: 'last_p' },
             'If you are worried about anything, Childline is always here for you. Call us for free on 0800 1111 or speak to us online.'
           ),
-          _react2.default.createElement(_RaisedButton2.default, { primary: true, label: 'Submit', onClick: function onClick() {
+          _react2.default.createElement(_RaisedButton2.default, {
+            primary: true,
+            label: 'Submit',
+            onClick: function onClick() {
               if (_this2.validateEmail()) {
-                _this2.props.hideValidEmailRequiredMessage();_reactRouter.browserHistory.push('/');_this2.handleEmailSubmit();
+                _this2.props.hideValidEmailRequiredMessage();
+                _reactRouter.browserHistory.push('/');
+                _this2.handleEmailSubmit();
               } else {
-                _this2.renderValidEmailRequired();
+                _this2.props.validEmailRequiredMessage();
               }
-            } })
+            }
+          })
         )
       );
     }
@@ -21006,6 +20987,13 @@ var ImgCriteriaForm = function (_React$Component) {
   }
 
   _createClass(ImgCriteriaForm, [{
+    key: 'componentDidMount',
+    value: function componentDidMount() {
+      if (!this.props.yoti.isAgeVerified && !this.props.yoti.isMobile) {
+        _reactRouter.browserHistory.push('/');
+      }
+    }
+  }, {
     key: 'renderRequiredMessage',
     value: function renderRequiredMessage() {
       if (this.props.forms.criteriaRequiredMessage) {
@@ -21014,13 +21002,6 @@ var ImgCriteriaForm = function (_React$Component) {
           { className: 'required' },
           'You can\'t proceed without ticking at least one option'
         );
-      }
-    }
-  }, {
-    key: 'componentDidMount',
-    value: function componentDidMount() {
-      if (!this.props.yoti.isAgeVerified && !this.props.yoti.isMobile) {
-        _reactRouter.browserHistory.push('/');
       }
     }
   }, {
@@ -21033,71 +21014,71 @@ var ImgCriteriaForm = function (_React$Component) {
         null,
         _react2.default.createElement(_Header2.default, null),
         _react2.default.createElement(_ProgressBar2.default, { form: '1' }),
-        _react2.default.createElement(_SectionTitle2.default, { heading: 'PLEASE TELL US MORE ABOUT THE IMAGE OR VIDEO', subheading: 'The content must fit a certain criteria for us to legally remove it.', span: 'Does the image contain one or more of the following:' }),
+        _react2.default.createElement(_SectionTitle2.default, {
+          heading: 'PLEASE TELL US MORE ABOUT THE IMAGE OR VIDEO',
+          subheading: 'The content must fit a certain criteria for us to legally remove it.',
+          span: 'Does the image contain one or more of the following:'
+        }),
         _react2.default.createElement(
           'div',
           { className: 'form-container' },
           _react2.default.createElement(
-            'form',
-            { action: '#' },
-            _react2.default.createElement(
-              _List.List,
-              null,
-              _react2.default.createElement(_List.ListItem, {
-                style: { backgroundColor: 'white', margin: '0.25rem 0' },
-                primaryText: 'Someone posing in a sexual way',
-                onChange: function onChange() {
-                  _this2.props.toggleCriteria('Someone posing in a sexual way');
-                  _this2.props.checkOption1();
-                },
-                leftCheckbox: _react2.default.createElement(_Checkbox2.default, { checked: this.props.forms.option1 })
-              }),
-              _react2.default.createElement(_List.ListItem, {
-                style: { backgroundColor: 'white', margin: '0.25rem 0' },
-                primaryText: 'Someone touching themselves in a sexual way',
-                onChange: function onChange() {
-                  _this2.props.toggleCriteria('Someone touching themselves in a sexual way');
-                  _this2.props.checkOption2();
-                },
-                leftCheckbox: _react2.default.createElement(_Checkbox2.default, { checked: this.props.forms.option2 })
-              }),
-              _react2.default.createElement(_List.ListItem, {
-                style: { backgroundColor: 'white', margin: '0.25rem 0' },
-                primaryText: 'Any sexual activity involving a child, adult or both',
-                onChange: function onChange() {
-                  _this2.props.toggleCriteria('Any sexual activity involving a child, adult or both');
-                  _this2.props.checkOption3();
-                },
-                leftCheckbox: _react2.default.createElement(_Checkbox2.default, { checked: this.props.forms.option3 })
-              }),
-              _react2.default.createElement(_List.ListItem, {
-                style: { backgroundColor: 'white', margin: '0.25rem 0' },
-                primaryText: 'Someone hurting someone else',
-                onChange: function onChange() {
-                  _this2.props.toggleCriteria('Someone hurting someone else');
-                  _this2.props.checkOption4();
-                },
-                leftCheckbox: _react2.default.createElement(_Checkbox2.default, { checked: this.props.forms.option4 })
-              }),
-              _react2.default.createElement(_List.ListItem, {
-                style: { backgroundColor: 'white', margin: '0.25rem 0' },
-                primaryText: 'Sexual activity that includes animals',
-                onChange: function onChange() {
-                  _this2.props.toggleCriteria('Sexual activity that includes animals');
-                  _this2.props.checkOption5();
-                },
-                leftCheckbox: _react2.default.createElement(_Checkbox2.default, { checked: this.props.forms.option5 })
-              })
-            ),
-            this.renderRequiredMessage(),
-            _react2.default.createElement(_RaisedButton2.default, {
-              label: 'Next',
-              primary: true,
-              onClick: function onClick() {
-                _this2.props.forms.imageCriteria.length !== 0 ? _this2.props.changeForm() : _this2.props.showCriteriaRequiredMessage();
-              }
+            _List.List,
+            null,
+            _react2.default.createElement(_List.ListItem, {
+              style: { backgroundColor: 'white', margin: '0.25rem 0' },
+              primaryText: 'Someone posing in a sexual way',
+              onChange: function onChange() {
+                _this2.props.toggleCriteria('Someone posing in a sexual way');
+                _this2.props.checkOption1();
+              },
+              leftCheckbox: _react2.default.createElement(_Checkbox2.default, { checked: this.props.forms.option1 })
+            }),
+            _react2.default.createElement(_List.ListItem, {
+              style: { backgroundColor: 'white', margin: '0.25rem 0' },
+              primaryText: 'Someone touching themselves in a sexual way',
+              onChange: function onChange() {
+                _this2.props.toggleCriteria('Someone touching themselves in a sexual way');
+                _this2.props.checkOption2();
+              },
+              leftCheckbox: _react2.default.createElement(_Checkbox2.default, { checked: this.props.forms.option2 })
+            }),
+            _react2.default.createElement(_List.ListItem, {
+              style: { backgroundColor: 'white', margin: '0.25rem 0' },
+              primaryText: 'Any sexual activity involving a child, adult or both',
+              onChange: function onChange() {
+                _this2.props.toggleCriteria('Any sexual activity involving a child, adult or both');
+                _this2.props.checkOption3();
+              },
+              leftCheckbox: _react2.default.createElement(_Checkbox2.default, { checked: this.props.forms.option3 })
+            }),
+            _react2.default.createElement(_List.ListItem, {
+              style: { backgroundColor: 'white', margin: '0.25rem 0' },
+              primaryText: 'Someone hurting someone else',
+              onChange: function onChange() {
+                _this2.props.toggleCriteria('Someone hurting someone else');
+                _this2.props.checkOption4();
+              },
+              leftCheckbox: _react2.default.createElement(_Checkbox2.default, { checked: this.props.forms.option4 })
+            }),
+            _react2.default.createElement(_List.ListItem, {
+              style: { backgroundColor: 'white', margin: '0.25rem 0' },
+              primaryText: 'Sexual activity that includes animals',
+              onChange: function onChange() {
+                _this2.props.toggleCriteria('Sexual activity that includes animals');
+                _this2.props.checkOption5();
+              },
+              leftCheckbox: _react2.default.createElement(_Checkbox2.default, { checked: this.props.forms.option5 })
             })
-          )
+          ),
+          this.renderRequiredMessage(),
+          _react2.default.createElement(_RaisedButton2.default, {
+            label: 'Next',
+            primary: true,
+            onClick: function onClick() {
+              _this2.props.forms.imageCriteria.length !== 0 ? _this2.props.changeForm() : _this2.props.showCriteriaRequiredMessage();
+            }
+          })
         ),
         _react2.default.createElement(
           'div',
@@ -21256,7 +21237,7 @@ var UrlDescriptionForm = function (_React$Component) {
   }, {
     key: 'renderRequiredMessage',
     value: function renderRequiredMessage() {
-      if (this.props.urlRequiredMessage) {
+      if (this.props.forms.urlRequiredMessage) {
         return _react2.default.createElement(
           'h2',
           { className: 'required' },
@@ -21310,63 +21291,59 @@ var UrlDescriptionForm = function (_React$Component) {
             'WEB ADDRESS'
           ),
           _react2.default.createElement(
-            'form',
-            null,
-            _react2.default.createElement(
-              'div',
-              { className: 'input-field col s6' },
-              _react2.default.createElement(_TextField2.default, {
-                hintText: 'If there is more than one website, add these in the box below',
-                floatingLabelText: 'url',
-                value: this.props.forms.url,
-                errorText: 'This field is required',
-                onChange: function onChange(e) {
-                  return _this2.props.saveUrl(e.target.value);
-                },
-                errorStyle: styles.errorStyle
-              }),
-              _react2.default.createElement('br', null),
-              this.renderRequiredMessage()
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'input-field-2 input-field col s6 ' },
-              _react2.default.createElement(_TextField2.default, {
-                hintText: 'Tell us about where you found the image',
-                floatingLabelText: 'Description',
-                multiLine: true,
-                rows: 4,
-                value: this.props.forms.description,
-                onChange: function onChange(e) {
-                  return _this2.props.saveDescription(e.target.value);
+            'div',
+            { className: 'input-field col s6' },
+            _react2.default.createElement(_TextField2.default, {
+              hintText: 'If there is more than one website, add these in the box below',
+              floatingLabelText: 'url',
+              value: this.props.forms.url,
+              errorText: 'This field is required',
+              onChange: function onChange(e) {
+                return _this2.props.saveUrl(e.target.value);
+              },
+              errorStyle: styles.errorStyle
+            }),
+            _react2.default.createElement('br', null),
+            this.renderRequiredMessage()
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'input-field-2 input-field col s6 ' },
+            _react2.default.createElement(_TextField2.default, {
+              hintText: 'Tell us about where you found the image',
+              floatingLabelText: 'Description',
+              multiLine: true,
+              rows: 4,
+              value: this.props.forms.description,
+              onChange: function onChange(e) {
+                return _this2.props.saveDescription(e.target.value);
+              }
+            }),
+            _react2.default.createElement('br', null)
+          ),
+          _react2.default.createElement(
+            'div',
+            { className: 'buttons' },
+            _react2.default.createElement(_RaisedButton2.default, {
+              label: 'Previous',
+              primary: true,
+              onClick: function onClick() {
+                return _this2.props.changeForm();
+              }
+            }),
+            _react2.default.createElement(_RaisedButton2.default, {
+              label: 'Submit',
+              primary: true,
+              onClick: function onClick() {
+                console.log(_this2.props.forms, 'PROPS FOR SUBMIT');
+                if (!_this2.props.forms.url) {
+                  _this2.props.showUrlRequiredMessage();
+                } else {
+                  _this2.props.changeModal();
+                  _this2.handleUrlSubmit();
                 }
-              }),
-              _react2.default.createElement('br', null)
-            ),
-            _react2.default.createElement(
-              'div',
-              { className: 'buttons' },
-              _react2.default.createElement(_RaisedButton2.default, {
-                label: 'Previous',
-                primary: true,
-                onClick: function onClick() {
-                  return _this2.props.changeForm();
-                }
-              }),
-              _react2.default.createElement(_RaisedButton2.default, {
-                label: 'Submit',
-                primary: true,
-                onClick: function onClick(e) {
-                  if (!_this2.props.forms.url) {
-                    _this2.props.showUrlRequiredMessage();
-                  } else {
-                    _this2.props.changeModal();
-                    _this2.handleUrlSubmit();
-                  }
-                },
-                id: 'submit-url'
-              })
-            )
+              }
+            })
           )
         ),
         _react2.default.createElement(_ConfirmationModal2.default, this.props),
@@ -21401,200 +21378,16 @@ var _QrCode2 = _interopRequireDefault(_QrCode);
 
 __webpack_require__(19);
 
-var _YotiVerify = __webpack_require__(271);
-
-var _YotiVerify2 = _interopRequireDefault(_YotiVerify);
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 var YotiDescription = function YotiDescription(props) {
-  if (!props.yoti.showQr) {
-    return _react2.default.createElement(_YotiVerify2.default, null);
+  if (props.yoti.showQr) {
+    return _react2.default.createElement(
+      'div',
+      { className: 'yoti-qr' },
+      _react2.default.createElement(_QrCode2.default, props)
+    );
   }
-  return _react2.default.createElement(
-    'div',
-    { className: 'yoti-qr' },
-    _react2.default.createElement(_QrCode2.default, props)
-  );
-};
-
-exports.default = YotiDescription;
-
-/***/ }),
-/* 270 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-__webpack_require__(19);
-
-var _RaisedButton = __webpack_require__(65);
-
-var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
-
-var _reactRouter = __webpack_require__(44);
-
-var _axios = __webpack_require__(88);
-
-var _axios2 = _interopRequireDefault(_axios);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-var YotiShareButton = function (_React$Component) {
-  _inherits(YotiShareButton, _React$Component);
-
-  function YotiShareButton(props) {
-    _classCallCheck(this, YotiShareButton);
-
-    var _this = _possibleConstructorReturn(this, (YotiShareButton.__proto__ || Object.getPrototypeOf(YotiShareButton)).call(this, props));
-
-    _this.getQr = _this.getQr.bind(_this);
-    _this.listenForToken = _this.listenForToken.bind(_this);
-    _this.yotiRedirect = _this.yotiRedirect.bind(_this);
-    // this.verifyAgeMobile = this.verifyAgeMobile.bind(this)
-    return _this;
-  }
-
-  _createClass(YotiShareButton, [{
-    key: 'componentWillMount',
-    value: function componentWillMount() {
-      if (!this.props.yoti.isMobile) {
-        this.getQr();
-        this.props.closeQr();
-      }
-    }
-  }, {
-    key: 'getQr',
-    value: function getQr() {
-      var _this2 = this;
-
-      _axios2.default.get('/get-qr').then(function (res) {
-        _this2.props.addQr(res.data.svg);
-        _this2.listenForToken(res.data.proto, res.data.url);
-      }).catch(function (error) {
-        console.log(error);
-      });
-    }
-  }, {
-    key: 'listenForToken',
-    value: function listenForToken(proto, url) {
-      var _this3 = this;
-
-      var host = 'wss://api.yoti.com/api/v1/connect-sessions/' + proto;
-      var socket = new WebSocket(host);
-      socket.onopen = function () {
-        socket.send(JSON.stringify({ subscription: proto }));
-      };
-      socket.onmessage = function (msg) {
-        _this3.props.ageIsVerified();
-        var data = JSON.parse(msg.data);
-        switch (data.status) {
-          case 'COMPLETED':
-            {
-              _this3.yotiRedirect(data.token);
-            }
-        }
-      };
-    }
-  }, {
-    key: 'yotiRedirect',
-    value: function yotiRedirect(token) {
-      _axios2.default.get('/thankyou?token=' + token).then(function (res) {
-        if (res.data.isUnder18) {
-          _reactRouter.browserHistory.push('/form');
-        } else _reactRouter.browserHistory.push('/over-age');
-      }).catch(function (error) {
-        console.log(error);
-      });
-    }
-
-    // verifyAgeMobile (href) {
-    //   axios.get(href)
-    //   .then(res => {
-    //     res.data.isUnder18 ? browserHistory.push('/form') : browserHistory.push('/over-age')
-    //   })
-    //   .catch((error) => {
-    //     console.log(error)
-    //   })
-    // }
-
-  }, {
-    key: 'render',
-    value: function render() {
-      var clickHandler = this.props.yoti.isMobile ? null : this.props.openQr;
-      return _react2.default.createElement(
-        'div',
-        null,
-        !this.props.yoti.showQr && _react2.default.createElement(
-          'div',
-          { className: 'yoti-btns' },
-          _react2.default.createElement(_RaisedButton2.default, {
-            labelStyle: this.props.yoti.buttonLabelStyle,
-            style: this.props.yoti.buttonStyle,
-            className: 'margin-right',
-            primary: true,
-            href: this.props.yoti.href,
-            onClick: clickHandler,
-            target: this.props.yoti.target,
-            label: 'I have YOTI'
-          }),
-          _react2.default.createElement(
-            'a',
-            { href: 'http://www.yoti.com', target: '_blank' },
-            _react2.default.createElement(_RaisedButton2.default, {
-              labelStyle: this.props.yoti.buttonLabelStyle,
-              style: this.props.yoti.buttonStyle,
-              primary: true,
-              label: 'I don\'t have YOTI'
-            })
-          )
-        )
-      );
-    }
-  }]);
-
-  return YotiShareButton;
-}(_react2.default.Component);
-
-exports.default = YotiShareButton;
-
-/***/ }),
-/* 271 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = __webpack_require__(1);
-
-var _react2 = _interopRequireDefault(_react);
-
-__webpack_require__(19);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var YotiVerify = function YotiVerify() {
   return _react2.default.createElement(
     'div',
     { className: 'yoti-description-container' },
@@ -21627,9 +21420,11 @@ var YotiVerify = function YotiVerify() {
   );
 };
 
-exports.default = YotiVerify;
+exports.default = YotiDescription;
 
 /***/ }),
+/* 270 */,
+/* 271 */,
 /* 272 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -21654,9 +21449,9 @@ var _yoti = __webpack_require__(147);
 
 var yotiActions = _interopRequireWildcard(_yoti);
 
-var _YotiShareButton = __webpack_require__(270);
+var _YotiShareButtons = __webpack_require__(565);
 
-var _YotiShareButton2 = _interopRequireDefault(_YotiShareButton);
+var _YotiShareButtons2 = _interopRequireDefault(_YotiShareButtons);
 
 var _YotiDescription = __webpack_require__(269);
 
@@ -21694,7 +21489,6 @@ var Yoti = function (_React$Component) {
           _react2.default.createElement('img', { src: 'assets/imgs/yoti-logo.svg', className: 'popup-yoti', alt: 'yoti logo' })
         );
       }
-      return _react2.default.createElement('p', null);
     }
   }, {
     key: 'render',
@@ -21703,7 +21497,7 @@ var Yoti = function (_React$Component) {
         'div',
         { className: 'yoti-info' },
         _react2.default.createElement(_YotiDescription2.default, this.props),
-        _react2.default.createElement(_YotiShareButton2.default, this.props),
+        _react2.default.createElement(_YotiShareButtons2.default, this.props),
         this.renderScanMe()
       );
     }
@@ -49952,6 +49746,163 @@ _reactDom2.default.render(_react2.default.createElement(
     )
   )
 ), document.getElementById('root'));
+
+/***/ }),
+/* 565 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(1);
+
+var _react2 = _interopRequireDefault(_react);
+
+__webpack_require__(19);
+
+var _RaisedButton = __webpack_require__(65);
+
+var _RaisedButton2 = _interopRequireDefault(_RaisedButton);
+
+var _reactRouter = __webpack_require__(44);
+
+var _axios = __webpack_require__(88);
+
+var _axios2 = _interopRequireDefault(_axios);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var YotiShareButtons = function (_React$Component) {
+  _inherits(YotiShareButtons, _React$Component);
+
+  function YotiShareButtons(props) {
+    _classCallCheck(this, YotiShareButtons);
+
+    var _this = _possibleConstructorReturn(this, (YotiShareButtons.__proto__ || Object.getPrototypeOf(YotiShareButtons)).call(this, props));
+
+    _this.getQr = _this.getQr.bind(_this);
+    _this.listenForToken = _this.listenForToken.bind(_this);
+    _this.yotiRedirect = _this.yotiRedirect.bind(_this);
+    // this.verifyAgeMobile = this.verifyAgeMobile.bind(this)
+    return _this;
+  }
+
+  _createClass(YotiShareButtons, [{
+    key: 'componentWillMount',
+    value: function componentWillMount() {
+      if (!this.props.yoti.isMobile) {
+        this.getQr();
+        this.props.closeQr();
+      }
+    }
+  }, {
+    key: 'getQr',
+    value: function getQr() {
+      var _this2 = this;
+
+      _axios2.default.get('/get-qr').then(function (res) {
+        _this2.props.addQr(res.data.svg);
+        _this2.listenForToken(res.data.proto, res.data.url);
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
+  }, {
+    key: 'listenForToken',
+    value: function listenForToken(proto, url) {
+      var _this3 = this;
+
+      var host = 'wss://api.yoti.com/api/v1/connect-sessions/' + proto;
+      var socket = new WebSocket(host);
+      socket.onopen = function () {
+        socket.send(JSON.stringify({ subscription: proto }));
+      };
+      socket.onmessage = function (msg) {
+        _this3.props.ageIsVerified();
+        var data = JSON.parse(msg.data);
+        switch (data.status) {
+          case 'COMPLETED':
+            {
+              _this3.yotiRedirect(data.token);
+            }
+        }
+      };
+    }
+  }, {
+    key: 'yotiRedirect',
+    value: function yotiRedirect(token) {
+      _axios2.default.get('/thankyou?token=' + token).then(function (res) {
+        if (res.data.isUnder18) {
+          _reactRouter.browserHistory.push('/form');
+        } else _reactRouter.browserHistory.push('/over-age');
+      }).catch(function (error) {
+        console.log(error);
+      });
+    }
+
+    // verifyAgeMobile (href) {
+    //   axios.get(href)
+    //   .then(res => {
+    //     res.data.isUnder18 ? browserHistory.push('/form') : browserHistory.push('/over-age')
+    //   })
+    //   .catch((error) => {
+    //     console.log(error)
+    //   })
+    // }
+
+  }, {
+    key: 'render',
+    value: function render() {
+      var clickHandler = this.props.yoti.isMobile ? null : this.props.openQr;
+      return _react2.default.createElement(
+        'div',
+        null,
+        !this.props.yoti.showQr && _react2.default.createElement(
+          'div',
+          { className: 'yoti-btns' },
+          _react2.default.createElement(
+            'a',
+            { href: this.props.yoti.href, target: this.props.yoti.target },
+            _react2.default.createElement(_RaisedButton2.default, {
+              labelStyle: this.props.yoti.buttonLabelStyle,
+              style: this.props.yoti.buttonStyle,
+              className: 'margin-right',
+              primary: true,
+              onClick: clickHandler,
+              label: 'I have YOTI'
+            })
+          ),
+          _react2.default.createElement(
+            'a',
+            { href: 'http://www.yoti.com', target: '_blank' },
+            _react2.default.createElement(_RaisedButton2.default, {
+              labelStyle: this.props.yoti.buttonLabelStyle,
+              style: this.props.yoti.buttonStyle,
+              primary: true,
+              label: 'I don\'t have YOTI'
+            })
+          )
+        )
+      );
+    }
+  }]);
+
+  return YotiShareButtons;
+}(_react2.default.Component);
+
+exports.default = YotiShareButtons;
 
 /***/ })
 /******/ ]);
