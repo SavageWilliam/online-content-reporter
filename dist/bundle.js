@@ -5131,28 +5131,16 @@ var Footer = function Footer() {
       'div',
       { className: 'footer-logos' },
       _react2.default.createElement('img', { src: '/assets/imgs/iwf-logo.png', alt: 'IWF logo' }),
-      _react2.default.createElement(
-        'div',
-        { className: 'childline-stamp' },
-        _react2.default.createElement(
-          'h2',
-          { style: { fontSize: '2.4rem', margin: '0' } },
-          'childline'
-        ),
-        _react2.default.createElement(
-          'h5',
-          null,
-          'ONLINE, ON THE PHONE, ANYTIME'
-        ),
-        _react2.default.createElement(
-          'p',
-          null,
-          'childline.org.uk | 0800 1111'
-        )
-      )
+      _react2.default.createElement('img', { src: '/assets/imgs/footer.jpg', alt: 'childline logo' })
     )
   );
 };
+
+/*  <div className='childline-stamp'>
+    <h2 style={{fontSize: '2.4rem', margin: '0'}}>childline</h2>
+    <h5>ONLINE, ON THE PHONE, ANYTIME</h5>
+    <p>childline.org.uk | 0800 1111</p>
+  </div>*/
 
 exports.default = Footer;
 
