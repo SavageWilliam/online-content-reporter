@@ -20817,7 +20817,7 @@ var ConfirmationModal = function (_React$Component) {
   _createClass(ConfirmationModal, [{
     key: 'renderValidEmailRequired',
     value: function renderValidEmailRequired() {
-      if (!this.props.validEmail) {
+      if (!this.props.forms.validEmail) {
         return _react2.default.createElement(
           'h2',
           { className: 'required' },
@@ -20828,11 +20828,11 @@ var ConfirmationModal = function (_React$Component) {
   }, {
     key: 'handleEmailSubmit',
     value: function handleEmailSubmit() {
-      var _props = this.props,
-          imageCriteria = _props.imageCriteria,
-          url = _props.url,
-          description = _props.description,
-          email = _props.email;
+      var _props$forms = this.props.forms,
+          imageCriteria = _props$forms.imageCriteria,
+          url = _props$forms.url,
+          description = _props$forms.description,
+          email = _props$forms.email;
 
       var payload = { imageCriteria: imageCriteria, url: url, description: description, email: email };
       return _axios2.default.post('/email', payload);
@@ -20841,7 +20841,7 @@ var ConfirmationModal = function (_React$Component) {
     key: 'validateEmail',
     value: function validateEmail() {
       var pattern = /^\w+@[a-zA-Z_]+?\.[a-zA-Z]{2,3}$/;
-      return pattern.test(this.props.email);
+      return pattern.test(this.props.forms.email);
     }
   }, {
     key: 'componentWillUnmount',
@@ -20853,14 +20853,15 @@ var ConfirmationModal = function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
+      console.log('email props', this.props);
       return _react2.default.createElement(
         _reactModal2.default,
         {
-          isOpen: this.props.modalIsOpen,
+          isOpen: this.props.forms.modalIsOpen,
           onRequestClose: function onRequestClose() {
             return _this2.props.changeModal();
           },
-          style: this.props.isMobile ? _modalStyle.modalMobileOverlay : _modalStyle.modalDesktopOverlay,
+          style: this.props.yoti.isMobile ? _modalStyle.modalMobileOverlay : _modalStyle.modalDesktopOverlay,
           contentLabel: 'Reassuring message'
         },
         _react2.default.createElement(
@@ -21333,7 +21334,8 @@ var UrlDescriptionForm = function (_React$Component) {
             _react2.default.createElement(_RaisedButton2.default, {
               label: 'Submit',
               primary: true,
-              onClick: function onClick(e) {
+              onClick: function onClick() {
+                console.log(_this2.props.forms, 'PROPS FOR SUBMIT');
                 if (!_this2.props.forms.url) {
                   _this2.props.showUrlRequiredMessage();
                 } else {
