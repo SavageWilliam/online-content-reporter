@@ -9926,6 +9926,7 @@ function listenForToken(proto, url) {
 
 function yotiRedirect(token) {
   return _axios2.default.get('/thankyou?token=' + token + '?desktop=true').then(function (res) {
+    console.log('RES', res);
     return res.data.isUnder18;
   }).catch(function (error) {
     console.log(error);
@@ -9963,38 +9964,40 @@ function fetchQrEffect(fetchQrAction) {
           return (0, _effects.put)(ageIsVerified());
 
         case 14:
+          console.log(isUnder18);
+
           if (!isUnder18) {
-            _context.next = 19;
+            _context.next = 20;
             break;
           }
 
-          _context.next = 17;
+          _context.next = 18;
           return (0, _effects.put)((0, _reactRouterRedux.push)('/form'));
 
-        case 17:
-          _context.next = 21;
+        case 18:
+          _context.next = 22;
           break;
 
-        case 19:
-          _context.next = 21;
+        case 20:
+          _context.next = 22;
           return (0, _effects.put)((0, _reactRouterRedux.push)('/over-age'));
 
-        case 21:
-          _context.next = 27;
+        case 22:
+          _context.next = 28;
           break;
 
-        case 23:
-          _context.prev = 23;
+        case 24:
+          _context.prev = 24;
           _context.t0 = _context['catch'](0);
-          _context.next = 27;
+          _context.next = 28;
           return (0, _effects.put)({ type: 'QR_FETCH_FAILED', message: _context.t0.message });
 
-        case 27:
+        case 28:
         case 'end':
           return _context.stop();
       }
     }
-  }, _marked[0], this, [[0, 23]]);
+  }, _marked[0], this, [[0, 24]]);
 }
 
 /*
