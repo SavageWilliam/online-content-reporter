@@ -5153,7 +5153,6 @@ var Footer = function Footer() {
     )
   );
 };
-/*  <img src='/assets/imgs/footer.jpg' alt='childline logo' />*/
 
 exports.default = Footer;
 
@@ -9926,7 +9925,7 @@ function listenForToken(proto, url) {
 
 function yotiRedirect(token) {
   return _axios2.default.get('/thankyou?token=' + token + '?desktop=true').then(function (res) {
-    console.log('RES', res);
+    console.log('RES', res.data);
     return res.data.isUnder18;
   }).catch(function (error) {
     console.log(error);
@@ -25705,16 +25704,7 @@ var AgeCheckPage = function AgeCheckPage() {
       )
     ),
     _react2.default.createElement(_Yoti2.default, null),
-    _react2.default.createElement(_Footer2.default, null),
-    _react2.default.createElement(
-      _reactRouter.Link,
-      { className: 'action-button', to: '/over-age' },
-      _react2.default.createElement(
-        'p',
-        null,
-        'Take me to over-age (will be removed)'
-      )
-    )
+    _react2.default.createElement(_Footer2.default, null)
   );
 };
 
@@ -25826,7 +25816,10 @@ var ConfirmationModal = function (_React$Component) {
         _react2.default.createElement(
           'div',
           { className: 'mod' },
-          _react2.default.createElement(_RaisedButton2.default, { className: 'close_btn', primary: true, label: 'X', onClick: function onClick() {
+          _react2.default.createElement(_RaisedButton2.default, {
+            className: 'close_btn',
+            primary: true, label: 'X',
+            onClick: function onClick() {
               return _this2.props.changeModal();
             } }),
           _react2.default.createElement(
@@ -26481,7 +26474,6 @@ var UrlDescriptionForm = function (_React$Component) {
               label: 'Submit',
               primary: true,
               onClick: function onClick() {
-                console.log(_this2.props.forms, 'PROPS FOR SUBMIT');
                 if (!_this2.props.forms.url) {
                   _this2.props.showUrlRequiredMessage();
                 } else {
