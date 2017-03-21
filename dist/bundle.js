@@ -9925,7 +9925,7 @@ function listenForToken(proto, url) {
 }
 
 function yotiRedirect(token) {
-  return _axios2.default.get('/thankyou?token=' + token).then(function (res) {
+  return _axios2.default.get('/thankyou?token=' + token + '?desktop=true').then(function (res) {
     return res.data.isUnder18;
   }).catch(function (error) {
     console.log(error);
@@ -26815,6 +26815,17 @@ var Home = function (_React$Component) {
         browserHistory.push('over-age')
         4. if there are no query parameters do nothing
       */
+      console.log('HAHO');
+      console.log(document.cookie);
+      if (document.cookie) {
+        console.log('I am here');
+        if (document.cookie.split('=')[1] == 'true') {
+          console.log('TRUEEE');
+          _reactRouter.browserHistory.push('/form');
+        } else {
+          _reactRouter.browserHistory.push('/over-age');
+        }
+      }
       var isMobileRE = /webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini|Android/i;
       var isMobile = isMobileRE.test(navigator.userAgent) && /Mobile/i.test(navigator.userAgent);
       if (isMobile) this.mobileSetup();
