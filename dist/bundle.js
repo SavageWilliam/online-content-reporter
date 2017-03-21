@@ -9954,49 +9954,47 @@ function fetchQrEffect(fetchQrAction) {
 
         case 8:
           token = _context.sent;
-
-          console.log(token);
-          _context.next = 12;
+          _context.next = 11;
           return (0, _effects.call)(yotiRedirect, token);
 
-        case 12:
+        case 11:
           isUnder18 = _context.sent;
-          _context.next = 15;
+          _context.next = 14;
           return (0, _effects.put)(ageIsVerified());
 
-        case 15:
+        case 14:
           if (!isUnder18) {
-            _context.next = 20;
+            _context.next = 19;
             break;
           }
 
-          _context.next = 18;
+          _context.next = 17;
           return (0, _effects.put)((0, _reactRouterRedux.push)('/form'));
 
-        case 18:
-          _context.next = 22;
+        case 17:
+          _context.next = 21;
           break;
 
-        case 20:
-          _context.next = 22;
+        case 19:
+          _context.next = 21;
           return (0, _effects.put)((0, _reactRouterRedux.push)('/over-age'));
 
-        case 22:
-          _context.next = 28;
+        case 21:
+          _context.next = 27;
           break;
 
-        case 24:
-          _context.prev = 24;
+        case 23:
+          _context.prev = 23;
           _context.t0 = _context['catch'](0);
-          _context.next = 28;
+          _context.next = 27;
           return (0, _effects.put)({ type: 'QR_FETCH_FAILED', message: _context.t0.message });
 
-        case 28:
+        case 27:
         case 'end':
           return _context.stop();
       }
     }
-  }, _marked[0], this, [[0, 24]]);
+  }, _marked[0], this, [[0, 23]]);
 }
 
 /*
@@ -26809,6 +26807,14 @@ var Home = function (_React$Component) {
   _createClass(Home, [{
     key: 'componentWillMount',
     value: function componentWillMount() {
+      /*
+        1. slice the query from url
+        2. if under18 true--> send to forms and initialize state
+        browserHistory.push('/forms')
+         3. if under18 false ---> send to over-age
+        browserHistory.push('over-age')
+        4. if there are no query parameters do nothing
+      */
       var isMobileRE = /webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini|Android/i;
       var isMobile = isMobileRE.test(navigator.userAgent) && /Mobile/i.test(navigator.userAgent);
       if (isMobile) this.mobileSetup();
@@ -26816,7 +26822,8 @@ var Home = function (_React$Component) {
   }, {
     key: 'mobileSetup',
     value: function mobileSetup() {
-      var href = 'https://www.yoti.com/connect/3392788e-e529-4309-8ed7-54d7ac554055';
+      //const href = 'https://www.yoti.com/connect/3392788e-e529-4309-8ed7-54d7ac554055' //will
+      var href = 'https://www.yoti.com/connect/f6999919-d114-43c0-bdf0-ae2e1a89ff73';
       this.props.setUpForMobile(href);
 
       // Need Yoti api to fix before implementing this.
