@@ -7278,7 +7278,8 @@ module.exports = {
   SET_UP_FOR_MOBILE: 'SET_UP_FOR_MOBILE',
   AGE_IS_VERIFIED: 'AGE_IS_VERIFIED',
   // forms
-  CHANGE_MODAL: 'CHANGE_MODAL',
+  OPEN_MODAL: 'OPEN_MODAL',
+  CLOSE_MODAL: 'CLOSE_MODAL',
   CHANGE_FORM: 'CHANGE_FORM',
   CHANGE_OPTION1: 'CHANGE_OPTION1',
   CHANGE_OPTION2: 'CHANGE_OPTION2',
@@ -25438,7 +25439,7 @@ module.exports = function spread(callback) {
 Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.hideValidEmailRequiredMessage = exports.validEmailRequiredMessage = exports.showCriteriaRequiredMessage = exports.showUrlRequiredMessage = exports.saveEmail = exports.saveDescription = exports.saveUrl = exports.toggleCriteria = exports.checkOption5 = exports.checkOption4 = exports.checkOption3 = exports.checkOption2 = exports.checkOption1 = exports.changeForm = exports.changeModal = undefined;
+exports.hideValidEmailRequiredMessage = exports.validEmailRequiredMessage = exports.showCriteriaRequiredMessage = exports.showUrlRequiredMessage = exports.saveEmail = exports.saveDescription = exports.saveUrl = exports.toggleCriteria = exports.checkOption5 = exports.checkOption4 = exports.checkOption3 = exports.checkOption2 = exports.checkOption1 = exports.changeForm = exports.closeModal = exports.openModal = undefined;
 
 var _actionTypes = __webpack_require__(123);
 
@@ -25446,9 +25447,14 @@ var types = _interopRequireWildcard(_actionTypes);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-var changeModal = exports.changeModal = function changeModal() {
+var openModal = exports.openModal = function openModal() {
   return {
-    type: types.CHANGE_MODAL
+    type: types.OPEN_MODAL
+  };
+};
+var closeModal = exports.closeModal = function closeModal() {
+  return {
+    type: types.CLOSE_MODAL
   };
 };
 var changeForm = exports.changeForm = function changeForm() {
@@ -25792,20 +25798,20 @@ var ConfirmationModal = function (_React$Component) {
   }, {
     key: 'componentWillUnmount',
     value: function componentWillUnmount() {
-      this.props.changeModal();
+      this.props.closeModal();
     }
   }, {
     key: 'render',
     value: function render() {
       var _this2 = this;
 
-      console.log('email props', this.props);
+      //  console.log('email props', this.props);
       return _react2.default.createElement(
         _reactModal2.default,
         {
           isOpen: this.props.forms.modalIsOpen,
           onRequestClose: function onRequestClose() {
-            return _this2.props.changeModal();
+            return _this2.props.closeModal();
           },
           style: this.props.yoti.isMobile ? _modalStyle.modalMobileOverlay : _modalStyle.modalDesktopOverlay,
           contentLabel: 'Reassuring message'
@@ -25817,7 +25823,7 @@ var ConfirmationModal = function (_React$Component) {
             className: 'close_btn',
             primary: true, label: 'X',
             onClick: function onClick() {
-              return _this2.props.changeModal();
+              console.log('I am being called!!');console.log(_this2.props);_this2.props.closeModal();
             } }),
           _react2.default.createElement(
             'h2',
@@ -26474,7 +26480,7 @@ var UrlDescriptionForm = function (_React$Component) {
                 if (!_this2.props.forms.url) {
                   _this2.props.showUrlRequiredMessage();
                 } else {
-                  _this2.props.changeModal();
+                  _this2.props.openModal();
                   _this2.handleUrlSubmit();
                 }
               }
@@ -27024,9 +27030,13 @@ var forms = function forms() {
   var action = arguments[1];
 
   switch (action.type) {
-    case _actionTypes.CHANGE_MODAL:
+    case _actionTypes.OPEN_MODAL:
       return _extends({}, state, {
-        modalIsOpen: !state.modalIsOpen
+        modalIsOpen: true
+      });
+    case _actionTypes.CLOSE_MODAL:
+      return _extends({}, state, {
+        modalIsOpen: false
       });
     case _actionTypes.CHANGE_FORM:
       return _extends({}, state, {
