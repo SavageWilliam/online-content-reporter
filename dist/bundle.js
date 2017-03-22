@@ -26800,14 +26800,13 @@ var Home = function (_React$Component) {
   _createClass(Home, [{
     key: 'componentWillMount',
     value: function componentWillMount() {
-      if (document.cookie) {
-        console.log(document.cookie, 'my cookie');
-        if (document.cookie.split('=')[1] === 'true') {
-          _reactRouter.browserHistory.push('/form');
-        } else {
-          _reactRouter.browserHistory.push('/over-age');
-        }
-      }
+      // if (document.cookie) {
+      //   if (document.cookie.split('=')[1] === 'true') {
+      //     browserHistory.push('/form')
+      //   } else {
+      //     browserHistory.push('/over-age')
+      //   }
+      // }
       var isMobileRE = /webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini|Android/i;
       var isMobile = isMobileRE.test(navigator.userAgent) && /Mobile/i.test(navigator.userAgent);
       if (isMobile) this.mobileSetup();
@@ -26815,8 +26814,8 @@ var Home = function (_React$Component) {
   }, {
     key: 'mobileSetup',
     value: function mobileSetup() {
-      // const href = 'https://www.yoti.com/connect/3392788e-e529-4309-8ed7-54d7ac554055' //will
-      var href = 'https://www.yoti.com/connect/f6999919-d114-43c0-bdf0-ae2e1a89ff73';
+      var href = 'https://www.yoti.com/connect/3392788e-e529-4309-8ed7-54d7ac554055'; //will
+      // const href = 'https://www.yoti.com/connect/f6999919-d114-43c0-bdf0-ae2e1a89ff73'
       this.props.setUpForMobile(href);
 
       // Need Yoti api to fix before implementing this.
