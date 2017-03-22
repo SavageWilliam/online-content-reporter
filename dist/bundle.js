@@ -25808,7 +25808,7 @@ var ConfirmationModal = function (_React$Component) {
     value: function render() {
       var _this2 = this;
 
-      console.log('email props', this.props);
+      //  console.log('email props', this.props);
       return _react2.default.createElement(
         _reactModal2.default,
         {
@@ -25826,7 +25826,7 @@ var ConfirmationModal = function (_React$Component) {
             className: 'close_btn',
             primary: true, label: 'X',
             onClick: function onClick() {
-              return _this2.props.closeModal();
+              console.log('I am being called!!');console.log(_this2.props);_this2.props.closeModal();
             } }),
           _react2.default.createElement(
             'h2',
@@ -27030,7 +27030,7 @@ var forms = function forms() {
       });
     case _actionTypes.CLOSE_MODAL:
       return _extends({}, state, {
-        modalIsOpen: true
+        modalIsOpen: false
       });
     case _actionTypes.CHANGE_FORM:
       return _extends({}, state, {
