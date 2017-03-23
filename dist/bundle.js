@@ -26811,7 +26811,7 @@ var Home = function (_React$Component) {
       if (isMobile) this.mobileSetup();
 
       var ageIsVerified = _reactCookie2.default.load('yotiVerifiedAge');
-      if (ageIsVerified && isMobile) {
+      if (ageIsVerified !== undefined && isMobile) {
         this.props.ageIsVerified();
         if (ageIsVerified === 'true') {
           _reactCookie2.default.remove('yotiVerifiedAge');
