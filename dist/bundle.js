@@ -26606,7 +26606,6 @@ var YotiShareButtons = function (_React$Component) {
     key: 'componentWillMount',
     value: function componentWillMount() {
       if (!this.props.yoti.isMobile) {
-        this.props.qrFetchRequested();
         this.props.closeQr();
       }
     }
@@ -26808,7 +26807,7 @@ var Home = function (_React$Component) {
     value: function componentWillMount() {
       var isMobileRE = /webOS|iPhone|iPod|BlackBerry|IEMobile|Opera Mini|Android/i;
       var isMobile = isMobileRE.test(navigator.userAgent) && /Mobile/i.test(navigator.userAgent);
-      if (isMobile) this.mobileSetup();
+      if (isMobile) this.mobileSetup();else this.props.qrFetchRequested();
 
       var ageIsVerified = _reactCookie2.default.load('yotiVerifiedAge');
       if (ageIsVerified !== undefined && isMobile) {
