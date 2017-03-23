@@ -25780,6 +25780,7 @@ var ConfirmationModal = function (_React$Component) {
   }, {
     key: 'handleEmailSubmit',
     value: function handleEmailSubmit() {
+      this.props.hideValidEmailRequiredMessage();
       var _props$forms = this.props.forms,
           imageCriteria = _props$forms.imageCriteria,
           url = _props$forms.url,
@@ -25787,7 +25788,9 @@ var ConfirmationModal = function (_React$Component) {
           email = _props$forms.email;
 
       var payload = { imageCriteria: imageCriteria, url: url, description: description, email: email };
-      return _axios2.default.post('/email', payload);
+      _axios2.default.post('/email', payload).then(function (res) {
+        _reactRouter.browserHistory.push('/');
+      });
     }
   }, {
     key: 'validateEmail',
@@ -25859,8 +25862,6 @@ var ConfirmationModal = function (_React$Component) {
             label: 'Submit',
             onClick: function onClick() {
               if (_this2.validateEmail()) {
-                _this2.props.hideValidEmailRequiredMessage();
-                _reactRouter.browserHistory.push('/');
                 _this2.handleEmailSubmit();
               } else {
                 _this2.props.validEmailRequiredMessage();
