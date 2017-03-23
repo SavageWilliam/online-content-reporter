@@ -9878,7 +9878,7 @@ var setUpForMobile = exports.setUpForMobile = function setUpForMobile(href) {
     type: types.SET_UP_FOR_MOBILE,
     href: href,
     target: '_self',
-    isMobile: false,
+    isMobile: true,
     buttonLabelStyle: { fontSize: '0.8rem', textTransform: 'none', fontFamily: 'childline' },
     buttonStyle: { whiteSpace: 'nowrap', minWidth: '5rem' }
   };
@@ -25661,8 +25661,6 @@ var _react = __webpack_require__(2);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactRouter = __webpack_require__(102);
-
 __webpack_require__(29);
 
 var _Header = __webpack_require__(104);
@@ -26813,7 +26811,7 @@ var Home = function (_React$Component) {
       if (isMobile) this.mobileSetup();
 
       var ageIsVerified = _reactCookie2.default.load('yotiVerifiedAge');
-      if (ageIsVerified) {
+      if (ageIsVerified && isMobile) {
         this.props.ageIsVerified();
         if (ageIsVerified === 'true') {
           _reactCookie2.default.remove('yotiVerifiedAge');
@@ -26828,21 +26826,7 @@ var Home = function (_React$Component) {
     key: 'mobileSetup',
     value: function mobileSetup() {
       var href = 'https://www.yoti.com/connect/3392788e-e529-4309-8ed7-54d7ac554055'; // will
-      // const href = 'https://www.yoti.com/connect/f6999919-d114-43c0-bdf0-ae2e1a89ff73'
       this.props.setUpForMobile(href);
-
-      // Need Yoti api to fix before implementing this.
-      // var config = {
-      //   headers: {'X-Requested-With': 'XMLHttpRequest', 'content-type': 'application/json'}
-      // }
-      // axios.get('https://www.yoti.com/qr/5be10ae7-af29-40b0-8d33-a0fb90cb0e88', config)
-      //   .then((res) => {
-      //     const href = `${res.data.qrCodeUrl}?callback=${res.data.callbackUrl}&id=${res.data.application.id}&mobile=true`
-      //     this.props.setUpForMobile(href)
-      //   })
-      //   .catch((error) => {
-      //     console.log(error)
-      //   })
     }
   }, {
     key: 'render',
