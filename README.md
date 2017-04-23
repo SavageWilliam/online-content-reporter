@@ -11,7 +11,7 @@ The current  [IWF "hash list"](https://www.iwf.org.uk/become-a-member/services-f
 *Under development*
 
 Two versions for testing purposes so test of both the under18 and over18 user journeys can be tested.
-- Age limit is 25: [content-reporter](https://content-reporter.herokuapp.com/)
+- Age limit is 18: [content-reporter](https://content-reporter.herokuapp.com/)
 - Age limit is 40: [childline-yoti2](http://childline-yoti2.herokuapp.com/)
 
 - 3 day Prototype version: [childline-report](https://childline-report-image.herokuapp.com)
